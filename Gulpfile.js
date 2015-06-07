@@ -22,7 +22,7 @@ var sassFiles = [srcBaseDir + '/**/*.scss', '!' + srcBaseDir + '/bower_component
 var vendorFiles = [
   'src/bower_components/angular/angular.js',
   'src/bower_components/angular-ui-router/release/angular-ui-router.js',
-  'src/bower_components/angular-bootstrap/ui-bootstrap.js',
+  'src/bower_components/angular-bootstrap/ui-bootstrap-tpls.js',
   'src/bower_components/lodash/lodash.js',
   'src/bower_components/d3/d3.js',
   'src/bower_components/nvd3/build/nv.d3.js',
