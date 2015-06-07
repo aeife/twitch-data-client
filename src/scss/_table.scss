@@ -1,0 +1,11 @@
+.sortable-table {
+  &>thead>tr>th {
+    cursor: pointer;
+  }
+}
+
+.clickable-rows-table {
+  &>tbody>tr {
+    cursor: pointer;
+  }
+}

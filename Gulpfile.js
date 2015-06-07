@@ -125,12 +125,18 @@ gulp.task('sass:dev', function () {
 });
 
 // copy static files to dist
-gulp.task('copy', ['copy:images']);
+gulp.task('copy', ['copy:images', 'copy:fonts']);
 
 // copy images to dist
 gulp.task('copy:images', function () {
     return gulp.src(srcBaseDir + 'images/**/*.*')
         .pipe(gulp.dest(destinationPath + 'images'));
+});
+
+// copy fonts to dist
+gulp.task('copy:fonts', function () {
+    return gulp.src(srcBaseDir + 'bower_components/bootstrap-sass/assets/fonts/**/*.*')
+        .pipe(gulp.dest(destinationPath + 'fonts'));
 });
 
 // copy index.html and inject combines js dist file

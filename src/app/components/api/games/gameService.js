@@ -22,7 +22,7 @@ angular.module('twitchdata.components.api.games', [])
           return $http({
             url: _baseUrl + '/games',
             method: 'GET',
-            params: {limit: options.limit, offset: options.offset, sortAttr: options.sortAttr, sortType: options.sortType, order: options.order}
+            params: {limit: options.limit, offset: options.offset, sortAttr: options.sortAttr, sortType: options.sortType, order: options.order, ratio: options.ratio}
           });
         },
         getGameById: function (id) {

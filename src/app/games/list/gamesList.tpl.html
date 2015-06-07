@@ -1,7 +1,45 @@
 <h1>Top Games</h1>
 
-<ul>
-  <li ng-repeat="game in GamesListCtrl.games track by game._id"><a ui-sref="gameDetail({gameId: game._id})">{{game.name}}: {{game.viewers}}, {{game.channels}}</a></li>
-</ul>
+<table class="table table-striped table-hover sortable-table clickable-rows-table">
+  <thead>
+    <tr>
+      <th ng-click="GamesListCtrl.sortBy('name')">
+        Game
+        <span ng-if="GamesListCtrl.sorting.attr == 'name'" class="glyphicon"
+          ng-class="{'glyphicon-menu-down': !GamesListCtrl.sorting.reverse,
+          'glyphicon-menu-up': GamesListCtrl.sorting.reverse}"></span>
+      </th>
+      <th ng-click="GamesListCtrl.sortBy('viewers')">
+        Viewers
+        <span ng-if="GamesListCtrl.sorting.attr == 'viewers'" class="glyphicon"
+          ng-class="{'glyphicon-menu-down': !GamesListCtrl.sorting.reverse,
+          'glyphicon-menu-up': GamesListCtrl.sorting.reverse}"></span>
+      </th>
+      <th ng-click="GamesListCtrl.sortBy('channels')">
+        Channels
+        <span ng-if="GamesListCtrl.sorting.attr == 'channels'" class="glyphicon"
+          ng-class="{'glyphicon-menu-down': !GamesListCtrl.sorting.reverse,
+          'glyphicon-menu-up': GamesListCtrl.sorting.reverse}"></span>
+      </th>
+      <th ng-click="GamesListCtrl.sortBy('ratio')">
+        Ratio
+        <span ng-if="GamesListCtrl.sorting.attr == 'ratio'" class="glyphicon"
+          ng-class="{'glyphicon-menu-down': !GamesListCtrl.sorting.reverse,
+          'glyphicon-menu-up': GamesListCtrl.sorting.reverse}"></span>
+      </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr ng-repeat="game in GamesListCtrl.games track by game._id" ng-click="GamesListCtrl.goToGameDetailView(game._id)">
+      <td>{{::game.name}}</td>
+      <td>{{::game.viewers}}</td>
+      <td>{{::game.channels}}</td>
+      <td>{{::(game.channels > 0) ? game.viewers / game.channels : 0 | number:0}}</td>
+    </tr>
+  </tbody>
+</table>
 
-<pagination total-items="GamesListCtrl.games.length" ng-model="GamesListCtrl.pagination.currentPage" ng-change="GamesListCtrl.pagination.update()" class="pagination-sm"></pagination>
+<div class="col-xs-12 text-center">
+  <pagination total-items="GamesListCtrl.totalGames" ng-model="GamesListCtrl.pagination.currentPage"
+    ng-change="GamesListCtrl.pagination.update()" max-size="10" class="pagination-sm"></pagination>
+</div>
