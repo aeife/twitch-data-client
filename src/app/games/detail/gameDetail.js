@@ -21,11 +21,18 @@ angular.module('twitchdata.games.detail', [
           return [new Date(stat.dateCreated).getTime(), stat.channels];
         })
       }];
+
+      this.channelViewerChartData = [{
+        key: 'ratio',
+        values: this.game.stats.map(function (stat) {
+          return [new Date(stat.dateCreated).getTime(), (stat.viewers > 0 && stat.channels > 0) ? stat.viewers / stat.channels : 0];
+        })
+      }];
     }.bind(this));
 
     this.xAxisTickFormat = function(){
       return function(d){
         return d3.time.format('%b %d %I %p')(new Date(d));
       };
-    }
+    };
   });
