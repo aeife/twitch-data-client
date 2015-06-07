@@ -1,6 +1,7 @@
 'use strict';
 
 angular.module('twitchdata', [
+  'twitchdata.menu',
   'twitchdata.games.list',
   'twitchdata.components.api.games',
   'ui.router'
