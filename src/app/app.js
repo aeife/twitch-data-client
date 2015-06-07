@@ -4,7 +4,8 @@ angular.module('twitchdata', [
   'twitchdata.menu',
   'twitchdata.games.list',
   'twitchdata.components.api.games',
-  'ui.router'
+  'ui.router',
+  'ui.bootstrap'
   ])
   .config(function ($locationProvider, $stateProvider, gameServiceProvider) {
     $locationProvider.html5Mode(true);
