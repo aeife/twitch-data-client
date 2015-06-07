@@ -1,10 +1,20 @@
 <h1>{{GameDetailCtrl.game.name}}</h1>
 <nvd3-line-chart class="col-xs-12" style="height: 300px;"
-  data="GameDetailCtrl.exampleData"
+  data="GameDetailCtrl.viewersChartData"
   showXAxis="true"
   showYAxis="true"
   tooltips="true"
   interactive="true"
-  xAxisTickFormat="GameDetailCtrl.xAxisTickFormatFunction()"
+  xAxisTickFormat="GameDetailCtrl.xAxisTickFormat()"
+  reduceXTicks="true">
+</nvd3-line-chart>
+
+<nvd3-line-chart class="col-xs-12" style="height: 300px;"
+  data="GameDetailCtrl.channelsChartData"
+  showXAxis="true"
+  showYAxis="true"
+  tooltips="true"
+  interactive="true"
+  xAxisTickFormat="GameDetailCtrl.xAxisTickFormat()"
   reduceXTicks="true">
 </nvd3-line-chart>

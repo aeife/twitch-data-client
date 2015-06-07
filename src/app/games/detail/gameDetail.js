@@ -8,15 +8,22 @@ angular.module('twitchdata.games.detail', [
     gameService.getGameById($stateParams.gameId).then(function (res) {
       this.game = res.data;
 
-      this.exampleData = [{
+      this.viewersChartData = [{
         key: 'viewers',
         values: this.game.stats.map(function (stat) {
           return [new Date(stat.created_at).getTime(), stat.viewers];
         })
       }];
+
+      this.channelsChartData = [{
+        key: 'channels',
+        values: this.game.stats.map(function (stat) {
+          return [new Date(stat.created_at).getTime(), stat.channels];
+        })
+      }];
     }.bind(this));
 
-    this.xAxisTickFormatFunction = function(){
+    this.xAxisTickFormat = function(){
       return function(d){
         return d3.time.format('%b %d %I %p')(new Date(d));
       };
