@@ -24,6 +24,9 @@ var vendorFiles = [
   'src/bower_components/angular-ui-router/release/angular-ui-router.js',
   'src/bower_components/angular-bootstrap/ui-bootstrap.js',
   'src/bower_components/lodash/lodash.js',
+  'src/bower_components/d3/d3.js',
+  'src/bower_components/nvd3/build/nv.d3.js',
+  'src/bower_components/angularjs-nvd3-directives/dist/angularjs-nvd3-directives.js',
 ];
 
 // dist files
