@@ -133,14 +133,14 @@ gulp.task('copy:images', function () {
 // copy index.html and inject combines js dist file
 gulp.task('index', function () {
     return gulp.src(srcBaseDir + 'index.html')
-        .pipe(plugins.inject(gulp.src([jsDistPath + combinedJsDistFile, cssDistPath + cssDistFile], {read: false}), {ignorePath: '/dist/', addRootSlash: false}))
+        .pipe(plugins.inject(gulp.src([jsDistPath + combinedJsDistFile, cssDistPath + cssDistFile], {read: false}), {ignorePath: '/dist/', addRootSlash: true}))
         .pipe(gulp.dest(destinationPath));
 });
 
 // copy index.html and inject js dist files
 gulp.task('index:dev', function () {
     return gulp.src(srcBaseDir + 'index.html')
-        .pipe(plugins.inject(gulp.src(jsDistFiles.concat([cssDistPath + cssDistFile]), {read: false}), {ignorePath: '/dist/', addRootSlash: false}))
+        .pipe(plugins.inject(gulp.src(jsDistFiles.concat([cssDistPath + cssDistFile]), {read: false}), {ignorePath: '/dist/', addRootSlash: true}))
         .pipe(gulp.dest(destinationPath));
 });
 
