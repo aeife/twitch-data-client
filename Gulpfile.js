@@ -22,6 +22,7 @@ var sassFiles = [srcBaseDir + '/**/*.scss', '!' + srcBaseDir + '/bower_component
 var vendorFiles = [
   'src/bower_components/angular/angular.js',
   'src/bower_components/angular-ui-router/release/angular-ui-router.js',
+  'src/bower_components/lodash/lodash.js',
 ];
 
 // dist files

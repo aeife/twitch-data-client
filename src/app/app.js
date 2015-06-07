@@ -2,9 +2,10 @@
 
 angular.module('twitchdata', [
   'twitchdata.games.list',
+  'twitchdata.components.api.games',
   'ui.router'
   ])
-  .config(function ($locationProvider, $stateProvider) {
+  .config(function ($locationProvider, $stateProvider, gameServiceProvider) {
     $locationProvider.html5Mode(true);
 
     $stateProvider
@@ -14,4 +15,6 @@ angular.module('twitchdata', [
         controller: 'GamesListCtrl',
         controllerAs: 'GamesListCtrl'
       });
+
+    gameServiceProvider.config.setBaseUrl('http://localhost:8080/api/v1');
   });
