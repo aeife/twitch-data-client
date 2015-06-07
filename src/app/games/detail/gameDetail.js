@@ -11,14 +11,14 @@ angular.module('twitchdata.games.detail', [
       this.viewersChartData = [{
         key: 'viewers',
         values: this.game.stats.map(function (stat) {
-          return [new Date(stat.created_at).getTime(), stat.viewers];
+          return [new Date(stat.dateCreated).getTime(), stat.viewers];
         })
       }];
 
       this.channelsChartData = [{
         key: 'channels',
         values: this.game.stats.map(function (stat) {
-          return [new Date(stat.created_at).getTime(), stat.channels];
+          return [new Date(stat.dateCreated).getTime(), stat.channels];
         })
       }];
     }.bind(this));
