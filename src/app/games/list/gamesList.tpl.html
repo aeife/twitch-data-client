@@ -1,5 +1,5 @@
 <h1>Top Games</h1>
 
 <ul>
-  <li ng-repeat="game in GamesListCtrl.games track by game._id">{{game.name}}: {{game.viewers}}, {{game.channels}}</li>
+  <li ng-repeat="game in GamesListCtrl.games track by game._id"><a ui-sref="gameDetail({gameId: game._id})">{{game.name}}: {{game.viewers}}, {{game.channels}}</a></li>
 </ul>
