@@ -15,14 +15,14 @@ angular.module('twitchdata.dashboard', [
         DashboardCtrl.totalViewersChartData = [{
           key: 'viewers',
           values: DashboardCtrl.totalStats.map(function (stat) {
-            return [new Date(stat.dateCreated).getTime(), stat.viewers];
+            return [new Date(stat.collectionRun.date).getTime(), stat.viewers];
           })
         }];
 
         DashboardCtrl.totalChannelsChartData = [{
           key: 'channels',
           values: DashboardCtrl.totalStats.map(function (stat) {
-            return [new Date(stat.dateCreated).getTime(), stat.channels];
+            return [new Date(stat.collectionRun.date).getTime(), stat.channels];
           })
         }];
       });

@@ -11,21 +11,21 @@ angular.module('twitchdata.games.detail', [
       this.viewersChartData = [{
         key: 'viewers',
         values: this.game.stats.map(function (stat) {
-          return [new Date(stat.dateCreated).getTime(), stat.viewers];
+          return [new Date(stat.collectionRun.date).getTime(), stat.viewers];
         })
       }];
 
       this.channelsChartData = [{
         key: 'channels',
         values: this.game.stats.map(function (stat) {
-          return [new Date(stat.dateCreated).getTime(), stat.channels];
+          return [new Date(stat.collectionRun.date).getTime(), stat.channels];
         })
       }];
 
       this.channelViewerChartData = [{
         key: 'ratio',
         values: this.game.stats.map(function (stat) {
-          return [new Date(stat.dateCreated).getTime(), (stat.viewers > 0 && stat.channels > 0) ? stat.viewers / stat.channels : 0];
+          return [new Date(stat.collectionRun.date).getTime(), (stat.viewers > 0 && stat.channels > 0) ? stat.viewers / stat.channels : 0];
         })
       }];
     }.bind(this));
