@@ -1,5 +1,7 @@
-<h1>Top Games</h1>
-
+<h1 class="pull-left">Top Games</h1>
+<form class="form-inline">
+  <input type="text" name="search" ng-model="GamesListCtrl.searchText" ng-change="GamesListCtrl.search()" placeholder="Search" class="form-control search-input pull-right">
+</form>
 <table class="table table-striped table-hover sortable-table clickable-rows-table">
   <thead>
     <tr>

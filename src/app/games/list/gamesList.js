@@ -9,7 +9,8 @@ angular.module('twitchdata.games.list', ['twitchdata.components.api.games'])
         limit: GamesListCtrl.pagination.pageSize,
         offset: (GamesListCtrl.pagination.currentPage-1) * GamesListCtrl.pagination.pageSize,
         sortAttr: GamesListCtrl.sorting.attr,
-        order: (GamesListCtrl.sorting.reverse) ? 'asc' : 'desc'
+        order: (GamesListCtrl.sorting.reverse) ? 'asc' : 'desc',
+        search: GamesListCtrl.searchText
       }).then(function (res) {
         GamesListCtrl.games = res.data.games;
         GamesListCtrl.totalGames = res.data.count;
@@ -42,9 +43,13 @@ angular.module('twitchdata.games.list', ['twitchdata.components.api.games'])
       GamesListCtrl.pagination.currentPage = 1;
       GamesListCtrl.pagination.update();
     };
-    
+
     GamesListCtrl.goToGameDetailView = function (gameId) {
       $state.go('gameDetail', {gameId: gameId});
+    };
+
+    GamesListCtrl.search = function () {
+      fetchData();
     };
 
     init();
