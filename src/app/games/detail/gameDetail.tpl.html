@@ -6,32 +6,6 @@
   <li ng-repeat="stream in GameDetailCtrl.currentTopStreams"><a ng-href="{{stream.channel.url}}">{{stream.channel.name}} [{{stream.viewers}}]</a></li>
 </ul>
 
-<nvd3-line-chart class="col-xs-12" style="height: 300px;"
-  data="GameDetailCtrl.viewersChartData"
-  showXAxis="true"
-  showYAxis="true"
-  tooltips="true"
-  interactive="true"
-  xAxisTickFormat="GameDetailCtrl.xAxisTickFormat()"
-  reduceXTicks="true">
-</nvd3-line-chart>
-
-<nvd3-line-chart class="col-xs-12" style="height: 300px;"
-  data="GameDetailCtrl.channelsChartData"
-  showXAxis="true"
-  showYAxis="true"
-  tooltips="true"
-  interactive="true"
-  xAxisTickFormat="GameDetailCtrl.xAxisTickFormat()"
-  reduceXTicks="true">
-</nvd3-line-chart>
-
-<nvd3-line-chart class="col-xs-12" style="height: 300px;"
-  data="GameDetailCtrl.channelViewerChartData"
-  showXAxis="true"
-  showYAxis="true"
-  tooltips="true"
-  interactive="true"
-  xAxisTickFormat="GameDetailCtrl.xAxisTickFormat()"
-  reduceXTicks="true">
-</nvd3-line-chart>
+<highchart config="GameDetailCtrl.viewersChartConfig" class="col-xs-12"></highchart>
+<highchart config="GameDetailCtrl.channelsChartConfig" class="col-xs-12"></highchart>
+<highchart config="GameDetailCtrl.ratioChartConfig" class="col-xs-12"></highchart>

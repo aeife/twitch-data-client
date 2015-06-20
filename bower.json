@@ -20,13 +20,10 @@
     "bootstrap-sass": "~3.3.4",
     "angular-mocks": "~1.4.0",
     "angular-bootstrap": "~0.13.0",
-    "d3": "~3.5.5",
-    "nvd3": "~1.7.1",
-    "angularjs-nvd3-directives": "~0.0.7"
+    "highcharts-ng": "~0.0.8",
+    "highstock-release": "~2.1.6"
   },
   "resolutions": {
-    "angular": "~1.4.0",
-    "nvd3": "~1.7.1",
-    "d3": "~3.5.5"
+    "angular": "~1.4.0"
   }
 }

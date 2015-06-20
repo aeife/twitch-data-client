@@ -24,9 +24,9 @@ var vendorFiles = [
   'src/bower_components/angular-ui-router/release/angular-ui-router.js',
   'src/bower_components/angular-bootstrap/ui-bootstrap-tpls.js',
   'src/bower_components/lodash/lodash.js',
-  'src/bower_components/d3/d3.js',
-  'src/bower_components/nvd3/build/nv.d3.js',
-  'src/bower_components/angularjs-nvd3-directives/dist/angularjs-nvd3-directives.js',
+  'src/bower_components/highstock-release/adapters/standalone-framework.src.js',
+  'src/bower_components/highstock-release/highstock.src.js',
+  'src/bower_components/highcharts-ng/dist/highcharts-ng.js',
 ];
 
 // dist files
@@ -71,7 +71,7 @@ gulp.task('uglify:js', ['package:js'], function () {
 gulp.task('package:vendor', function () {
     return gulp.src(vendorFiles)
         .pipe(plugins.concat(vendorDistFile))
-        .pipe(plugins.uglify())
+        // .pipe(plugins.uglify())
         .pipe(gulp.dest(jsDistPath));
 });
 

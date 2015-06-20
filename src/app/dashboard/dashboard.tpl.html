@@ -1,21 +1,4 @@
 <h1>Twitch Data</h1>
 
-<nvd3-line-chart class="col-xs-12 col-sm-6" style="height: 300px;"
-  data="DashboardCtrl.totalViewersChartData"
-  showXAxis="true"
-  showYAxis="true"
-  tooltips="true"
-  interactive="true"
-  xAxisTickFormat="DashboardCtrl.xAxisTickFormat()"
-  reduceXTicks="true">
-</nvd3-line-chart>
-
-<nvd3-line-chart class="col-xs-12 col-sm-6" style="height: 300px;"
-  data="DashboardCtrl.totalChannelsChartData"
-  showXAxis="true"
-  showYAxis="true"
-  tooltips="true"
-  interactive="true"
-  xAxisTickFormat="DashboardCtrl.xAxisTickFormat()"
-  reduceXTicks="true">
-</nvd3-line-chart>
+<highchart config="DashboardCtrl.totalViewersChartConfig" class="col-xs-12 col-sm-6"></highchart>
+<highchart config="DashboardCtrl.totalChannelsChartConfig" class="col-xs-12 col-sm-6"></highchart>
