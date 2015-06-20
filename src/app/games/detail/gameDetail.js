@@ -2,11 +2,19 @@
 
 angular.module('twitchdata.games.detail', [
   'twitchdata.components.api.games',
-  'nvd3ChartDirectives'
+  'nvd3ChartDirectives',
+  'twitchdata.components.twitchApi'
   ])
-  .controller('GameDetailCtrl', function ($http, $stateParams, gameService) {
+  .controller('GameDetailCtrl', function ($http, $stateParams, gameService, twitchApiClient) {
+    var GameDetailCtrl = this;
+
     gameService.getGameById($stateParams.gameId).then(function (res) {
       this.game = res.data;
+
+      twitchApiClient.getTopStreamsForGame(this.game.name).then(function (res) {
+        console.log(res.data.streams);
+        GameDetailCtrl.currentTopStreams = res.data.streams;
+      });
 
       this.viewersChartData = [{
         key: 'viewers',
