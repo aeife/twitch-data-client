@@ -2,7 +2,7 @@
 
 angular.module('twitchdata.components.twitchApi', [])
   .provider('twitchApiClient', function () {
-    var _baseUrl = 'https://api.twitch.tv/kraken/streams?game=League of Legends';
+    var _baseUrl = 'https://api.twitch.tv/kraken';
     this.$get = function ($http) {
       var titchApiClient = {
         getTopStreamsForGame: function (game, options) {
