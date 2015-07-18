@@ -32,7 +32,7 @@
     </tr>
   </thead>
   <tbody>
-    <tr ng-repeat="game in GamesListCtrl.games track by game._id" ng-click="GamesListCtrl.goToGameDetailView(game._id)">
+    <tr ng-repeat="game in GamesListCtrl.games track by game._id" ng-click="GamesListCtrl.goToGameDetailView(game)">
       <td>{{::game.name}}</td>
       <td>{{::game.viewers}}</td>
       <td>{{::game.channels}}</td>

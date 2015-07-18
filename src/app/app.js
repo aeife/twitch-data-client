@@ -27,7 +27,7 @@ angular.module('twitchdata', [
         controllerAs: 'GamesListCtrl'
       })
       .state('gameDetail', {
-        url: '/games/:gameId',
+        url: '/games/:gameName',
         templateUrl: 'app/games/detail/gameDetail.tpl.html',
         controller: 'GameDetailCtrl',
         controllerAs: 'GameDetailCtrl'

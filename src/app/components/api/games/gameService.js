@@ -16,8 +16,7 @@ angular.module('twitchdata.components.api.games', [])
             options = {};
           }
           _.defaults(options, {
-            sortAttr: 'viewers',
-            sortType: 'last'
+            sortAttr: 'viewers'
           });
           return $http({
             url: _baseUrl + '/games',
@@ -33,9 +32,9 @@ angular.module('twitchdata.components.api.games', [])
             }
           });
         },
-        getGameById: function (id) {
+        getGameByName: function (name) {
           return $http({
-            url: _baseUrl + '/games/' + id,
+            url: _baseUrl + '/games/' + name,
             method: 'GET'
           });
         }

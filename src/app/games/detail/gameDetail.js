@@ -17,7 +17,7 @@ angular.module('twitchdata.games.detail', [
       }
     };
 
-    gameService.getGameById($stateParams.gameId).then(function (res) {
+    gameService.getGameByName($stateParams.gameName).then(function (res) {
       this.game = res.data;
 
       giantbombApiClient.getDataForGame(this.game.giantbombId).then(function (data) {
