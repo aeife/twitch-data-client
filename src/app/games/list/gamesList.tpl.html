@@ -99,7 +99,7 @@
       </thead>
       <tbody>
         <tr ng-repeat="game in GamesListCtrl.games track by game._id" ng-click="GamesListCtrl.goToGameDetailView(game)">
-          <td class="wrap-text"> <img ng-src="http://static-cdn.jtvnw.net/ttv-boxart/{{game.name}}-100x140.jpg" class="game-img" alt="" height="50"/>{{::game.name}} dgsdffdhfdgfdgdf gdsgffdgfdsgfffdgfdgfdgfssfgdsgfdgdsgfsgfd</td>
+          <td class="wrap-text"> <img ng-src="http://static-cdn.jtvnw.net/ttv-boxart/{{game.name}}-100x140.jpg" class="game-img" alt="" height="50"/>{{::game.name}}</td>
           <td>{{::game.viewers}}</td>
           <td>{{::game.channels}}</td>
           <td>{{::(game.channels > 0) ? game.viewers / game.channels : 0 | number:0}}</td>
