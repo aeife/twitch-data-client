@@ -2,6 +2,7 @@
 
 angular.module('twitchdata', [
   'twitchdata.menu',
+  'twitchdata.footer',
   'twitchdata.dashboard',
   'twitchdata.games.list',
   'twitchdata.games.detail',
@@ -31,6 +32,12 @@ angular.module('twitchdata', [
         templateUrl: 'app/games/detail/gameDetail.tpl.html',
         controller: 'GameDetailCtrl',
         controllerAs: 'GameDetailCtrl'
+      })
+      .state('gamesCompare', {
+        url: '/games/:game1Name/:game2Name',
+        templateUrl: 'app/games/compare/gamesCompare.tpl.html',
+        controller: 'GamesCompareCtrl',
+        controllerAs: 'GamesCompareCtrl'
       });
 
     gameServiceProvider.config.setBaseUrl('http://localhost:8080/api/v1');
