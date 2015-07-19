@@ -16,7 +16,17 @@ angular.module('twitchdata.games.detail', [
       }
     };
 
-    var addMissingCollectionRunsToGame = function (game) {
+    // adds missing collection run entries to stats array
+    var addMissingCollectionRunsToGame = function (game, lastCollectionRun) {
+      if (_.last(game.stats).collectionRun._id !== lastCollectionRun._id) {
+        game.stats.push({
+          viewers: 0,
+          channels: 0,
+          ratio: 0,
+          collectionRun: lastCollectionRun
+        });
+      }
+
       var missing;
       do {
         missing = false;
@@ -50,8 +60,8 @@ angular.module('twitchdata.games.detail', [
     };
 
     gameService.getGameByName($stateParams.gameName).then(function (res) {
-      this.game = res.data;
-      addMissingCollectionRunsToGame(this.game);
+      this.game = res.data.game;
+      addMissingCollectionRunsToGame(this.game, res.data.lastCollectionRun);
 
       giantbombApiClient.getDataForGame(this.game.giantbombId).then(function (data) {
         GameDetailCtrl.giantbomb = data;

@@ -1,0 +1,33 @@
+.game-data {
+  padding: 0;
+
+  @media (min-width: $screen-sm-min) and (max-width: $screen-md-min) {
+    padding: 0px 0px 0px 20px;
+  }
+}
+
+.game-image {
+  padding: 0;
+
+  p {
+    padding: 0;
+
+    @media (max-width: $screen-sm-min) {
+      padding: 0px 0px 0px 10px;
+    }
+  }
+}
+
+.game-statistics {
+  .statistic {
+    margin-bottom: 10px;
+  }
+
+  h3 {
+    float: right;
+    display: inline;
+    margin: 0;
+    padding: 10px 20px;
+    background-color: #fff;
+  }
+}

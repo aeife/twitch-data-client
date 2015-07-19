@@ -1,46 +1,70 @@
-<h1>{{GameDetailCtrl.game.name}}</h1>
-<small>{{GameDetailCtrl.giantbomb.description}}</small>
+<h1 class="col-xs-12">{{GameDetailCtrl.game.name}}</h1>
 
-<img ng-src="http://static-cdn.jtvnw.net/ttv-boxart/{{GameDetailCtrl.game.name}}-50x50.jpg" alt="" />
+<div class="col-sm-12 col-md-4 col-md-push-8">
+  <div class="col-xs-12 col-sm-4 col-md-12 game-image">
+    <img ng-src="http://static-cdn.jtvnw.net/ttv-boxart/{{GameDetailCtrl.game.name}}-300x420.jpg" alt="" class="col-xs-6 col-sm-12 no-padding" />
+    <p class="col-xs-6 col-sm-12"><small>{{GameDetailCtrl.giantbomb.description}}</small></p>
+  </div>
+  <div class="col-xs-12 col-sm-8 col-md-12 game-data">
+    <div class="">
+      <h2>Game Data</h2>
+      <table class="table table-striped">
+        <tr>
+          <td>Genre</td>
+          <td>{{GameDetailCtrl.giantbomb.genres || 'N/A'}}</td>
+        </tr>
+        <tr>
+          <td>Ratings</td>
+          <td>{{GameDetailCtrl.giantbomb.ratings || 'N/A'}}</td>
+        </tr>
+        <tr>
+          <td>Platforms</td>
+          <td>{{GameDetailCtrl.giantbomb.platforms || 'N/A'}}</td>
+        </tr>
+        <tr>
+          <td>Release</td>
+          <td>{{GameDetailCtrl.giantbomb.release || 'N/A' | date:'longDate'}}</td>
+        </tr>
+        <tr>
+          <td>Developers</td>
+          <td>{{GameDetailCtrl.giantbomb.developers || 'N/A'}}</td>
+        </tr>
+        <tr>
+          <td>Publishers</td>
+          <td>{{GameDetailCtrl.giantbomb.publishers || 'N/A'}}</td>
+        </tr>
+        <tr>
+          <td>Similar</td>
+          <td>{{GameDetailCtrl.giantbomb.similar || 'N/A'}}</td>
+        </tr>
+      </table>
+      <small>powered by <a ng-href="{{GameDetailCtrl.giantbomb.url}}">giantbomb</a></small>
+    </div>
 
-<h2>Current Top Streams</h2>
-<ul>
-  <li ng-repeat="stream in GameDetailCtrl.currentTopStreams"><a ng-href="{{stream.channel.url}}">{{stream.channel.name}} [{{stream.viewers}}]</a></li>
-</ul>
+    <div class="">
+      <h2>Current Top Streams</h2>
+      <ul>
+        <li ng-repeat="stream in GameDetailCtrl.currentTopStreams"><a ng-href="{{stream.channel.url}}">{{stream.channel.name}} [{{stream.viewers}}]</a></li>
+      </ul>
+    </div>
+  </div>
+</div>
 
-<h2>Game Data</h2>
-<table class="table table-striped">
-  <tr>
-    <td>Genre</td>
-    <td>{{GameDetailCtrl.giantbomb.genres || 'N/A'}}</td>
-  </tr>
-  <tr>
-    <td>Ratings</td>
-    <td>{{GameDetailCtrl.giantbomb.ratings || 'N/A'}}</td>
-  </tr>
-  <tr>
-    <td>Platforms</td>
-    <td>{{GameDetailCtrl.giantbomb.platforms || 'N/A'}}</td>
-  </tr>
-  <tr>
-    <td>Release</td>
-    <td>{{GameDetailCtrl.giantbomb.release || 'N/A' | date:'longDate'}}</td>
-  </tr>
-  <tr>
-    <td>Developers</td>
-    <td>{{GameDetailCtrl.giantbomb.developers || 'N/A'}}</td>
-  </tr>
-  <tr>
-    <td>Publishers</td>
-    <td>{{GameDetailCtrl.giantbomb.publishers || 'N/A'}}</td>
-  </tr>
-  <tr>
-    <td>Similar</td>
-    <td>{{GameDetailCtrl.giantbomb.similar || 'N/A'}}</td>
-  </tr>
-</table>
-<small>powered by <a ng-href="{{GameDetailCtrl.giantbomb.url}}">giantbomb</a></small>
+<div class="col-sm-12 col-md-8 col-md-pull-4 game-statistics">
+  <h2><i class="glyphicon glyphicon-stats"></i> Statistics</h2>
 
-<highchart config="GameDetailCtrl.viewersChartConfig" class="col-xs-12"></highchart>
-<highchart config="GameDetailCtrl.channelsChartConfig" class="col-xs-12"></highchart>
-<highchart config="GameDetailCtrl.ratioChartConfig" class="col-xs-12"></highchart>
+  <div class="statistic clearfix">
+    <h3>Viewers</h3>
+    <highchart config="GameDetailCtrl.viewersChartConfig" class="col-xs-12 no-padding"></highchart>
+  </div>
+
+  <div class="statistic clearfix">
+    <h3>Channels</h3>
+    <highchart config="GameDetailCtrl.channelsChartConfig" class="col-xs-12 no-padding"></highchart>
+  </div>
+
+  <div class="statistic clearfix">
+    <h3>Ratio</h3>
+    <highchart config="GameDetailCtrl.ratioChartConfig" class="col-xs-12 no-padding"></highchart>
+  </div>
+</div>
