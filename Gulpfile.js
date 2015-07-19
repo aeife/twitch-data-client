@@ -108,6 +108,10 @@ gulp.task('sass', function () {
         .pipe(plugins.sass())
         .pipe(plugins.minifyCss())
         .pipe(plugins.rename(cssDistFile))
+        .pipe(plugins.autoprefixer({
+            browsers: ['last 2 versions'],
+            cascade: false
+        }))
         .pipe(gulp.dest(cssDistPath));
 });
 

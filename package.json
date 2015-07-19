@@ -18,6 +18,7 @@
   "homepage": "https://github.com/aeife/twitch-data-client",
   "devDependencies": {
     "gulp": "^3.8.11",
+    "gulp-autoprefixer": "^2.3.1",
     "gulp-clean": "^0.3.1",
     "gulp-concat": "^2.5.2",
     "gulp-header": "^1.2.2",
