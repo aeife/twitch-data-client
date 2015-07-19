@@ -4,16 +4,37 @@
 
 .game-cards {
   padding: 0;
-  
+
   li {
     height: 150px;
     padding: 5px;
     list-style: none;
 
+    &:hover .overlay{
+      display: flex;
+    }
+
     &>div {
       display: flex;
+      position: relative;
       background-color: #fff;
       box-shadow: 2px 2px 5px 0px rgba(216, 215, 215, 0.6);
+      cursor: pointer;
+    }
+  }
+
+  .overlay {
+    position: absolute;
+    display: none;
+    justify-content: center;
+    align-items: center;
+    height: 140px;
+    width: 100px;
+    background-color: rgba(255, 253, 253, 0.78);
+    left: 0;
+
+    i {
+      font-size: 26px;
     }
   }
 

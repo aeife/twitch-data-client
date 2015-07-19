@@ -14,6 +14,9 @@
   <li class="col-xs-6 col-sm-4 col-md-4 col-lg-3" ng-repeat="game in GamesListCtrl.games track by game._id" ng-click="GamesListCtrl.goToGameDetailView(game)">
     <div>
       <img ng-src="http://static-cdn.jtvnw.net/ttv-boxart/{{game.name}}-100x140.jpg" class="game-img" alt=""/>
+      <div class="overlay">
+        <i class="glyphicon glyphicon-eye-open"></i>
+      </div>
       <div class="game-description">
         <h4 class="game-name">{{::game.name}}</h4>
         <table class="table table-borderless">
