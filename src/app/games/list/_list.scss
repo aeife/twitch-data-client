@@ -1,0 +1,40 @@
+.list-actions {
+  margin-top: 20px;
+}
+
+.game-cards {
+  padding: 0;
+  
+  li {
+    height: 150px;
+    padding: 5px;
+    list-style: none;
+
+    &>div {
+      display: flex;
+      background-color: #fff;
+      box-shadow: 2px 2px 5px 0px rgba(216, 215, 215, 0.6);
+    }
+  }
+
+  .game-img {
+    height: 140px;
+    min-width: 100px;
+  }
+
+  .game-description {
+    padding-left: 5px;
+    height: 140px;
+    flex-grow: 1;
+  }
+
+  .game-name {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  table td:nth-child(2) {
+    text-align: right;
+  }
+}

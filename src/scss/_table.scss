@@ -9,3 +9,9 @@
     cursor: pointer;
   }
 }
+
+.table-borderless {
+  tr, th, td {
+    border: none !important;
+  }
+}

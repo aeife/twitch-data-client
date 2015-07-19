@@ -1,7 +1,16 @@
-.main-content {
-  margin-top: $navbar-height;
+html {
+  min-width: 580px;
+  box-sizing: border-box;
 }
 
-.search-input {
-  margin-top: 20px;
+*, *:before, *:after {
+  box-sizing: inherit;
+}
+
+body {
+  background-color: rgb(245, 247, 252);
+}
+
+.main-content {
+  margin-top: $navbar-height;
 }
