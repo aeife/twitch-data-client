@@ -2,8 +2,8 @@
   <div class="container">
     <div class="row">
       <h1 class="pull-left">Top Games</h1>
-      <div class="list-actions pull-right clearfix">
-        <div class="col-xs-10 pull-right">
+      <div class="list-actions pull-right clearfix col-xs-6 col-md-4 no-padding">
+        <div class="col-xs-9 pull-right">
           <input type="text" name="search" ng-model="GamesListCtrl.searchText" ng-change="GamesListCtrl.search()" placeholder="Search Game" class="form-control">
         </div>
         <button type="button" class="btn btn-default pull-right" ng-click="GamesListCtrl.tableView = !GamesListCtrl.tableView">
