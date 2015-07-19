@@ -1,5 +1,9 @@
 .list-actions {
   margin-top: 20px;
+
+  &>div {
+    padding-right: 0;
+  }
 }
 
 .game-cards {
@@ -63,5 +67,36 @@
 
   table td:nth-child(2) {
     text-align: right;
+  }
+}
+
+.game-table {
+  tr {
+    background-color: white;
+    display: flex;
+
+    &>th, &>td {
+      width: 120px;
+      text-align: right;
+
+      @media (min-width: $screen-sm-min) {
+        width: 160px;
+      }
+    }
+
+
+
+    &>th:first-child, &>td:first-child {
+      text-align: left;
+      flex-grow: 1;
+
+      img {
+        margin-right: 10px;
+      }
+    }
+  }
+
+  &>tbody>tr>td {
+    vertical-align: middle;
   }
 }

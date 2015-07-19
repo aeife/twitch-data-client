@@ -59,44 +59,49 @@
   </ul>
 </div>
 
-<table ng-if="GamesListCtrl.tableView" class="table table-striped table-hover sortable-table clickable-rows-table">
-  <thead>
-    <tr>
-      <th ng-click="GamesListCtrl.sortBy('name')">
-        Game
-        <span ng-if="GamesListCtrl.sorting.attr == 'name'" class="glyphicon"
-          ng-class="{'glyphicon-menu-down': !GamesListCtrl.sorting.reverse,
-          'glyphicon-menu-up': GamesListCtrl.sorting.reverse}"></span>
-      </th>
-      <th ng-click="GamesListCtrl.sortBy('viewers')">
-        Viewers
-        <span ng-if="GamesListCtrl.sorting.attr == 'viewers'" class="glyphicon"
-          ng-class="{'glyphicon-menu-down': !GamesListCtrl.sorting.reverse,
-          'glyphicon-menu-up': GamesListCtrl.sorting.reverse}"></span>
-      </th>
-      <th ng-click="GamesListCtrl.sortBy('channels')">
-        Channels
-        <span ng-if="GamesListCtrl.sorting.attr == 'channels'" class="glyphicon"
-          ng-class="{'glyphicon-menu-down': !GamesListCtrl.sorting.reverse,
-          'glyphicon-menu-up': GamesListCtrl.sorting.reverse}"></span>
-      </th>
-      <th ng-click="GamesListCtrl.sortBy('ratio')">
-        Ratio
-        <span ng-if="GamesListCtrl.sorting.attr == 'ratio'" class="glyphicon"
-          ng-class="{'glyphicon-menu-down': !GamesListCtrl.sorting.reverse,
-          'glyphicon-menu-up': GamesListCtrl.sorting.reverse}"></span>
-      </th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr ng-repeat="game in GamesListCtrl.games track by game._id" ng-click="GamesListCtrl.goToGameDetailView(game)">
-      <td>{{::game.name}}</td>
-      <td>{{::game.viewers}}</td>
-      <td>{{::game.channels}}</td>
-      <td>{{::(game.channels > 0) ? game.viewers / game.channels : 0 | number:0}}</td>
-    </tr>
-  </tbody>
-</table>
+<div ng-if="GamesListCtrl.tableView" class="row">
+  <table class="table table-hover sortable-table clickable-rows-table game-table">
+    <thead>
+      <tr>
+        <th ng-click="GamesListCtrl.sortBy('name')">
+          Game
+          <span ng-if="GamesListCtrl.sorting.attr == 'name'" class="glyphicon"
+            ng-class="{'glyphicon-menu-down': !GamesListCtrl.sorting.reverse,
+            'glyphicon-menu-up': GamesListCtrl.sorting.reverse}"></span>
+        </th>
+        <th ng-click="GamesListCtrl.sortBy('viewers')">
+          <span ng-if="GamesListCtrl.sorting.attr == 'viewers'" class="glyphicon"
+            ng-class="{'glyphicon-menu-down': !GamesListCtrl.sorting.reverse,
+            'glyphicon-menu-up': GamesListCtrl.sorting.reverse}"></span>
+          Viewers
+          <i class="glyphicon glyphicon-user"></i>
+        </th>
+        <th ng-click="GamesListCtrl.sortBy('channels')">
+          <span ng-if="GamesListCtrl.sorting.attr == 'channels'" class="glyphicon"
+            ng-class="{'glyphicon-menu-down': !GamesListCtrl.sorting.reverse,
+            'glyphicon-menu-up': GamesListCtrl.sorting.reverse}"></span>
+          Channels
+          <i class="glyphicon glyphicon-facetime-video"></i>
+        </th>
+        <th ng-click="GamesListCtrl.sortBy('ratio')">
+          <span ng-if="GamesListCtrl.sorting.attr == 'ratio'" class="glyphicon"
+            ng-class="{'glyphicon-menu-down': !GamesListCtrl.sorting.reverse,
+            'glyphicon-menu-up': GamesListCtrl.sorting.reverse}"></span>
+          Ratio
+          <i class="glyphicon glyphicon-scale"></i>
+        </th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr ng-repeat="game in GamesListCtrl.games track by game._id" ng-click="GamesListCtrl.goToGameDetailView(game)">
+        <td class="wrap-text"> <img ng-src="http://static-cdn.jtvnw.net/ttv-boxart/{{game.name}}-100x140.jpg" class="game-img" alt="" height="50"/>{{::game.name}} dgsdffdhfdgfdgdf gdsgffdgfdsgfffdgfdgfdgfssfgdsgfdgdsgfsgfd</td>
+        <td>{{::game.viewers}}</td>
+        <td>{{::game.channels}}</td>
+        <td>{{::(game.channels > 0) ? game.viewers / game.channels : 0 | number:0}}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
 
 <div class="col-xs-12 text-center">
   <pagination total-items="GamesListCtrl.totalGames" ng-model="GamesListCtrl.pagination.currentPage"
