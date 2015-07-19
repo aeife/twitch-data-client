@@ -59,9 +59,77 @@ angular.module('twitchdata.games.detail', [
       } while(missing);
     };
 
+    var getTrend = function (game, lastCollectionRun) {
+      var currentDate = new Date(lastCollectionRun.date);
+      var trend = {
+        days: {
+          growth: {
+            viewers: 0,
+            channels: 0
+          },
+          last: {
+            date: new Date(),
+            viewers: 0,
+            channels: 0
+          },
+          secondLast: {
+            date: new Date(),
+            viewers: 1,
+            channels: 1
+          }
+        }
+      };
+      trend.days.last.date.setDate(currentDate.getDate() - 1);
+      trend.days.secondLast.date.setDate(currentDate.getDate() - 2);
+      game.stats.forEach(function (stat) {
+        var date = new Date(stat.collectionRun.date);
+        if (date > trend.days.last.date) {
+          trend.days.last.viewers += stat.viewers;
+          trend.days.last.channels += stat.channels;
+        } else if (date < trend.days.last.date && date > trend.days.secondLast.date){
+          trend.days.secondLast.viewers += stat.viewers;
+          trend.days.secondLast.channels += stat.channels;
+        }
+      });
+
+      trend.days.growth.viewers = (trend.days.last.viewers / trend.days.secondLast.viewers) * 100 - 100;
+      trend.days.growth.channels = (trend.days.last.channels / trend.days.secondLast.channels) * 100 - 100;
+      console.log(trend);
+      return trend;
+    };
+
+    var getPeak = function (game) {
+      var peak = {
+        viewers: {
+          count: 0,
+          date: null,
+        },
+        channels: {
+          count: 0,
+          date: null
+        }
+      };
+
+      game.stats.forEach(function (stat) {
+        if (stat.viewers > peak.viewers.count) {
+          peak.viewers.count = stat.viewers;
+          peak.viewers.date = new Date(stat.collectionRun.date);
+        }
+
+        if (stat.channels > peak.channels.count) {
+          peak.channels.count = stat.channels;
+          peak.channels.date = new Date(stat.collectionRun.date);
+        }
+      });
+
+      return peak;
+    };
+
     gameService.getGameByName($stateParams.gameName).then(function (res) {
       this.game = res.data.game;
       addMissingCollectionRunsToGame(this.game, res.data.lastCollectionRun);
+      this.trend = getTrend(this.game, res.data.lastCollectionRun);
+      this.peak = getPeak(this.game);
 
       giantbombApiClient.getDataForGame(this.game.giantbombId).then(function (data) {
         GameDetailCtrl.giantbomb = data;
