@@ -1,33 +1,90 @@
+.game-info {
+  background-color: white;
+  box-shadow: 5px 5px 5px 0px rgba(216, 215, 215, 0.95);
+  padding: 15px;
+  overflow: auto;
+  margin-bottom: 15px;
+}
+
 .game-data {
   padding: 0;
 
   @media (min-width: $screen-sm-min) and (max-width: $screen-md-min) {
     padding: 0px 0px 0px 20px;
   }
+
+  table {
+    margin: 0;
+  }
+
+  ul {
+    padding: 0;
+  }
+  
+  li {
+    list-style: none;
+  }
 }
 
 .game-image {
   padding: 0;
 
-  p {
+  img {
+    margin-bottom: 10px;
+  }
+
+  &>div {
     padding: 0;
 
     @media (max-width: $screen-sm-min) {
       padding: 0px 0px 0px 10px;
     }
   }
+
+  .peak {
+    font-size: 20px;
+
+    i {
+      padding-right: 10px;
+    }
+
+    span {
+      font-size: 14px;
+      line-height: 30px;
+    }
+  }
 }
+
 
 .game-statistics {
   .statistic {
     margin-bottom: 10px;
+
+    h3 {
+      float: right;
+      display: inline;
+      margin: 0;
+      padding: 10px 20px;
+      background-color: #fff;
+    }
   }
 
-  h3 {
-    float: right;
-    display: inline;
+  hr {
+    border-color: #6441a5;
     margin: 0;
-    padding: 10px 20px;
-    background-color: #fff;
+  }
+
+  .trend {
+    text-align: center;
+
+    h3 {
+      font-weight: bold;
+    }
+
+    p {
+      font-size: 20px;
+      font-weight: bold;
+    }
+
   }
 }

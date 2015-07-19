@@ -1,56 +1,87 @@
 <h1 class="col-xs-12">{{GameDetailCtrl.game.name}}</h1>
 
-<div class="col-sm-12 col-md-4 col-md-push-8">
+<div class="col-sm-12 col-md-4 col-md-push-8 game-info">
   <div class="col-xs-12 col-sm-4 col-md-12 game-image">
     <img ng-src="http://static-cdn.jtvnw.net/ttv-boxart/{{GameDetailCtrl.game.name}}-300x420.jpg" alt="" class="col-xs-6 col-sm-12 no-padding" />
-    <p class="col-xs-6 col-sm-12"><small>{{GameDetailCtrl.giantbomb.description}}</small></p>
+    <div class="col-xs-6 col-sm-12">
+      <p>{{GameDetailCtrl.giantbomb.description}}</p>
+      <h3 class="text-center">Peaks</h3>
+      <p class="peak"><i class="fa fa-users"></i> {{GameDetailCtrl.peak.viewers.count | number:0}} <span class="pull-right">{{GameDetailCtrl.peak.viewers.date | date:'short'}}</span></p>
+      <p class="peak"><i class="fa fa-video-camera"></i> {{GameDetailCtrl.peak.channels.count | number:0}} <span class="pull-right">{{GameDetailCtrl.peak.channels.date | date:'short'}}</span></p>
+    </div>
   </div>
   <div class="col-xs-12 col-sm-8 col-md-12 game-data">
     <div class="">
-      <h2>Game Data</h2>
-      <table class="table table-striped">
+      <h3 class="text-center">Game Data</h3>
+      <table class="table">
         <tr>
-          <td>Genre</td>
+          <th>Genre</th>
           <td>{{GameDetailCtrl.giantbomb.genres || 'N/A'}}</td>
         </tr>
         <tr>
-          <td>Ratings</td>
+          <th>Ratings</th>
           <td>{{GameDetailCtrl.giantbomb.ratings || 'N/A'}}</td>
         </tr>
         <tr>
-          <td>Platforms</td>
+          <th>Platforms</th>
           <td>{{GameDetailCtrl.giantbomb.platforms || 'N/A'}}</td>
         </tr>
         <tr>
-          <td>Release</td>
+          <th>Release</th>
           <td>{{GameDetailCtrl.giantbomb.release || 'N/A' | date:'longDate'}}</td>
         </tr>
         <tr>
-          <td>Developers</td>
+          <th>Developers</th>
           <td>{{GameDetailCtrl.giantbomb.developers || 'N/A'}}</td>
         </tr>
         <tr>
-          <td>Publishers</td>
+          <th>Publishers</th>
           <td>{{GameDetailCtrl.giantbomb.publishers || 'N/A'}}</td>
         </tr>
         <tr>
-          <td>Similar</td>
+          <th>Similar</th>
           <td>{{GameDetailCtrl.giantbomb.similar || 'N/A'}}</td>
         </tr>
       </table>
-      <small>powered by <a ng-href="{{GameDetailCtrl.giantbomb.url}}">giantbomb</a></small>
+      <small class="pull-right">powered by <a ng-href="{{GameDetailCtrl.giantbomb.url}}">giantbomb</a></small>
     </div>
 
     <div class="">
-      <h2>Current Top Streams</h2>
+      <h3 class="text-center">Current Top Streams</h3>
       <ul>
-        <li ng-repeat="stream in GameDetailCtrl.currentTopStreams"><a ng-href="{{stream.channel.url}}">{{stream.channel.name}} [{{stream.viewers}}]</a></li>
+        <li ng-repeat="stream in GameDetailCtrl.currentTopStreams">
+          <a ng-href="{{stream.channel.url}}"><i class="fa fa-video-camera"></i> {{stream.channel.name}}</a>
+          <span class="pull-right">{{stream.viewers}} <i class="fa fa-users"></i></span>
+        </li>
       </ul>
     </div>
   </div>
 </div>
 
 <div class="col-sm-12 col-md-8 col-md-pull-4 game-statistics">
+  <hr>
+  <div class="trend clearfix">
+    <div class="col-xs-4">
+      <h3>last day</h3>
+      <p ng-class="{'text-success': GameDetailCtrl.trend.days.growth.viewers >= 0, 'text-danger': GameDetailCtrl.trend.days.growth.viewers < 0}">
+        <span ng-if="GameDetailCtrl.trend.days.growth.viewers > 0">+</span>{{GameDetailCtrl.trend.days.growth.viewers | number:0}} %
+      </p>
+    </div>
+    <div class="col-xs-4">
+      <h3>last week</h3>
+      <p ng-class="{'text-success': GameDetailCtrl.trend.days.growth.viewers >= 0, 'text-danger': GameDetailCtrl.trend.days.growth.viewers < 0}">
+        <span ng-if="GameDetailCtrl.trend.days.growth.viewers > 0">+</span>{{GameDetailCtrl.trend.days.growth.viewers | number:0}} %
+      </p>
+    </div>
+    <div class="col-xs-4">
+      <h3>last month</h3>
+      <p ng-class="{'text-success': GameDetailCtrl.trend.days.growth.viewers >= 0, 'text-danger': GameDetailCtrl.trend.days.growth.viewers < 0}">
+        <span ng-if="GameDetailCtrl.trend.days.growth.viewers > 0">+</span>{{GameDetailCtrl.trend.days.growth.viewers | number:0}} %
+      </p>
+    </div>
+  </div>
+  <hr>
+
   <h2><i class="glyphicon glyphicon-stats"></i> Statistics</h2>
 
   <div class="statistic clearfix">
