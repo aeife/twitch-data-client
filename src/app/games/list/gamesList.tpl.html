@@ -1,109 +1,115 @@
-<div class="row">
-  <h1 class="pull-left">Top Games</h1>
-  <div class="list-actions pull-right clearfix">
-    <div class="col-xs-10 pull-right">
-      <input type="text" name="search" ng-model="GamesListCtrl.searchText" ng-change="GamesListCtrl.search()" placeholder="Search Game" class="form-control">
-    </div>
-    <button type="button" class="btn btn-default pull-right" ng-click="GamesListCtrl.tableView = !GamesListCtrl.tableView">
-      <i class="glyphicon" ng-class="{'glyphicon-th-list': GameListCtrl.tableView, 'glyphicon-th': !GameListCtrl.tableView}"></i>
-    </button>
-  </div>
-</div>
-
-<div ng-if="!GamesListCtrl.tableView">
-  <div class="row">
-    <label for="sort-attribute">Sort</label>
-    <div class="btn-group" dropdown is-open="isopen">
-      <button type="button" name="sort-attribute" class="btn btn-default dropdown-toggle" dropdown-toggle ng-disabled="disabled">
-        <i class="glyphicon" ng-class="{'glyphicon-user': GamesListCtrl.sorting.attr == 'viewers',
-          'glyphicon-facetime-video': GamesListCtrl.sorting.attr == 'channels',
-          'glyphicon-scale': GamesListCtrl.sorting.attr == 'ratio'}"></i>
-        {{GamesListCtrl.sorting.attr}} <span class="caret"></span>
-      </button>
-      <ul class="dropdown-menu" role="menu">
-        <li><a href ng-click="GamesListCtrl.sortBy('viewers')">viewers</a></li>
-        <li><a href ng-click="GamesListCtrl.sortBy('channels')">channels</a></li>
-        <li><a href ng-click="GamesListCtrl.sortBy('ratio')">ratio</a></li>
-      </ul>
-    </div>
-    <button type="button" ng-click="GamesListCtrl.sortBy(GamesListCtrl.sorting.attr)" class="btn btn-default">
-      <i class="glyphicon" ng-class="{'glyphicon-sort-by-attributes-alt': !GamesListCtrl.sorting.reverse, 'glyphicon-sort-by-attributes': GamesListCtrl.sorting.reverse}"></i>
-    </button>
-  </div>
-  <ul class="row game-cards">
-    <li class="col-xs-6 col-sm-4 col-md-4 col-lg-3" ng-repeat="game in GamesListCtrl.games track by game._id" ng-click="GamesListCtrl.goToGameDetailView(game)">
-      <div>
-        <img ng-src="http://static-cdn.jtvnw.net/ttv-boxart/{{game.name}}-100x140.jpg" class="game-img" alt=""/>
-        <div class="overlay">
-          <i class="glyphicon glyphicon-eye-open"></i>
+<div class="head-bar">
+  <div class="container">
+    <div class="row">
+      <h1 class="pull-left">Top Games</h1>
+      <div class="list-actions pull-right clearfix">
+        <div class="col-xs-10 pull-right">
+          <input type="text" name="search" ng-model="GamesListCtrl.searchText" ng-change="GamesListCtrl.search()" placeholder="Search Game" class="form-control">
         </div>
-        <div class="game-description">
-          <h4 class="game-name">{{::game.name}}</h4>
-          <table class="table table-borderless">
-            <tr>
-              <td><i class="glyphicon glyphicon-user"></i></td>
-              <td>{{::game.viewers}}</td>
-            </tr>
-            <tr>
-              <td><i class="glyphicon glyphicon-facetime-video"></i></td>
-              <td>{{::game.channels}}</td>
-            </tr>
-            <tr>
-              <td><i class="glyphicon glyphicon-scale"></i></td>
-              <td>{{::(game.channels > 0) ? game.viewers / game.channels : 0 | number:0}}</td>
-            </tr>
-          </table>
-        </div>
+        <button type="button" class="btn btn-default pull-right" ng-click="GamesListCtrl.tableView = !GamesListCtrl.tableView">
+          <i class="glyphicon" ng-class="{'glyphicon-th-list': GameListCtrl.tableView, 'glyphicon-th': !GameListCtrl.tableView}"></i>
+        </button>
       </div>
-    </li>
-  </ul>
+    </div>
+  </div>
 </div>
 
-<div ng-if="GamesListCtrl.tableView" class="row">
-  <table class="table table-hover sortable-table clickable-rows-table game-table">
-    <thead>
-      <tr>
-        <th ng-click="GamesListCtrl.sortBy('name')">
-          Game
-          <span ng-if="GamesListCtrl.sorting.attr == 'name'" class="glyphicon"
-            ng-class="{'glyphicon-menu-down': !GamesListCtrl.sorting.reverse,
-            'glyphicon-menu-up': GamesListCtrl.sorting.reverse}"></span>
-        </th>
-        <th ng-click="GamesListCtrl.sortBy('viewers')">
-          <span ng-if="GamesListCtrl.sorting.attr == 'viewers'" class="glyphicon"
-            ng-class="{'glyphicon-menu-down': !GamesListCtrl.sorting.reverse,
-            'glyphicon-menu-up': GamesListCtrl.sorting.reverse}"></span>
-          Viewers
-          <i class="glyphicon glyphicon-user"></i>
-        </th>
-        <th ng-click="GamesListCtrl.sortBy('channels')">
-          <span ng-if="GamesListCtrl.sorting.attr == 'channels'" class="glyphicon"
-            ng-class="{'glyphicon-menu-down': !GamesListCtrl.sorting.reverse,
-            'glyphicon-menu-up': GamesListCtrl.sorting.reverse}"></span>
-          Channels
-          <i class="glyphicon glyphicon-facetime-video"></i>
-        </th>
-        <th ng-click="GamesListCtrl.sortBy('ratio')">
-          <span ng-if="GamesListCtrl.sorting.attr == 'ratio'" class="glyphicon"
-            ng-class="{'glyphicon-menu-down': !GamesListCtrl.sorting.reverse,
-            'glyphicon-menu-up': GamesListCtrl.sorting.reverse}"></span>
-          Ratio
-          <i class="glyphicon glyphicon-scale"></i>
-        </th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr ng-repeat="game in GamesListCtrl.games track by game._id" ng-click="GamesListCtrl.goToGameDetailView(game)">
-        <td class="wrap-text"> <img ng-src="http://static-cdn.jtvnw.net/ttv-boxart/{{game.name}}-100x140.jpg" class="game-img" alt="" height="50"/>{{::game.name}} dgsdffdhfdgfdgdf gdsgffdgfdsgfffdgfdgfdgfssfgdsgfdgdsgfsgfd</td>
-        <td>{{::game.viewers}}</td>
-        <td>{{::game.channels}}</td>
-        <td>{{::(game.channels > 0) ? game.viewers / game.channels : 0 | number:0}}</td>
-      </tr>
-    </tbody>
-  </table>
-</div>
+<div class="gamelist-content">
+  <div ng-if="!GamesListCtrl.tableView">
+    <div class="row">
+      <label for="sort-attribute">Sort</label>
+      <div class="btn-group" dropdown is-open="isopen">
+        <button type="button" name="sort-attribute" class="btn btn-default dropdown-toggle" dropdown-toggle ng-disabled="disabled">
+          <i class="glyphicon" ng-class="{'glyphicon-user': GamesListCtrl.sorting.attr == 'viewers',
+            'glyphicon-facetime-video': GamesListCtrl.sorting.attr == 'channels',
+            'glyphicon-scale': GamesListCtrl.sorting.attr == 'ratio'}"></i>
+          {{GamesListCtrl.sorting.attr}} <span class="caret"></span>
+        </button>
+        <ul class="dropdown-menu" role="menu">
+          <li><a href ng-click="GamesListCtrl.sortBy('viewers')">viewers</a></li>
+          <li><a href ng-click="GamesListCtrl.sortBy('channels')">channels</a></li>
+          <li><a href ng-click="GamesListCtrl.sortBy('ratio')">ratio</a></li>
+        </ul>
+      </div>
+      <button type="button" ng-click="GamesListCtrl.sortBy(GamesListCtrl.sorting.attr)" class="btn btn-default">
+        <i class="glyphicon" ng-class="{'glyphicon-sort-by-attributes-alt': !GamesListCtrl.sorting.reverse, 'glyphicon-sort-by-attributes': GamesListCtrl.sorting.reverse}"></i>
+      </button>
+    </div>
+    <ul class="row game-cards">
+      <li class="col-xs-6 col-sm-4 col-md-4 col-lg-3" ng-repeat="game in GamesListCtrl.games track by game._id" ng-click="GamesListCtrl.goToGameDetailView(game)">
+        <div>
+          <img ng-src="http://static-cdn.jtvnw.net/ttv-boxart/{{game.name}}-100x140.jpg" class="game-img" alt=""/>
+          <div class="overlay">
+            <i class="glyphicon glyphicon-eye-open"></i>
+          </div>
+          <div class="game-description">
+            <h4 class="game-name">{{::game.name}}</h4>
+            <table class="table table-borderless table-condensed">
+              <tr>
+                <td><i class="glyphicon glyphicon-user"></i></td>
+                <td>{{::game.viewers}}</td>
+              </tr>
+              <tr>
+                <td><i class="glyphicon glyphicon-facetime-video"></i></td>
+                <td>{{::game.channels}}</td>
+              </tr>
+              <tr>
+                <td><i class="glyphicon glyphicon-scale"></i></td>
+                <td>{{::(game.channels > 0) ? game.viewers / game.channels : 0 | number:0}}</td>
+              </tr>
+            </table>
+          </div>
+        </div>
+      </li>
+    </ul>
+  </div>
 
-<div class="col-xs-12 text-center">
-  <pagination total-items="GamesListCtrl.totalGames" ng-model="GamesListCtrl.pagination.currentPage"
-    ng-change="GamesListCtrl.pagination.update()" max-size="10" class="pagination-sm"></pagination>
+  <div ng-if="GamesListCtrl.tableView" class="row">
+    <table class="table table-hover sortable-table clickable-rows-table game-table">
+      <thead>
+        <tr>
+          <th ng-click="GamesListCtrl.sortBy('name')">
+            Game
+            <span ng-if="GamesListCtrl.sorting.attr == 'name'" class="glyphicon"
+              ng-class="{'glyphicon-menu-down': !GamesListCtrl.sorting.reverse,
+              'glyphicon-menu-up': GamesListCtrl.sorting.reverse}"></span>
+          </th>
+          <th ng-click="GamesListCtrl.sortBy('viewers')">
+            <span ng-if="GamesListCtrl.sorting.attr == 'viewers'" class="glyphicon"
+              ng-class="{'glyphicon-menu-down': !GamesListCtrl.sorting.reverse,
+              'glyphicon-menu-up': GamesListCtrl.sorting.reverse}"></span>
+            Viewers
+            <i class="glyphicon glyphicon-user"></i>
+          </th>
+          <th ng-click="GamesListCtrl.sortBy('channels')">
+            <span ng-if="GamesListCtrl.sorting.attr == 'channels'" class="glyphicon"
+              ng-class="{'glyphicon-menu-down': !GamesListCtrl.sorting.reverse,
+              'glyphicon-menu-up': GamesListCtrl.sorting.reverse}"></span>
+            Channels
+            <i class="glyphicon glyphicon-facetime-video"></i>
+          </th>
+          <th ng-click="GamesListCtrl.sortBy('ratio')">
+            <span ng-if="GamesListCtrl.sorting.attr == 'ratio'" class="glyphicon"
+              ng-class="{'glyphicon-menu-down': !GamesListCtrl.sorting.reverse,
+              'glyphicon-menu-up': GamesListCtrl.sorting.reverse}"></span>
+            Ratio
+            <i class="glyphicon glyphicon-scale"></i>
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr ng-repeat="game in GamesListCtrl.games track by game._id" ng-click="GamesListCtrl.goToGameDetailView(game)">
+          <td class="wrap-text"> <img ng-src="http://static-cdn.jtvnw.net/ttv-boxart/{{game.name}}-100x140.jpg" class="game-img" alt="" height="50"/>{{::game.name}} dgsdffdhfdgfdgdf gdsgffdgfdsgfffdgfdgfdgfssfgdsgfdgdsgfsgfd</td>
+          <td>{{::game.viewers}}</td>
+          <td>{{::game.channels}}</td>
+          <td>{{::(game.channels > 0) ? game.viewers / game.channels : 0 | number:0}}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="col-xs-12 text-center">
+    <pagination total-items="GamesListCtrl.totalGames" ng-model="GamesListCtrl.pagination.currentPage"
+      ng-change="GamesListCtrl.pagination.update()" max-size="10" class="pagination-sm"></pagination>
+  </div>
 </div>

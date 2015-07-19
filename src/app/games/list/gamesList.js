@@ -23,7 +23,7 @@ angular.module('twitchdata.games.list', ['twitchdata.components.api.games'])
 
     GamesListCtrl.pagination = {
       currentPage: 1,
-      pageSize: 50,
+      pageSize: 48,
       update: fetchData
     };
 

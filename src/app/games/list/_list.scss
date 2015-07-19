@@ -1,3 +1,17 @@
+.head-bar {
+  position: fixed;
+  left: 0;
+  width: 100%;
+  z-index: 2;
+  background-color: rgba(245, 247, 252, 0.95);
+  height: 70px;
+  min-width: $min-width;
+}
+
+.gamelist-content {
+  margin-top: 70px;
+}
+
 .list-actions {
   margin-top: 20px;
 
@@ -44,7 +58,7 @@
     left: 0;
 
     i {
-      font-size: 26px;
+      font-size: 36px;
     }
   }
 
@@ -63,6 +77,11 @@
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
+  }
+
+  table {
+    font-size: 16px;
+    margin: 0;
   }
 
   table td:nth-child(2) {
