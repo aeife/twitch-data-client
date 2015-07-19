@@ -12,13 +12,46 @@ angular.module('twitchdata.games.detail', [
     this.getFormattedName = function () {
       if (this.game) {
         var test = this.game.name.replace(/\s/g, '-').toLowercase;
-        console.log(test);
         return test;
       }
     };
 
+    var addMissingCollectionRunsToGame = function (game) {
+      var missing;
+      do {
+        missing = false;
+
+        for (var i = 0, len = game.stats.length; i < len; i++) {
+          if (i > 0 && game.stats[i].collectionRun._id - game.stats[i-1].collectionRun._id > 1){
+            missing = i;
+            break;
+          }
+        }
+
+        if (missing) {
+          var missingCount = (game.stats[missing].collectionRun._id - game.stats[missing-1].collectionRun._id);
+          var collectionDateDiff = new Date(game.stats[missing].collectionRun.date) - new Date(game.stats[missing-1].collectionRun.date);
+          var collectionDateDistance = collectionDateDiff / missingCount;
+          var lastCollectionDate = new Date(game.stats[missing-1].collectionRun.date);
+          var arr = game.stats.splice(missing, game.stats.length);
+          for (var j = 1; j < missingCount; j++) {
+            game.stats.push({
+              channels: 0,
+              viewers: 0,
+              collectionRun: {
+                _id: game.stats[missing-1].collectionRun._id + j,
+                date: (new Date(lastCollectionDate.getTime() + collectionDateDistance * j))
+              }
+            });
+          }
+          game.stats = game.stats.concat(arr);
+        }
+      } while(missing);
+    };
+
     gameService.getGameByName($stateParams.gameName).then(function (res) {
       this.game = res.data;
+      addMissingCollectionRunsToGame(this.game);
 
       giantbombApiClient.getDataForGame(this.game.giantbombId).then(function (data) {
         GameDetailCtrl.giantbomb = data;
