@@ -20,13 +20,13 @@ var mainSassFile = srcBaseDir + 'scss/main.scss';
 var sassFiles = [srcBaseDir + '/**/*.scss', '!' + srcBaseDir + '/bower_components/'];
 
 var vendorFiles = [
-  'src/bower_components/angular/angular.js',
-  'src/bower_components/angular-ui-router/release/angular-ui-router.js',
-  'src/bower_components/angular-bootstrap/ui-bootstrap-tpls.js',
-  'src/bower_components/lodash/lodash.js',
+  'src/bower_components/angular/angular.min.js',
+  'src/bower_components/angular-ui-router/release/angular-ui-router.min.js',
+  'src/bower_components/angular-bootstrap/ui-bootstrap-tpls.min.js',
+  'src/bower_components/lodash/lodash.min.js',
   'src/bower_components/highstock-release/adapters/standalone-framework.src.js',
-  'src/bower_components/highstock-release/highstock.src.js',
-  'src/bower_components/highcharts-ng/dist/highcharts-ng.js',
+  'src/bower_components/highstock-release/highstock.js',
+  'src/bower_components/highcharts-ng/dist/highcharts-ng.min.js',
 ];
 
 // dist files
