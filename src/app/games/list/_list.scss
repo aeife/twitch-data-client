@@ -41,10 +41,9 @@
     &>div {
       display: flex;
       position: relative;
-      background-color: #fff;
       box-shadow: 2px 2px 5px 0px rgba(216, 215, 215, 0.6);
       cursor: pointer;
-      background: url('/images/placeholder.jpg') no-repeat;
+      background: #fff url('/images/placeholder.jpg') no-repeat;
     }
   }
 
