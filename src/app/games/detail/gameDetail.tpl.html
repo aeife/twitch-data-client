@@ -1,101 +1,108 @@
-<h1 class="col-xs-12">{{GameDetailCtrl.game.name}}</h1>
-
-<div class="col-sm-12 col-md-4 col-md-push-8 game-info">
-  <div class="col-xs-12 col-sm-4 col-md-12 game-image">
-    <img ng-src="http://static-cdn.jtvnw.net/ttv-boxart/{{GameDetailCtrl.game.name}}-300x420.jpg" alt="" class="col-xs-6 col-sm-12 no-padding" />
-    <div class="col-xs-6 col-sm-12">
-      <p>{{GameDetailCtrl.giantbomb.description}}</p>
-      <h3 class="text-center">Peaks</h3>
-      <p class="peak"><i class="fa fa-users"></i> {{GameDetailCtrl.peak.viewers.count | number:0}} <span class="pull-right">{{GameDetailCtrl.peak.viewers.date | date:'short'}}</span></p>
-      <p class="peak"><i class="fa fa-video-camera"></i> {{GameDetailCtrl.peak.channels.count | number:0}} <span class="pull-right">{{GameDetailCtrl.peak.channels.date | date:'short'}}</span></p>
-    </div>
-  </div>
-  <div class="col-xs-12 col-sm-8 col-md-12 game-data">
-    <div class="">
-      <h3 class="text-center">Game Data</h3>
-      <table class="table">
-        <tr>
-          <th>Genre</th>
-          <td>{{GameDetailCtrl.giantbomb.genres || 'N/A'}}</td>
-        </tr>
-        <tr>
-          <th>Ratings</th>
-          <td>{{GameDetailCtrl.giantbomb.ratings || 'N/A'}}</td>
-        </tr>
-        <tr>
-          <th>Platforms</th>
-          <td>{{GameDetailCtrl.giantbomb.platforms || 'N/A'}}</td>
-        </tr>
-        <tr>
-          <th>Release</th>
-          <td>{{GameDetailCtrl.giantbomb.release || 'N/A' | date:'longDate'}}</td>
-        </tr>
-        <tr>
-          <th>Developers</th>
-          <td>{{GameDetailCtrl.giantbomb.developers || 'N/A'}}</td>
-        </tr>
-        <tr>
-          <th>Publishers</th>
-          <td>{{GameDetailCtrl.giantbomb.publishers || 'N/A'}}</td>
-        </tr>
-        <tr>
-          <th>Similar</th>
-          <td>{{GameDetailCtrl.giantbomb.similar || 'N/A'}}</td>
-        </tr>
-      </table>
-      <small class="pull-right">powered by <a ng-href="{{GameDetailCtrl.giantbomb.url}}">giantbomb</a></small>
-    </div>
-
-    <div class="">
-      <h3 class="text-center">Current Top Streams</h3>
-      <ul>
-        <li ng-repeat="stream in GameDetailCtrl.currentTopStreams">
-          <a ng-href="{{stream.channel.url}}"><i class="fa fa-video-camera"></i> {{stream.channel.name}}</a>
-          <span class="pull-right">{{stream.viewers}} <i class="fa fa-users"></i></span>
-        </li>
-      </ul>
-    </div>
+<div class="head-bar game-detail-head">
+  <div class="container">
+    <h1 class="col-xs-12 no-padding wrap-text">
+      {{GameDetailCtrl.game.name}}
+      <a ng-href="http://www.twitch.tv/directory/game/{{GameDetailCtrl.game.name}}" target="_blank"><i class="fa fa-twitch"></i></a>
+    </h1>
   </div>
 </div>
 
-<div class="col-sm-12 col-md-8 col-md-pull-4 game-statistics">
-  <hr>
-  <div class="trend clearfix">
-    <div class="col-xs-4">
-      <h3>last day</h3>
-      <p ng-class="{'text-success': GameDetailCtrl.trend.days.growth.viewers >= 0, 'text-danger': GameDetailCtrl.trend.days.growth.viewers < 0}">
-        <span ng-if="GameDetailCtrl.trend.days.growth.viewers > 0">+</span>{{GameDetailCtrl.trend.days.growth.viewers | number:0}} %
-      </p>
+<div class="page-content">
+  <div class="col-sm-12 col-md-4 col-md-push-8 game-info">
+    <div class="col-xs-12 col-sm-4 col-md-12 game-image">
+      <img ng-src="http://static-cdn.jtvnw.net/ttv-boxart/{{GameDetailCtrl.game.name}}-300x420.jpg" alt="" class="col-xs-6 col-sm-12 no-padding" />
+      <div class="col-xs-6 col-sm-12">
+        <p>{{GameDetailCtrl.giantbomb.description}}</p>
+        <h3 class="text-center">Peaks</h3>
+        <p class="peak"><i class="fa fa-users"></i> {{GameDetailCtrl.peak.viewers.count | number:0}} <span class="pull-right">{{GameDetailCtrl.peak.viewers.date | date:'short'}}</span></p>
+        <p class="peak"><i class="fa fa-video-camera"></i> {{GameDetailCtrl.peak.channels.count | number:0}} <span class="pull-right">{{GameDetailCtrl.peak.channels.date | date:'short'}}</span></p>
+      </div>
     </div>
-    <div class="col-xs-4">
-      <h3>last week</h3>
-      <p ng-class="{'text-success': GameDetailCtrl.trend.days.growth.viewers >= 0, 'text-danger': GameDetailCtrl.trend.days.growth.viewers < 0}">
-        <span ng-if="GameDetailCtrl.trend.days.growth.viewers > 0">+</span>{{GameDetailCtrl.trend.days.growth.viewers | number:0}} %
-      </p>
-    </div>
-    <div class="col-xs-4">
-      <h3>last month</h3>
-      <p ng-class="{'text-success': GameDetailCtrl.trend.days.growth.viewers >= 0, 'text-danger': GameDetailCtrl.trend.days.growth.viewers < 0}">
-        <span ng-if="GameDetailCtrl.trend.days.growth.viewers > 0">+</span>{{GameDetailCtrl.trend.days.growth.viewers | number:0}} %
-      </p>
+    <div class="col-xs-12 col-sm-8 col-md-12 game-data">
+      <div class="">
+        <h3 class="text-center">Game Data</h3>
+        <table class="table">
+          <tr>
+            <th>Genre</th>
+            <td>{{GameDetailCtrl.giantbomb.genres || 'N/A'}}</td>
+          </tr>
+          <tr>
+            <th>Ratings</th>
+            <td>{{GameDetailCtrl.giantbomb.ratings || 'N/A'}}</td>
+          </tr>
+          <tr>
+            <th>Platforms</th>
+            <td>{{GameDetailCtrl.giantbomb.platforms || 'N/A'}}</td>
+          </tr>
+          <tr>
+            <th>Release</th>
+            <td>{{GameDetailCtrl.giantbomb.release || 'N/A' | date:'longDate'}}</td>
+          </tr>
+          <tr>
+            <th>Developers</th>
+            <td>{{GameDetailCtrl.giantbomb.developers || 'N/A'}}</td>
+          </tr>
+          <tr>
+            <th>Publishers</th>
+            <td>{{GameDetailCtrl.giantbomb.publishers || 'N/A'}}</td>
+          </tr>
+          <tr>
+            <th>Similar</th>
+            <td>{{GameDetailCtrl.giantbomb.similar || 'N/A'}}</td>
+          </tr>
+        </table>
+        <small class="pull-right">powered by <a ng-href="{{GameDetailCtrl.giantbomb.url}}">giantbomb</a></small>
+      </div>
+
+      <div class="">
+        <h3 class="text-center">Current Top Streams</h3>
+        <ul>
+          <li ng-repeat="stream in GameDetailCtrl.currentTopStreams">
+            <a ng-href="{{stream.channel.url}}" target="_blank"><i class="fa fa-video-camera"></i> {{stream.channel.name}}</a>
+            <span class="pull-right">{{stream.viewers}} <i class="fa fa-users"></i></span>
+          </li>
+        </ul>
+      </div>
     </div>
   </div>
-  <hr>
 
-  <h2><i class="glyphicon glyphicon-stats"></i> Statistics</h2>
+  <div class="col-sm-12 col-md-8 col-md-pull-4 game-statistics">
+    <hr>
+    <div class="trend clearfix">
+      <div class="col-xs-4">
+        <h3>last day</h3>
+        <p ng-class="{'text-success': GameDetailCtrl.trend.days.growth.viewers >= 0, 'text-danger': GameDetailCtrl.trend.days.growth.viewers < 0}">
+          <span ng-if="GameDetailCtrl.trend.days.growth.viewers > 0">+</span>{{GameDetailCtrl.trend.days.growth.viewers | number:0}} %
+        </p>
+      </div>
+      <div class="col-xs-4">
+        <h3>last week</h3>
+        <p ng-class="{'text-success': GameDetailCtrl.trend.days.growth.viewers >= 0, 'text-danger': GameDetailCtrl.trend.days.growth.viewers < 0}">
+          <span ng-if="GameDetailCtrl.trend.days.growth.viewers > 0">+</span>{{GameDetailCtrl.trend.days.growth.viewers | number:0}} %
+        </p>
+      </div>
+      <div class="col-xs-4">
+        <h3>last month</h3>
+        <p ng-class="{'text-success': GameDetailCtrl.trend.days.growth.viewers >= 0, 'text-danger': GameDetailCtrl.trend.days.growth.viewers < 0}">
+          <span ng-if="GameDetailCtrl.trend.days.growth.viewers > 0">+</span>{{GameDetailCtrl.trend.days.growth.viewers | number:0}} %
+        </p>
+      </div>
+    </div>
+    <hr>
 
-  <div class="statistic clearfix">
-    <h3>Viewers</h3>
-    <highchart config="GameDetailCtrl.viewersChartConfig" class="col-xs-12 no-padding"></highchart>
-  </div>
+    <div class="statistic clearfix">
+      <h3>Viewers</h3>
+      <highchart config="GameDetailCtrl.viewersChartConfig" class="col-xs-12 no-padding"></highchart>
+    </div>
 
-  <div class="statistic clearfix">
-    <h3>Channels</h3>
-    <highchart config="GameDetailCtrl.channelsChartConfig" class="col-xs-12 no-padding"></highchart>
-  </div>
+    <div class="statistic clearfix">
+      <h3>Channels</h3>
+      <highchart config="GameDetailCtrl.channelsChartConfig" class="col-xs-12 no-padding"></highchart>
+    </div>
 
-  <div class="statistic clearfix">
-    <h3>Ratio</h3>
-    <highchart config="GameDetailCtrl.ratioChartConfig" class="col-xs-12 no-padding"></highchart>
+    <div class="statistic clearfix">
+      <h3>Ratio</h3>
+      <highchart config="GameDetailCtrl.ratioChartConfig" class="col-xs-12 no-padding"></highchart>
+    </div>
   </div>
 </div>
