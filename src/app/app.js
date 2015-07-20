@@ -6,6 +6,7 @@ angular.module('twitchdata', [
   'twitchdata.dashboard',
   'twitchdata.games.list',
   'twitchdata.games.detail',
+  'twitchdata.games.compare',
   'twitchdata.components.api.games',
   'twitchdata.components.api.totalStats',
   'ui.router',
@@ -34,7 +35,7 @@ angular.module('twitchdata', [
         controllerAs: 'GameDetailCtrl'
       })
       .state('gamesCompare', {
-        url: '/games/:game1Name/:game2Name',
+        url: '/games/compare/:gameNames',
         templateUrl: 'app/games/compare/gamesCompare.tpl.html',
         controller: 'GamesCompareCtrl',
         controllerAs: 'GamesCompareCtrl'

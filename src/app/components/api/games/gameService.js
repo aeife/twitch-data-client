@@ -16,6 +16,8 @@ angular.module('twitchdata.components.api.games', [])
             options = {};
           }
           _.defaults(options, {
+            limit: 100,
+            offset: 0,
             sortAttr: 'viewers'
           });
           return $http({
@@ -25,7 +27,6 @@ angular.module('twitchdata.components.api.games', [])
               limit: options.limit,
               offset: options.offset,
               sortAttr: options.sortAttr,
-              sortType: options.sortType,
               order: options.order,
               ratio: options.ratio,
               search: options.search

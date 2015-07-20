@@ -1,0 +1,41 @@
+.games-compare {
+
+  .new-game {
+    margin-bottom: 10px;
+  }
+
+  ul.games-list {
+    padding: 0;
+  }
+
+  .games-list li {
+    list-style: none;
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+    background: #fff url('/images/placeholder.jpg') no-repeat;
+    background-size: 50px 70px;
+    box-shadow: 5px 5px 5px 0px rgba(216, 215, 215, 0.95);
+
+    img {
+      margin-right: 50px;
+      flex-shrink: 0;
+    }
+
+    p {
+      flex-grow: 1;
+      margin: 0;
+      font-size: 18px;
+    }
+
+    a {
+      width: 70px;
+      height: 70px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 40px;
+      cursor: pointer;
+    }
+  }
+}
