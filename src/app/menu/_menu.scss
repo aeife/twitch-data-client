@@ -1,8 +1,9 @@
 .menu {
-  background-color: #6441a5;
+  &.navbar {
+    border: none;
+  }
 
   .navbar-brand {
-    color: white;
     font-family: 'Dimitri-Swank';
     font-size: 26px;
     padding: 10px 15px;
@@ -15,6 +16,7 @@
   }
 
   .navbar-nav>.active>a {
-    background-color: #815fc0 !important;
+    border-bottom: 5px solid $menu-active-border-color;
+    height: 50px;
   }
 }

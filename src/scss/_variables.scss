@@ -1,1 +1,18 @@
-$min-width:                           580px;
+$min-width:                             580px;
+$twitch-color:                          #6441a5;
+$twitch-color-light:                    #815fc0;
+$menu-active-border-color:              lighten($twitch-color-light, 20%);
+
+
+// bootstrap vars
+$brand-primary:                         $twitch-color;
+$body-bg:                               rgb(245, 247, 252);
+$navbar-inverse-bg:                     $twitch-color;
+$navbar-inverse-link-color:             darken(#fff, 15%);
+$navbar-inverse-link-hover-color:       #fff;
+$navbar-inverse-link-hover-bg:          $twitch-color;
+$navbar-inverse-link-active-bg:         $twitch-color;
+$navbar-inverse-brand-color:            #fff;
+$border-radius-base:                    0;
+$border-radius-large:                   0;
+$border-radius-small:                   0;
