@@ -37,7 +37,13 @@ angular.module('twitchdata.components.api.games', [])
             url: _baseUrl + '/games/' + name,
             method: 'GET'
           });
-        }
+        },
+        getStatsForGame: function (name) {
+          return $http({
+            url: _baseUrl + '/games/' + name + '/stats',
+            method: 'GET'
+          });
+        },
       };
 
       return gameService;
