@@ -110,6 +110,6 @@
 
   <div class="col-xs-12 text-center">
     <pagination total-items="GamesListCtrl.totalGames" ng-model="GamesListCtrl.pagination.currentPage"
-      ng-change="GamesListCtrl.pagination.update()" max-size="10" class="pagination-sm"></pagination>
+      ng-change="GamesListCtrl.pagination.update()" max-size="10" items-per-page="GamesListCtrl.pagination.pageSize" class="pagination-sm"></pagination>
   </div>
 </div>
