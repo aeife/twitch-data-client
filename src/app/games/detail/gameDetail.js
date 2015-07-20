@@ -19,27 +19,23 @@ angular.module('twitchdata.games.detail', [
 
     var requests = [];
 
-    requests.push(
-      gameService.getGameByName($stateParams.gameName).then(function (res) {
-        this.game = res.data;
-        giantbombApiClient.getDataForGame(this.game.giantbombId).then(function (data) {
-          GameDetailCtrl.giantbomb = data;
-        });
-        twitchApiClient.getTopStreamsForGame(this.game.name).then(function (res) {
-          GameDetailCtrl.currentTopStreams = res.data.streams;
-        });
-        return res;
-      }.bind(this))
-    );
+    requests.push(gameService.getGameByName($stateParams.gameName).then(function (res) {
+      this.game = res.data;
+      giantbombApiClient.getDataForGame(this.game.giantbombId).then(function (data) {
+        GameDetailCtrl.giantbomb = data;
+      });
+      twitchApiClient.getTopStreamsForGame(this.game.name).then(function (res) {
+        GameDetailCtrl.currentTopStreams = res.data.streams;
+      });
+      return res;
+    }.bind(this)));
 
-    requests.push(
-      gameService.getStatsForGame($stateParams.gameName).then(function (res) {
-        this.stats = statisticsService.addMissingCollectionRunsToGame(res.data.stats, res.data.lastCollectionRun);
-        this.trend = statisticsService.getTrend(this.stats, res.data.lastCollectionRun);
-        this.peak = statisticsService.getPeak(this.stats);
-        return res;
-      }.bind(this))
-    );
+    requests.push(gameService.getStatsForGame($stateParams.gameName).then(function (res) {
+      this.stats = statisticsService.addMissingCollectionRunsToGame(res.data.stats, res.data.lastCollectionRun);
+      this.trend = statisticsService.getTrend(this.stats, res.data.lastCollectionRun);
+      this.peak = statisticsService.getPeak(this.stats);
+      return res;
+    }.bind(this)));
 
     $q.all(requests).then(function () {
       this.viewersChartConfig = chartService.getBaseConfig();
