@@ -1,0 +1,28 @@
+.tabs {
+  margin: 25px 0;
+  clear: both;
+
+  .headings {
+    background-color: #fff;
+  }
+
+  a {
+    display: inline;
+    padding: 5px 10px;
+    border-bottom: 5px solid #fff;
+    cursor: pointer;
+
+    &:hover, &:focus {
+      text-decoration: none;
+      color: lighten($twitch-color-light, 20%);
+    }
+
+    &.active {
+      border-bottom: 5px solid $twitch-color;
+    }
+  }
+
+  h3 {
+    margin: 10px 0 5px 0;
+  }
+}

@@ -62,4 +62,6 @@ angular.module('twitchdata.games.detail', [
         })
       });
     }.bind(this));
+
+    this.currentChart = 'viewers';
   });
