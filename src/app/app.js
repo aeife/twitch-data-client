@@ -28,17 +28,23 @@ angular.module('twitchdata', [
         controller: 'GamesListCtrl',
         controllerAs: 'GamesListCtrl'
       })
+      .state('gamesCompare', {
+        url: '/games/compare/:gameNames',
+        params: {
+          gameNames: {
+            squash: true,
+            value: null
+          }
+        },
+        templateUrl: 'app/games/compare/gamesCompare.tpl.html',
+        controller: 'GamesCompareCtrl',
+        controllerAs: 'GamesCompareCtrl'
+      })
       .state('gameDetail', {
         url: '/games/:gameName',
         templateUrl: 'app/games/detail/gameDetail.tpl.html',
         controller: 'GameDetailCtrl',
         controllerAs: 'GameDetailCtrl'
-      })
-      .state('gamesCompare', {
-        url: '/games/compare/:gameNames',
-        templateUrl: 'app/games/compare/gamesCompare.tpl.html',
-        controller: 'GamesCompareCtrl',
-        controllerAs: 'GamesCompareCtrl'
       });
 
     gameServiceProvider.config.setBaseUrl('http://localhost:8080/api/v1');

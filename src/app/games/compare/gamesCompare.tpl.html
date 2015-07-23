@@ -16,7 +16,7 @@
     </li>
   </ul>
 
-  <div class="charts tabs">
+  <div class="charts tabs" ng-if="GamesCompareCtrl.games && GamesCompareCtrl.games.length > 0">
     <div class="headings clearfix">
       <a href class="pull-left" ng-click="GamesCompareCtrl.currentChart = 'viewers'" ng-class="{'active':GamesCompareCtrl.currentChart == 'viewers' }"><h3>Viewers</h3></a>
       <a href class="pull-left" ng-click="GamesCompareCtrl.currentChart = 'channels'" ng-class="{'active':GamesCompareCtrl.currentChart == 'channels' }"><h3>Channels</h3></a>
@@ -25,5 +25,8 @@
     <highchart ng-if="GamesCompareCtrl.currentChart == 'viewers'" config="GamesCompareCtrl.viewersChartConfig" class="col-xs-12 no-padding"></highchart>
     <highchart ng-if="GamesCompareCtrl.currentChart == 'channels'" config="GamesCompareCtrl.channelsChartConfig" class="col-xs-12 no-padding"></highchart>
     <highchart ng-if="GamesCompareCtrl.currentChart == 'ratio'" config="GamesCompareCtrl.ratioChartConfig" class="col-xs-12 no-padding"></highchart>
+  </div>
+  <div class="" ng-if="!GamesCompareCtrl.games || GamesCompareCtrl.games.length == 0">
+    <h2 class="text-center">Add games to compare them!</h2>
   </div>
 </div>

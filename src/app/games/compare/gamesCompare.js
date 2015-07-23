@@ -6,9 +6,9 @@ angular.module('twitchdata.games.compare', [
   'twitchdata.components.statistics',
   'highcharts-ng'
 ])
-  .controller('GamesCompareCtrl', function ($http, $stateParams, $q, $scope, gameService, statisticsService, chartService) {
+  .controller('GamesCompareCtrl', function ($http, $stateParams, $state, $q, $scope, gameService, statisticsService, chartService) {
     var GamesCompareCtrl = this;
-    console.log($stateParams.gameNames.split(','));
+
     this.viewersChartConfig = chartService.getBaseConfig();
     this.channelsChartConfig = chartService.getBaseConfig();
     this.ratioChartConfig = chartService.getBaseConfig();
@@ -62,6 +62,11 @@ angular.module('twitchdata.games.compare', [
 
       if (!exists) {
         fetchGameData(gameName);
+        var newGameParam = GamesCompareCtrl.games.map(function (game) {
+          return game.name;
+        });
+        newGameParam.push(gameName);
+        $state.go('gamesCompare', {gameNames: newGameParam.join(',')}, {notify: false});
       }
 
       GamesCompareCtrl.newGame = '';
@@ -103,12 +108,14 @@ angular.module('twitchdata.games.compare', [
     });
 
     var init = function () {
-      var gameNames = $stateParams.gameNames.split(',');
-      console.log(gameNames);
-      gameNames.forEach(function (gameName) {
-        fetchGameData(gameName);
-      });
       GamesCompareCtrl.currentChart = 'viewers';
+
+      if ( $stateParams.gameNames &&  $stateParams.gameNames.length) {
+        var gameNames = $stateParams.gameNames.split(',');
+        gameNames.forEach(function (gameName) {
+          fetchGameData(gameName);
+        });
+      }
     };
 
     init();
