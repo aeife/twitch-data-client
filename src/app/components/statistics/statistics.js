@@ -38,7 +38,11 @@ angular.module('twitchdata.components.statistics', [])
             stats.push({
               channels: 0,
               viewers: 0,
-              date: date
+              date: date,
+              hour: new Date(date).getHours(),
+              day: new Date(date).getDate(),
+              month: new Date(date).getMonth(),
+              year: new Date(date).getYear()
             });
           }
           stats = stats.concat(arr);
