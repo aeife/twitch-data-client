@@ -21,7 +21,8 @@
     "angular-mocks": "~1.4.0",
     "angular-bootstrap": "~0.13.0",
     "highcharts-ng": "~0.0.8",
-    "highstock-release": "~2.1.6"
+    "highstock-release": "~2.1.6",
+    "font-awesome": "~4.3.0"
   },
   "resolutions": {
     "angular": "~1.4.0"

@@ -139,7 +139,7 @@ gulp.task('copy:images', function () {
 
 // copy fonts to dist
 gulp.task('copy:fonts', function () {
-    return gulp.src([srcBaseDir + 'bower_components/bootstrap-sass/assets/fonts/**/*.*', srcBaseDir + 'fonts/**/*.*'])
+    return gulp.src([srcBaseDir + 'bower_components/bootstrap-sass/assets/fonts/**/*.*', srcBaseDir + 'bower_components/font-awesome/fonts/**/*.*', srcBaseDir + 'fonts/**/*.*'])
         .pipe(gulp.dest(destinationPath + 'fonts'));
 });
 
