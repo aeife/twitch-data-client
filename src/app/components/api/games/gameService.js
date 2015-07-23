@@ -45,15 +45,24 @@ angular.module('twitchdata.components.api.games', [])
             method: 'GET'
           }).then(function (res) {
             res.data.stats = res.data.stats.map(function (stat) {
-              return {
-                hour: stat.h,
-                day: stat.d,
-                month: stat.m,
-                year: stat.y,
+              var statObj = {
                 date: stat.dt,
                 channels: stat.c,
                 viewers: stat.v
               };
+              if (stat.h) {
+                statObj.hour = stat.h;
+              }
+              if (stat.d) {
+                statObj.day = stat.d;
+              }
+              if (stat.m) {
+                statObj.month = stat.m;
+              }
+              if (stat.y) {
+                statObj.year = stat.y;
+              }
+              return statObj;
             });
             return res;
           });
