@@ -16,7 +16,14 @@
     </li>
   </ul>
 
-  <highchart config="GamesCompareCtrl.viewersChartConfig" class="col-xs-12 no-padding"></highchart>
-  <highchart config="GamesCompareCtrl.channelsChartConfig" class="col-xs-12 no-padding"></highchart>
-  <highchart config="GamesCompareCtrl.ratioChartConfig" class="col-xs-12 no-padding"></highchart>
+  <div class="charts tabs">
+    <div class="headings clearfix">
+      <a href class="pull-left" ng-click="GamesCompareCtrl.currentChart = 'viewers'" ng-class="{'active':GamesCompareCtrl.currentChart == 'viewers' }"><h3>Viewers</h3></a>
+      <a href class="pull-left" ng-click="GamesCompareCtrl.currentChart = 'channels'" ng-class="{'active':GamesCompareCtrl.currentChart == 'channels' }"><h3>Channels</h3></a>
+      <a href class="pull-left" ng-click="GamesCompareCtrl.currentChart = 'ratio'" ng-class="{'active':GamesCompareCtrl.currentChart == 'ratio' }"><h3>Ratio</h3></a>
+    </div>
+    <highchart ng-if="GamesCompareCtrl.currentChart == 'viewers'" config="GamesCompareCtrl.viewersChartConfig" class="col-xs-12 no-padding"></highchart>
+    <highchart ng-if="GamesCompareCtrl.currentChart == 'channels'" config="GamesCompareCtrl.channelsChartConfig" class="col-xs-12 no-padding"></highchart>
+    <highchart ng-if="GamesCompareCtrl.currentChart == 'ratio'" config="GamesCompareCtrl.ratioChartConfig" class="col-xs-12 no-padding"></highchart>
+  </div>
 </div>

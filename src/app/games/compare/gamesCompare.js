@@ -33,21 +33,21 @@ angular.module('twitchdata.games.compare', [
         GamesCompareCtrl.viewersChartConfig.series.push({
           name: game.name,
           data: stats.map(function (stat) {
-            return [new Date(stat.collectionRun.date).getTime(), stat.viewers];
+            return [new Date(stat.date).getTime(), stat.viewers];
           })
         });
 
         GamesCompareCtrl.channelsChartConfig.series.push({
           name: game.name,
           data: stats.map(function (stat) {
-            return [new Date(stat.collectionRun.date).getTime(), stat.channels];
+            return [new Date(stat.date).getTime(), stat.channels];
           })
         });
 
         GamesCompareCtrl.ratioChartConfig.series.push({
           name: game.name,
           data: stats.map(function (stat) {
-            return [new Date(stat.collectionRun.date).getTime(), (stat.viewers > 0 && stat.channels > 0) ? stat.viewers / stat.channels : 0];
+            return [new Date(stat.date).getTime(), (stat.viewers > 0 && stat.channels > 0) ? stat.viewers / stat.channels : 0];
           })
         });
 
@@ -108,6 +108,7 @@ angular.module('twitchdata.games.compare', [
       gameNames.forEach(function (gameName) {
         fetchGameData(gameName);
       });
+      GamesCompareCtrl.currentChart = 'viewers';
     };
 
     init();
