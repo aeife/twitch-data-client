@@ -43,6 +43,19 @@ angular.module('twitchdata.components.api.games', [])
           return $http({
             url: _baseUrl + '/games/' + name + '/stats',
             method: 'GET'
+          }).then(function (res) {
+            res.data.stats = res.data.stats.map(function (stat) {
+              return {
+                hour: stat.h,
+                day: stat.d,
+                month: stat.m,
+                year: stat.y,
+                date: stat.dt,
+                channels: stat.c,
+                viewers: stat.v
+              };
+            });
+            return res;
           });
         },
       };
