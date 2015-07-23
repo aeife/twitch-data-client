@@ -42,7 +42,7 @@ angular.module('twitchdata.games.detail', [
       this.viewersChartConfig.series.push({
         name: this.game.name,
         data: this.stats.map(function (stat) {
-          return [new Date(stat.collectionRun.date).getTime(), stat.viewers];
+          return [new Date(stat.date).getTime(), stat.viewers];
         })
       });
 
@@ -50,7 +50,7 @@ angular.module('twitchdata.games.detail', [
       this.channelsChartConfig.series.push({
         name: this.game.name,
         data: this.stats.map(function (stat) {
-          return [new Date(stat.collectionRun.date).getTime(), stat.channels];
+          return [new Date(stat.date).getTime(), stat.channels];
         })
       });
 
@@ -58,7 +58,7 @@ angular.module('twitchdata.games.detail', [
       this.ratioChartConfig.series.push({
         name: this.game.name,
         data: this.stats.map(function (stat) {
-          return [new Date(stat.collectionRun.date).getTime(), (stat.viewers > 0 && stat.channels > 0) ? stat.viewers / stat.channels : 0];
+          return [new Date(stat.date).getTime(), (stat.viewers > 0 && stat.channels > 0) ? stat.viewers / stat.channels : 0];
         })
       });
     }.bind(this));
