@@ -17,7 +17,7 @@ angular.module('twitchdata.components.statistics', [])
 
         // add missing runs
         if (missing) {
-          var missingCount = stats[missing][attr] - stats[missing-1][attr] > 1;
+          var missingCount = stats[missing][attr] - stats[missing-1][attr];
           var lastCollectionDate = new Date(stats[missing-1].date);
           var arr = stats.splice(missing, stats.length);
           for (var j = 1; j < missingCount; j++) {
