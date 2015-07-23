@@ -68,38 +68,6 @@ angular.module('twitchdata.components.statistics', [])
           stats = addMissing('month', stats);
           stats = addMissing('year', stats);
 
-          // var missing;
-          // do {
-          //   missing = false;
-          //
-          //   // find missing run
-          //   for (var i = 0, len = stats.length; i < len; i++) {
-          //     if (i > 0 && stats[i].run - stats[i-1].run > 1){
-          //       missing = i;
-          //       break;
-          //     }
-          //   }
-          //
-          //   // add missing runs
-          //   if (missing) {
-          //     var missingCount = (stats[missing].run - stats[missing-1].run);
-          //     var collectionDateDiff = new Date(stats[missing].date) - new Date(stats[missing-1].date);
-          //     var collectionDateDistance = collectionDateDiff / missingCount;
-          //     var lastCollectionDate = new Date(stats[missing-1].date);
-          //     var arr = stats.splice(missing, stats.length);
-          //     for (var j = 1; j < missingCount; j++) {
-          //       stats.push({
-          //         channels: 0,
-          //         viewers: 0,
-          //         run: stats[missing-1].run + j,
-          //         date: (new Date(lastCollectionDate.getTime() + collectionDateDistance * j))
-          //       });
-          //     }
-          //     stats = stats.concat(arr);
-          //   }
-          // } while(missing);
-
-          console.log(stats);
           return stats;
         },
         getTrend: function (stats, lastCollectionRun) {
