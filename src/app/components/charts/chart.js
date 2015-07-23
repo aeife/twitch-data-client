@@ -8,26 +8,27 @@ angular.module('twitchdata.components.charts', [])
           return {
             options: {
               chart: {
-                zoomType: 'x'
+                zoomType: 'x',
+                type: 'spline'
               },
               rangeSelector: {
                 enabled: true,
                 buttons: [{
-                	type: 'second',
-                	count: 3600,
-                	text: '1h'
-                }, {
                 	type: 'day',
                 	count: 1,
                 	text: '1d'
                 }, {
-                	type: 'week',
+                	type: 'day',
                 	count: 7,
                 	text: '7d'
                 }, {
                 	type: 'month',
                 	count: 1,
                 	text: '1m'
+                }, {
+                	type: 'month',
+                	count: 3,
+                	text: '3m'
                 }, {
                 	type: 'year',
                 	count: 1,
@@ -39,6 +40,9 @@ angular.module('twitchdata.components.charts', [])
               },
               yAxis: {
                 min: 0
+              },
+              xAxis: {
+                ordinal: false
               },
               navigator: {
                 enabled: true
