@@ -21,9 +21,7 @@ angular.module('twitchdata.components.giantbombApi', [])
             method: 'JSONP',
             params: options
           }).then(function (res) {
-            console.log("DSgifdsf");
             var giantbombData = res.data.results;
-            console.log(giantbombData);
             return {
               description: giantbombData.deck,
               genres: giantbombData.genres && giantbombData.genres.map(function (genre) {
