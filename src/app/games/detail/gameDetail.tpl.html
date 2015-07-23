@@ -90,7 +90,7 @@
     </div>
     <hr>
 
-    <div class="charts tabs">
+    <div class="charts tabs clearfix">
       <div class="headings clearfix">
         <a href class="pull-left" ng-click="GameDetailCtrl.currentChart = 'viewers'" ng-class="{'active':GameDetailCtrl.currentChart == 'viewers' }"><h3>Viewers</h3></a>
         <a href class="pull-left" ng-click="GameDetailCtrl.currentChart = 'channels'" ng-class="{'active':GameDetailCtrl.currentChart == 'channels' }"><h3>Channels</h3></a>
@@ -100,5 +100,6 @@
       <highchart ng-if="GameDetailCtrl.currentChart == 'channels'" config="GameDetailCtrl.channelsChartConfig" class="col-xs-12 no-padding"></highchart>
       <highchart ng-if="GameDetailCtrl.currentChart == 'ratio'" config="GameDetailCtrl.ratioChartConfig" class="col-xs-12 no-padding"></highchart>
     </div>
+    <a class="" ui-sref="gamesCompare({gameNames: GameDetailCtrl.game.name})"><h4>compare with other games</h4></a>
   </div>
 </div>
