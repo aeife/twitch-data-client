@@ -17,7 +17,7 @@ angular.module('twitchdata.dashboard', [
         DashboardCtrl.totalViewersChartConfig.series.push({
           name: 'viewers',
           data: DashboardCtrl.totalStats.map(function (stat) {
-            return [new Date(stat.collectionRun.date).getTime(), stat.viewers];
+            return [new Date(stat.date).getTime(), stat.viewers];
           })
         });
 
@@ -25,7 +25,7 @@ angular.module('twitchdata.dashboard', [
         DashboardCtrl.totalChannelsChartConfig.series.push({
           name: 'channels',
           data: DashboardCtrl.totalStats.map(function (stat) {
-            return [new Date(stat.collectionRun.date).getTime(), stat.channels];
+            return [new Date(stat.date).getTime(), stat.channels];
           })
         });
       });
