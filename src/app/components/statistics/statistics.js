@@ -2,6 +2,53 @@
 
 angular.module('twitchdata.components.statistics', [])
   .provider('statisticsService', function () {
+    var addMissing = function (attr, stats) {
+      var missing;
+      do {
+        missing = false;
+
+        // find missing run
+        for (var i = 1, len = stats.length; i < len; i++) {
+          if (stats[i][attr] - stats[i-1][attr] > 1) {
+            missing = i;
+            break;
+          }
+        }
+
+        // add missing runs
+        if (missing) {
+          var missingCount = stats[missing][attr] - stats[missing-1][attr] > 1;
+          var lastCollectionDate = new Date(stats[missing-1].date);
+          var arr = stats.splice(missing, stats.length);
+          for (var j = 1; j < missingCount; j++) {
+            var date = new Date(lastCollectionDate.getTime());
+            switch (attr) {
+              case 'year':
+                date = date.setYear(date.getYear() + 1)
+                break;
+              case 'month':
+                date = date.setMonth(date.getMonth() + 1)
+                break;
+              case 'day':
+                date = date.setDate(date.getDate() + 1);
+                break;
+              default:
+                date = date.setHours(date.getHours() + 1);
+            }
+            stats.push({
+              channels: 0,
+              viewers: 0,
+              date: date
+            });
+          }
+          stats = stats.concat(arr);
+        }
+
+      } while (missing);
+
+      return stats;
+    };
+
     this.$get = function () {
       var statisticsService = {
         // adds missing collection run entries to stats array
@@ -11,39 +58,48 @@ angular.module('twitchdata.components.statistics', [])
               viewers: 0,
               channels: 0,
               ratio: 0,
-              collectionRun: lastCollectionRun
+              date: lastCollectionRun.date,
+              run: lastCollectionRun.run
             });
           }
 
-          var missing;
-          do {
-            missing = false;
+          stats = addMissing('hours', stats);
+          stats = addMissing('day', stats);
+          stats = addMissing('month', stats);
+          stats = addMissing('year', stats);
 
-            for (var i = 0, len = stats.length; i < len; i++) {
-              if (i > 0 && stats[i].run - stats[i-1].run > 1){
-                missing = i;
-                break;
-              }
-            }
+          // var missing;
+          // do {
+          //   missing = false;
+          //
+          //   // find missing run
+          //   for (var i = 0, len = stats.length; i < len; i++) {
+          //     if (i > 0 && stats[i].run - stats[i-1].run > 1){
+          //       missing = i;
+          //       break;
+          //     }
+          //   }
+          //
+          //   // add missing runs
+          //   if (missing) {
+          //     var missingCount = (stats[missing].run - stats[missing-1].run);
+          //     var collectionDateDiff = new Date(stats[missing].date) - new Date(stats[missing-1].date);
+          //     var collectionDateDistance = collectionDateDiff / missingCount;
+          //     var lastCollectionDate = new Date(stats[missing-1].date);
+          //     var arr = stats.splice(missing, stats.length);
+          //     for (var j = 1; j < missingCount; j++) {
+          //       stats.push({
+          //         channels: 0,
+          //         viewers: 0,
+          //         run: stats[missing-1].run + j,
+          //         date: (new Date(lastCollectionDate.getTime() + collectionDateDistance * j))
+          //       });
+          //     }
+          //     stats = stats.concat(arr);
+          //   }
+          // } while(missing);
 
-            if (missing) {
-              var missingCount = (stats[missing].run - stats[missing-1].run);
-              var collectionDateDiff = new Date(stats[missing].date) - new Date(stats[missing-1].date);
-              var collectionDateDistance = collectionDateDiff / missingCount;
-              var lastCollectionDate = new Date(stats[missing-1].date);
-              var arr = stats.splice(missing, stats.length);
-              for (var j = 1; j < missingCount; j++) {
-                stats.push({
-                  channels: 0,
-                  viewers: 0,
-                  run: stats[missing-1].run + j,
-                  date: (new Date(lastCollectionDate.getTime() + collectionDateDistance * j))
-                });
-              }
-              stats = stats.concat(arr);
-            }
-          } while(missing);
-
+          console.log(stats);
           return stats;
         },
         getTrend: function (stats, lastCollectionRun) {
