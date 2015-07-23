@@ -13,6 +13,7 @@ angular.module('twitchdata.components.charts', [])
               },
               rangeSelector: {
                 enabled: true,
+                selected: 1,
                 buttons: [{
                 	type: 'day',
                 	count: 1,
