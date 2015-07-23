@@ -53,13 +53,12 @@ angular.module('twitchdata.components.statistics', [])
       var statisticsService = {
         // adds missing collection run entries to stats array
         addMissingCollectionRunsToGame: function (stats, lastCollectionRun) {
-          if (_.last(stats).run !== lastCollectionRun.run) {
+          if (new Date(_.last(stats).date).getTime() !== new Date(lastCollectionRun.date).getTime()) {
             stats.push({
               viewers: 0,
               channels: 0,
               ratio: 0,
-              date: lastCollectionRun.date,
-              run: lastCollectionRun.run
+              date: lastCollectionRun.date
             });
           }
 
