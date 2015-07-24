@@ -6,6 +6,8 @@ angular.module('twitchdata.games.detail', [
   'twitchdata.components.twitchApi',
   'twitchdata.components.giantbombApi',
   'twitchdata.components.statistics',
+  'twitchdata.components.trendText',
+  'twitchdata.components.monthFilter',
   'highcharts-ng'
   ])
   .controller('GameDetailCtrl', function ($http, $stateParams, $q, gameService, twitchApiClient, giantbombApiClient, chartService, statisticsService) {
@@ -37,6 +39,7 @@ angular.module('twitchdata.games.detail', [
         week: statisticsService.getGrowthTrendOfLast('week', this.stats),
         month: statisticsService.getGrowthTrendOfLast('month', this.stats)
       };
+      this.monthlyTrends = statisticsService.getMonthlyTrends(this.stats);
       this.peak = statisticsService.getPeak(this.stats);
       return res;
     }.bind(this)));

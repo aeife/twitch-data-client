@@ -56,25 +56,49 @@ angular.module('twitchdata.components.statistics', [])
     var getAvgForTimeFrame = function (stats, attr, limit, offset) {
       var tmpStats = stats.slice();
       tmpStats.reverse();
+
+      var timeFrames =  _.groupBy(tmpStats, function (stat) {
+        var group = stat.year;
+        if (attr === 'month') {
+          group += '-' + stat.month;
+        } else if (attr === 'day') {
+          group += '-' + stat.month + '-' + stat.day;
+        }
+        return group;
+      });
+      var timeFrameKeys = Object.keys(timeFrames).sort();
+      timeFrameKeys.reverse();
+
       var count = 0;
-      var current = _.first(tmpStats)[attr];
       var result = {
         viewers: 0,
         channels: 0
       };
 
-      tmpStats.forEach(function (stat) {
-        if (current - stat[attr] >= offset && current - stat[attr] < (limit + offset)) {
+      for (var i = 0; i < limit; i++) {
+        timeFrames[timeFrameKeys[i+offset]].forEach(function (stat) {
           result.viewers += stat.viewers;
           result.channels += stat.channels;
           count++;
-        }
-      });
-      
-      result.viewers = result.viewers / count;
-      result.channels = result.channels / count;
+        });
+      }
+
+      if (count > 0) {
+        result.viewers = result.viewers / count;
+        result.channels = result.channels / count;
+      }
 
       return result;
+    };
+
+    var calculateGrowth = function (first, second) {
+      var viewerDiff = second.viewers ? (first.viewers / second.viewers) : 0;
+      var channelDiff = second.channels ? (first.channels / second.channels) : 0;
+
+      return {
+        viewers: viewerDiff * 100 - 100,
+        channels: channelDiff * 100 - 100
+      };
     };
 
     this.$get = function () {
@@ -114,10 +138,7 @@ angular.module('twitchdata.components.statistics', [])
           }
 
           return {
-            growth: {
-              viewers: (last.viewers / secondLast.viewers) * 100 - 100,
-              channels: (last.channels / secondLast.channels) * 100 - 100
-            },
+            growth: calculateGrowth(last, secondLast),
             last: {
               viewers: last.viewers,
               channels: last.channels
@@ -127,6 +148,30 @@ angular.module('twitchdata.components.statistics', [])
               channels: secondLast.channels
             }
           };
+        },
+        getMonthlyTrends: function (stats) {
+          var result = [];
+          var months = _.groupBy(stats, function (stat) {
+            return stat.year + '-' + stat.month;
+          });
+          var monthsKeys = Object.keys(months).sort();
+          monthsKeys.reverse();
+
+          var monthAvgs = {};
+          for (var j = 0, length = Object.keys(months).length; j < length; j++) {
+            monthAvgs[monthsKeys[j]] = getAvgForTimeFrame(stats, 'month', 1, j);
+          }
+
+          for (var i = 1, len = Object.keys(months).length; i < len; i++) {
+            var last = monthAvgs[monthsKeys[i-1]];
+            var secondLast = monthAvgs[monthsKeys[i]];
+            result.push({
+              year: months[monthsKeys[i]][0].year,
+              month: months[monthsKeys[i]][0].month,
+              growth: calculateGrowth(last, secondLast)
+            });
+          }
+          return result;
         },
         getPeak: function (stats) {
           var peak = {

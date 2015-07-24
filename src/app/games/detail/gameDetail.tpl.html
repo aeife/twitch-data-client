@@ -71,21 +71,15 @@
     <div class="trend clearfix">
       <div class="col-xs-4">
         <h3>last day</h3>
-        <p ng-class="{'text-success': GameDetailCtrl.trend.day.growth.viewers >= 0, 'text-danger': GameDetailCtrl.trend.day.growth.viewers < 0}">
-          <span ng-if="GameDetailCtrl.trend.day.growth.viewers > 0">+</span>{{GameDetailCtrl.trend.day.growth.viewers | number:0}} %
-        </p>
+        <td-trend-text value="GameDetailCtrl.trend.day.growth.viewers"></td-trend-text>
       </div>
       <div class="col-xs-4">
         <h3>last week</h3>
-        <p ng-class="{'text-success': GameDetailCtrl.trend.week.growth.viewers >= 0, 'text-danger': GameDetailCtrl.trend.week.growth.viewers < 0}">
-          <span ng-if="GameDetailCtrl.trend.week.growth.viewers > 0">+</span>{{GameDetailCtrl.trend.week.growth.viewers | number:0}} %
-        </p>
+        <td-trend-text value="GameDetailCtrl.trend.week.growth.viewers"></td-trend-text>
       </div>
       <div class="col-xs-4">
         <h3>last month</h3>
-        <p ng-class="{'text-success': GameDetailCtrl.trend.month.growth.viewers >= 0, 'text-danger': GameDetailCtrl.trend.month.growth.viewers < 0}">
-          <span ng-if="GameDetailCtrl.trend.month.growth.viewers > 0">+</span>{{GameDetailCtrl.trend.month.growth.viewers | number:0}} %
-        </p>
+        <td-trend-text value="GameDetailCtrl.trend.month.growth.viewers"></td-trend-text>
       </div>
     </div>
     <hr>
@@ -107,5 +101,21 @@
       <highchart ng-if="GameDetailCtrl.currentChart == 'ratio'" config="GameDetailCtrl.ratioChartConfig" class="col-xs-12 no-padding"></highchart>
     </div>
     <a ui-sref="gamesCompare({gameNames: GameDetailCtrl.game.name})"><h4><i class="fa fa-exchange"></i> compare with other games</h4></a>
+
+    <div class="monthly-trends">
+      <h2>Monthly Trends</h2>
+      <table class="table">
+        <tr>
+          <th>Month</th>
+          <th><i class="fa fa-users"></i> Viewers</th>
+          <th><i class="fa fa-video-camera"></i> Channels</th>
+        </tr>
+        <tr ng-repeat="trend in GameDetailCtrl.monthlyTrends">
+          <td>{{trend.month | month}}, {{trend.year}}</td>
+          <td><td-trend-text value="trend.growth.viewers"></td-trend-text></td>
+          <td><td-trend-text value="trend.growth.channels"></td-trend-text></td>
+        </tr>
+      </table>
+    </div>
   </div>
 </div>

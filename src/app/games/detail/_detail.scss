@@ -97,3 +97,20 @@
 
   }
 }
+
+.monthly-trends {
+  h2 {
+    background-color: white;
+    padding: 10px;
+    margin: 0;
+  }
+  table {
+    background-color: white;
+    td:nth-child(2), td:nth-child(3), th:nth-child(2), th:nth-child(3) {
+      text-align: right;
+    }
+    p {
+      margin: 0;
+    }
+  }
+}
