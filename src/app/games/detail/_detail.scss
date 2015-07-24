@@ -103,16 +103,21 @@
 }
 
 .monthly-trends {
-  h2 {
-    background-color: white;
-    padding: 10px;
-    margin: 0;
-  }
   table {
     background-color: white;
-    td:nth-child(2), td:nth-child(3), th:nth-child(2), th:nth-child(3) {
+
+    td {
       text-align: right;
     }
+
+    th {
+      text-align: center;
+    }
+
+    td:first-child, th:first-child {
+      text-align: left;
+    }
+
     p {
       margin: 0;
     }

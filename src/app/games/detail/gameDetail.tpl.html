@@ -109,17 +109,18 @@
     <a ui-sref="gamesCompare({gameNames: GameDetailCtrl.game.name})"><h4><i class="fa fa-exchange"></i> compare with other games</h4></a>
 
     <div class="monthly-trends">
-      <h2>Monthly Trends</h2>
       <table class="table">
         <tr>
           <th>Month</th>
-          <th><i class="fa fa-users"></i> Viewers</th>
-          <th><i class="fa fa-video-camera"></i> Channels</th>
+          <th colspan="2"><i class="fa fa-users"></i> Viewers Avg</th>
+          <th colspan="2"><i class="fa fa-video-camera"></i> Channels Avg</th>
         </tr>
         <tr ng-repeat="trend in GameDetailCtrl.monthlyTrends">
           <td>{{trend.month | month}}, {{trend.year}}</td>
           <td><td-trend-text value="trend.growth.viewers"></td-trend-text></td>
+          <td>{{trend.avg.viewers | number: 0}}</td>
           <td><td-trend-text value="trend.growth.channels"></td-trend-text></td>
+          <td>{{trend.avg.channels | number: 0}}</td>
         </tr>
       </table>
     </div>

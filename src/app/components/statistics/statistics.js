@@ -168,7 +168,8 @@ angular.module('twitchdata.components.statistics', [])
             result.push({
               year: months[monthsKeys[i]][0].year,
               month: months[monthsKeys[i]][0].month,
-              growth: calculateGrowth(last, secondLast)
+              growth: calculateGrowth(last, secondLast),
+              avg: monthAvgs[monthsKeys[i]]
             });
           }
           return result;
