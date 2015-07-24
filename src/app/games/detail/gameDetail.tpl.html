@@ -71,20 +71,20 @@
     <div class="trend clearfix">
       <div class="col-xs-4">
         <h3>last day</h3>
-        <p ng-class="{'text-success': GameDetailCtrl.trend.days.growth.viewers >= 0, 'text-danger': GameDetailCtrl.trend.days.growth.viewers < 0}">
-          <span ng-if="GameDetailCtrl.trend.days.growth.viewers > 0">+</span>{{GameDetailCtrl.trend.days.growth.viewers | number:0}} %
+        <p ng-class="{'text-success': GameDetailCtrl.trend.day.growth.viewers >= 0, 'text-danger': GameDetailCtrl.trend.day.growth.viewers < 0}">
+          <span ng-if="GameDetailCtrl.trend.day.growth.viewers > 0">+</span>{{GameDetailCtrl.trend.day.growth.viewers | number:0}} %
         </p>
       </div>
       <div class="col-xs-4">
         <h3>last week</h3>
-        <p ng-class="{'text-success': GameDetailCtrl.trend.days.growth.viewers >= 0, 'text-danger': GameDetailCtrl.trend.days.growth.viewers < 0}">
-          <span ng-if="GameDetailCtrl.trend.days.growth.viewers > 0">+</span>{{GameDetailCtrl.trend.days.growth.viewers | number:0}} %
+        <p ng-class="{'text-success': GameDetailCtrl.trend.week.growth.viewers >= 0, 'text-danger': GameDetailCtrl.trend.week.growth.viewers < 0}">
+          <span ng-if="GameDetailCtrl.trend.week.growth.viewers > 0">+</span>{{GameDetailCtrl.trend.week.growth.viewers | number:0}} %
         </p>
       </div>
       <div class="col-xs-4">
         <h3>last month</h3>
-        <p ng-class="{'text-success': GameDetailCtrl.trend.days.growth.viewers >= 0, 'text-danger': GameDetailCtrl.trend.days.growth.viewers < 0}">
-          <span ng-if="GameDetailCtrl.trend.days.growth.viewers > 0">+</span>{{GameDetailCtrl.trend.days.growth.viewers | number:0}} %
+        <p ng-class="{'text-success': GameDetailCtrl.trend.month.growth.viewers >= 0, 'text-danger': GameDetailCtrl.trend.month.growth.viewers < 0}">
+          <span ng-if="GameDetailCtrl.trend.month.growth.viewers > 0">+</span>{{GameDetailCtrl.trend.month.growth.viewers | number:0}} %
         </p>
       </div>
     </div>

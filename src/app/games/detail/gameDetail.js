@@ -32,7 +32,11 @@ angular.module('twitchdata.games.detail', [
 
     requests.push(gameService.getStatsForGame($stateParams.gameName).then(function (res) {
       this.stats = statisticsService.addMissingCollectionRunsToGame(res.data.stats, res.data.lastCollectionRun);
-      this.trend = statisticsService.getTrend(this.stats, res.data.lastCollectionRun);
+      this.trend = {
+        day: statisticsService.getGrowthTrendOfLast('day', this.stats),
+        week: statisticsService.getGrowthTrendOfLast('week', this.stats),
+        month: statisticsService.getGrowthTrendOfLast('month', this.stats)
+      };
       this.peak = statisticsService.getPeak(this.stats);
       return res;
     }.bind(this)));

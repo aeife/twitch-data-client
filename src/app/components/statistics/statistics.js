@@ -53,6 +53,30 @@ angular.module('twitchdata.components.statistics', [])
       return stats;
     };
 
+    var getAvgForTimeFrame = function (stats, attr, limit, offset) {
+      var tmpStats = stats.slice();
+      tmpStats.reverse();
+      var count = 0;
+      var current = _.first(tmpStats)[attr];
+      var result = {
+        viewers: 0,
+        channels: 0
+      };
+
+      tmpStats.forEach(function (stat) {
+        if (current - stat[attr] >= offset && current - stat[attr] < (limit + offset)) {
+          result.viewers += stat.viewers;
+          result.channels += stat.channels;
+          count++;
+        }
+      });
+      
+      result.viewers = result.viewers / count;
+      result.channels = result.channels / count;
+
+      return result;
+    };
+
     this.$get = function () {
       var statisticsService = {
         // adds missing collection run entries to stats array
@@ -62,7 +86,11 @@ angular.module('twitchdata.components.statistics', [])
               viewers: 0,
               channels: 0,
               ratio: 0,
-              date: lastCollectionRun.date
+              date: lastCollectionRun.date,
+              hour: new Date(lastCollectionRun.date).getHours(),
+              day: new Date(lastCollectionRun.date).getDate(),
+              month: new Date(lastCollectionRun.date).getMonth()+1,
+              year: new Date(lastCollectionRun.date).getFullYear()
             });
           }
 
@@ -73,42 +101,32 @@ angular.module('twitchdata.components.statistics', [])
 
           return stats;
         },
-        getTrend: function (stats, lastCollectionRun) {
-          var currentDate = new Date(lastCollectionRun.date);
-          var trend = {
-            days: {
-              growth: {
-                viewers: 0,
-                channels: 0
-              },
-              last: {
-                date: new Date(),
-                viewers: 0,
-                channels: 0
-              },
-              secondLast: {
-                date: new Date(),
-                viewers: 1,
-                channels: 1
-              }
+        getGrowthTrendOfLast: function (attr, stats) {
+          var last;
+          var secondLast;
+
+          if (attr === 'week') {
+            last = getAvgForTimeFrame(stats, 'day', 7, 0);
+            secondLast = getAvgForTimeFrame(stats, 'day', 7, 7);
+          } else {
+            last = getAvgForTimeFrame(stats, attr, 1, 0);
+            secondLast = getAvgForTimeFrame(stats, attr, 1, 1);
+          }
+
+          return {
+            growth: {
+              viewers: (last.viewers / secondLast.viewers) * 100 - 100,
+              channels: (last.channels / secondLast.channels) * 100 - 100
+            },
+            last: {
+              viewers: last.viewers,
+              channels: last.channels
+            },
+            secondLast: {
+              viewers: secondLast.viewers,
+              channels: secondLast.channels
             }
           };
-          trend.days.last.date.setDate(currentDate.getDate() - 1);
-          trend.days.secondLast.date.setDate(currentDate.getDate() - 2);
-          stats.forEach(function (stat) {
-            var date = new Date(stat.date);
-            if (date > trend.days.last.date) {
-              trend.days.last.viewers += stat.viewers;
-              trend.days.last.channels += stat.channels;
-            } else if (date < trend.days.last.date && date > trend.days.secondLast.date){
-              trend.days.secondLast.viewers += stat.viewers;
-              trend.days.secondLast.channels += stat.channels;
-            }
-          });
-
-          trend.days.growth.viewers = (trend.days.last.viewers / trend.days.secondLast.viewers) * 100 - 100;
-          trend.days.growth.channels = (trend.days.last.channels / trend.days.secondLast.channels) * 100 - 100;
-          return trend;
         },
         getPeak: function (stats) {
           var peak = {
