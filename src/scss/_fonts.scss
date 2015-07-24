@@ -7,3 +7,13 @@
     font-weight: normal;
     font-style: normal;
 }
+
+@font-face {
+    font-family: 'Dimitri';
+    src:url('../fonts/Dimitri.ttf.woff') format('woff'),
+        url('../fonts/Dimitri.ttf.svg#Dimitri') format('svg'),
+        url('../fonts/Dimitri.ttf.eot'),
+        url('../fonts/Dimitri.ttf.eot?#iefix') format('embedded-opentype');
+    font-weight: normal;
+    font-style: normal;
+}
