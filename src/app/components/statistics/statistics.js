@@ -9,7 +9,7 @@ angular.module('twitchdata.components.statistics', [])
 
         // find missing run
         for (var i = 1, len = stats.length; i < len; i++) {
-          if (stats[i][attr] - stats[i-1][attr] > 1) {
+          if (stats[i][attr] && stats[i-1][attr] && (stats[i][attr] - stats[i-1][attr] > 1)) {
             missing = i;
             break;
           }
@@ -38,7 +38,11 @@ angular.module('twitchdata.components.statistics', [])
             stats.push({
               channels: 0,
               viewers: 0,
-              date: date
+              date: date,
+              hour: new Date(date).getHours(),
+              day: new Date(date).getDate(),
+              month: new Date(date).getMonth()+1,
+              year: new Date(date).getFullYear()
             });
           }
           stats = stats.concat(arr);
