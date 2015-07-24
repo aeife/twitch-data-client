@@ -56,7 +56,7 @@
     }
   }
 
-  .peak {
+  .peak, .avg {
     font-size: 20px;
 
     i {
@@ -67,6 +67,10 @@
       font-size: 14px;
       line-height: 30px;
     }
+  }
+
+  .avg {
+    text-align: center;
   }
 }
 

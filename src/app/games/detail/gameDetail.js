@@ -41,6 +41,7 @@ angular.module('twitchdata.games.detail', [
       };
       this.monthlyTrends = statisticsService.getMonthlyTrends(this.stats);
       this.peak = statisticsService.getPeak(this.stats);
+      this.avg = statisticsService.getAvg(this.stats);
       return res;
     }.bind(this)));
 

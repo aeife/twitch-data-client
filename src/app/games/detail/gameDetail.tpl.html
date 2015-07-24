@@ -16,6 +16,12 @@
         <h3 class="text-center">Peaks</h3>
         <p class="peak"><i class="fa fa-users"></i> {{GameDetailCtrl.peak.viewers.count | number:0}} <span class="pull-right">{{GameDetailCtrl.peak.viewers.date | date:'short'}}</span></p>
         <p class="peak"><i class="fa fa-video-camera"></i> {{GameDetailCtrl.peak.channels.count | number:0}} <span class="pull-right">{{GameDetailCtrl.peak.channels.date | date:'short'}}</span></p>
+
+        <hr>
+        <h3 class="text-center">Average</h3>
+        <p class="avg"><i class="fa fa-users"></i> {{GameDetailCtrl.avg.viewers | number:0}}</p>
+        <p class="avg"><i class="fa fa-video-camera"></i> {{GameDetailCtrl.avg.channels | number:0}}</p>
+        <hr>
       </div>
     </div>
     <div class="col-xs-12 col-sm-8 col-md-12 game-data">

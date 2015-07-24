@@ -173,6 +173,26 @@ angular.module('twitchdata.components.statistics', [])
           }
           return result;
         },
+        getAvg: function (stats) {
+          if (!stats || !stats.length) {
+            return null;
+          }
+
+          var avg = {
+            viewers: 0,
+            channels: 0
+          };
+
+          stats.forEach(function (stat) {
+            avg.viewers += stat.viewers;
+            avg.channels += stat.channels;
+          });
+
+          return {
+            viewers: avg.viewers / stats.length,
+            channels: avg.channels / stats.length
+          };
+        },
         getPeak: function (stats) {
           var peak = {
             viewers: {
