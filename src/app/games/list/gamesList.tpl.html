@@ -1,6 +1,6 @@
 <div class="head-bar">
   <div class="container">
-    <div class="row">
+    <div class="row col-xs-12">
       <h1 class="pull-left">Top Games</h1>
       <div class="list-actions pull-right clearfix col-xs-6 col-md-4 no-padding">
         <div class="col-xs-9 pull-right">
@@ -16,7 +16,7 @@
 
 <div class="page-content">
   <div ng-if="!GamesListCtrl.tableView">
-    <div class="row">
+    <div class="row col-xs-12">
       <label for="sort-attribute">Sort</label>
       <div class="btn-group" dropdown is-open="isopen">
         <button type="button" name="sort-attribute" class="btn btn-default dropdown-toggle" dropdown-toggle ng-disabled="disabled">
@@ -35,7 +35,7 @@
         <i class="fa" ng-class="{'fa-sort-amount-desc': !GamesListCtrl.sorting.reverse, 'fa-sort-amount-asc': GamesListCtrl.sorting.reverse}"></i>
       </button>
     </div>
-    <ul class="row game-cards">
+    <ul class="row col-xs-12 game-cards">
       <li class="col-xs-6 col-sm-4 col-md-4 col-lg-3" ng-repeat="game in GamesListCtrl.games track by game._id" ng-click="GamesListCtrl.goToGameDetailView(game)">
         <div>
           <img ng-src="http://static-cdn.jtvnw.net/ttv-boxart/{{game.name}}-100x140.jpg" class="game-img" alt=""/>
