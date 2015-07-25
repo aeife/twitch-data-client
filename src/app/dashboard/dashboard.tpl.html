@@ -1,4 +1,22 @@
-<h1>Twitch Data</h1>
+<div class="dashboard">
+  <div class="jumbotron text-center">
+    <h1>Twitch Data</h1>
+    <p>Delivering you numbers, statistics and interesting information all around twitch.</p>
+    <p><a ui-sref="games">View Games Statistics</a></p>
+  </div>
 
-<highchart config="DashboardCtrl.totalViewersChartConfig" class="col-xs-12 col-sm-6"></highchart>
-<highchart config="DashboardCtrl.totalChannelsChartConfig" class="col-xs-12 col-sm-6"></highchart>
+  <div class="charts">
+    <div class="col-xs-12 col-sm-6">
+      <div class="headings">
+        <h3>Viewers: {{DashboardCtrl.currentStats.viewers}}</h3>
+      </div>
+      <highchart config="DashboardCtrl.totalViewersChartConfig"></highchart>
+    </div>
+    <div class="col-xs-12 col-sm-6">
+      <div class="headings">
+        <h3>Channels: {{DashboardCtrl.currentStats.channels}}</h3>
+      </div>
+      <highchart config="DashboardCtrl.totalChannelsChartConfig"></highchart>
+    </div>
+  </div>
+</div>

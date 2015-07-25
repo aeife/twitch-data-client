@@ -12,6 +12,7 @@ angular.module('twitchdata.dashboard', [
     var fetchTotalStats = function () {
       totalStatsService.getTotalStats().then(function (res) {
         DashboardCtrl.totalStats = res.data.stats;
+        DashboardCtrl.currentStats = _.last(res.data.stats);
 
         DashboardCtrl.totalViewersChartConfig = chartService.getBaseConfig();
         DashboardCtrl.totalViewersChartConfig.series.push({
