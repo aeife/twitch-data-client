@@ -1,3 +1,6 @@
-<p ng-class="{'text-success': value >= 0, 'text-danger': value < 0}">
+<p ng-class="{'text-success': value >= 0, 'text-danger': value < 0}" ng-if="value">
   <span ng-if="value > 0">+</span>{{value | number:1}} %
+</p>
+<p ng-if="!value">
+  -
 </p>

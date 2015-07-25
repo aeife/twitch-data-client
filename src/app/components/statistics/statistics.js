@@ -92,12 +92,9 @@ angular.module('twitchdata.components.statistics', [])
     };
 
     var calculateGrowth = function (first, second) {
-      var viewerDiff = second.viewers ? (first.viewers / second.viewers) : 0;
-      var channelDiff = second.channels ? (first.channels / second.channels) : 0;
-
       return {
-        viewers: viewerDiff * 100 - 100,
-        channels: channelDiff * 100 - 100
+        viewers: second.viewers ? (first.viewers / second.viewers) * 100 - 100 : null,
+        channels: second.channels ? (first.channels / second.channels) * 100 - 100 : null
       };
     };
 
@@ -166,10 +163,10 @@ angular.module('twitchdata.components.statistics', [])
             var last = monthAvgs[monthsKeys[i-1]];
             var secondLast = monthAvgs[monthsKeys[i]];
             result.push({
-              year: months[monthsKeys[i]][0].year,
-              month: months[monthsKeys[i]][0].month,
+              year: months[monthsKeys[i-1]][0].year,
+              month: months[monthsKeys[i-1]][0].month,
               growth: calculateGrowth(last, secondLast),
-              avg: monthAvgs[monthsKeys[i]]
+              avg: monthAvgs[monthsKeys[i-1]]
             });
           }
           return result;
