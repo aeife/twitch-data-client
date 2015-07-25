@@ -154,7 +154,7 @@ angular.module('twitchdata.components.statistics', [])
           var months = _.groupBy(stats, function (stat) {
             return stat.year + '-' + stat.month;
           });
-          var monthsKeys = Object.keys(months).sort();
+          var monthsKeys = Object.keys(months);
           monthsKeys.reverse();
 
           var monthAvgs = {};
