@@ -11,7 +11,7 @@
   <ul class="games-list">
     <li ng-repeat="game in GamesCompareCtrl.games" class="">
       <img ng-src="http://static-cdn.jtvnw.net/ttv-boxart/{{game.name}}-100x140.jpg" alt="" width="50" height="70"/>
-      <p class="wrap-text">{{game.name}}</p>
+      <a class="game-name wrap-text" ui-sref="gameDetail({gameName: game.name})">{{game.name}}</a>
       <a href class="close" ng-click="GamesCompareCtrl.removeGame(game.name)"><i class="fa fa-times"></i></a>
     </li>
   </ul>

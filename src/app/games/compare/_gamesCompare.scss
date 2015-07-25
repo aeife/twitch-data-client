@@ -22,10 +22,15 @@
       flex-shrink: 0;
     }
 
-    p {
+    a.game-name {
       flex-grow: 1;
       margin: 0;
-      font-size: 18px;
+      font-size: 22px;
+      justify-content: flex-start;
+
+      &:hover {
+        text-decoration: none;
+      }
     }
 
     a {
