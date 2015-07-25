@@ -49,4 +49,10 @@ angular.module('twitchdata', [
 
     gameServiceProvider.config.setBaseUrl('/api/v1');
     totalStatsServiceProvider.config.setBaseUrl('/api/v1');
+
+    Highcharts.setOptions({
+        global: {
+            useUTC: false
+        }
+    });
   });
