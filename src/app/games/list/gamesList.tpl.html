@@ -1,41 +1,38 @@
 <div class="head-bar">
   <div class="container">
-    <div class="row col-xs-12">
-      <h1 class="pull-left">Top Games</h1>
-      <div class="list-actions pull-right clearfix col-xs-6 col-md-4 no-padding">
-        <div class="col-xs-9 pull-right">
-          <input type="text" name="search" ng-model="GamesListCtrl.searchText" ng-change="GamesListCtrl.search()" placeholder="Search Game" class="form-control">
-        </div>
-        <button type="button" class="btn btn-default pull-right" ng-click="GamesListCtrl.tableView = !GamesListCtrl.tableView">
-          <i class="fa" ng-class="{'fa-th-list': GamesListCtrl.tableView, 'fa-th': !GameListCtrl.tableView}"></i>
-        </button>
+    <h1 class="pull-left">Top Games</h1>
+    <div class="list-actions pull-right clearfix col-xs-6 col-md-4 no-padding">
+      <div class="col-xs-9 pull-right">
+        <input type="text" name="search" ng-model="GamesListCtrl.searchText" ng-change="GamesListCtrl.search()" placeholder="Search Game" class="form-control">
       </div>
+      <button type="button" class="btn btn-default pull-right" ng-click="GamesListCtrl.tableView = !GamesListCtrl.tableView">
+        <i class="fa" ng-class="{'fa-th-list': GamesListCtrl.tableView, 'fa-th': !GameListCtrl.tableView}"></i>
+      </button>
     </div>
   </div>
 </div>
 
 <div class="page-content">
   <div ng-if="!GamesListCtrl.tableView">
-    <div class="row col-xs-12">
-      <label for="sort-attribute">Sort</label>
-      <div class="btn-group" dropdown is-open="isopen">
-        <button type="button" name="sort-attribute" class="btn btn-default dropdown-toggle" dropdown-toggle ng-disabled="disabled">
-          <i class="fa" ng-class="{'fa-users': GamesListCtrl.sorting.attr == 'viewers',
-            'fa-video-camera': GamesListCtrl.sorting.attr == 'channels',
-            'fa-tachometer': GamesListCtrl.sorting.attr == 'ratio'}"></i>
-          {{GamesListCtrl.sorting.attr}} <span class="caret"></span>
-        </button>
-        <ul class="dropdown-menu" role="menu">
-          <li><a href ng-click="GamesListCtrl.sortBy('viewers')"><i class="fa fa-users"></i> viewers</a></li>
-          <li><a href ng-click="GamesListCtrl.sortBy('channels')"><i class="fa fa-video-camera"></i> channels</a></li>
-          <li><a href ng-click="GamesListCtrl.sortBy('ratio')"><i class="fa fa-tachometer"></i> ratio</a></li>
-        </ul>
-      </div>
-      <button type="button" ng-click="GamesListCtrl.sortBy(GamesListCtrl.sorting.attr)" class="btn btn-default">
-        <i class="fa" ng-class="{'fa-sort-amount-desc': !GamesListCtrl.sorting.reverse, 'fa-sort-amount-asc': GamesListCtrl.sorting.reverse}"></i>
+    <label for="sort-attribute">Sort</label>
+    <div class="btn-group" dropdown is-open="isopen">
+      <button type="button" name="sort-attribute" class="btn btn-default dropdown-toggle" dropdown-toggle ng-disabled="disabled">
+        <i class="fa" ng-class="{'fa-users': GamesListCtrl.sorting.attr == 'viewers',
+          'fa-video-camera': GamesListCtrl.sorting.attr == 'channels',
+          'fa-tachometer': GamesListCtrl.sorting.attr == 'ratio'}"></i>
+        {{GamesListCtrl.sorting.attr}} <span class="caret"></span>
       </button>
+      <ul class="dropdown-menu" role="menu">
+        <li><a href ng-click="GamesListCtrl.sortBy('viewers')"><i class="fa fa-users"></i> viewers</a></li>
+        <li><a href ng-click="GamesListCtrl.sortBy('channels')"><i class="fa fa-video-camera"></i> channels</a></li>
+        <li><a href ng-click="GamesListCtrl.sortBy('ratio')"><i class="fa fa-tachometer"></i> ratio</a></li>
+      </ul>
     </div>
-    <ul class="row col-xs-12 game-cards">
+    <button type="button" ng-click="GamesListCtrl.sortBy(GamesListCtrl.sorting.attr)" class="btn btn-default">
+      <i class="fa" ng-class="{'fa-sort-amount-desc': !GamesListCtrl.sorting.reverse, 'fa-sort-amount-asc': GamesListCtrl.sorting.reverse}"></i>
+    </button>
+
+    <ul class="no-padding game-cards">
       <li class="col-xs-6 col-sm-4 col-md-4 col-lg-3" ng-repeat="game in GamesListCtrl.games track by game._id" ng-click="GamesListCtrl.goToGameDetailView(game)">
         <div>
           <img ng-src="http://static-cdn.jtvnw.net/ttv-boxart/{{game.name}}-100x140.jpg" class="game-img" alt=""/>
