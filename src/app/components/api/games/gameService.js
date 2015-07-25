@@ -46,7 +46,7 @@ angular.module('twitchdata.components.api.games', [])
           }).then(function (res) {
             res.data.stats = res.data.stats.map(function (stat) {
               var statObj = {
-                date: stat.dt,
+                date: new Date(stat.dt),
                 channels: stat.c,
                 viewers: stat.v
               };
@@ -64,6 +64,7 @@ angular.module('twitchdata.components.api.games', [])
               }
               return statObj;
             });
+            res.data.lastCollectionRun.date = new Date(res.data.lastCollectionRun.date);
             return res;
           });
         },
