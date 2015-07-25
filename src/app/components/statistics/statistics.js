@@ -76,11 +76,13 @@ angular.module('twitchdata.components.statistics', [])
       };
 
       for (var i = 0; i < limit; i++) {
-        timeFrames[timeFrameKeys[i+offset]].forEach(function (stat) {
-          result.viewers += stat.viewers;
-          result.channels += stat.channels;
-          count++;
-        });
+        if (timeFrames[timeFrameKeys[i + offset]]) {
+          timeFrames[timeFrameKeys[i+offset]].forEach(function (stat) {
+            result.viewers += stat.viewers;
+            result.channels += stat.channels;
+            count++;
+          });
+        }
       }
 
       if (count > 0) {
