@@ -110,9 +110,9 @@ angular.module('twitchdata.components.statistics', [])
               channels: 0,
               ratio: 0,
               date: lastCollectionRun.date,
-              hour: new Date(lastCollectionRun.date).getHours(),
-              day: new Date(lastCollectionRun.date).getDate(),
-              month: new Date(lastCollectionRun.date).getMonth()+1,
+              hour: new Date(lastCollectionRun.date).getUTCHours(),
+              day: new Date(lastCollectionRun.date).getUTCDate(),
+              month: new Date(lastCollectionRun.date).getUTCMonth()+1,
               year: new Date(lastCollectionRun.date).getFullYear()
             });
           }
