@@ -178,6 +178,7 @@ gulp.task('webserver', function() {
             livereload: true,
             open: true,
             proxies: [
+              {source: '/api/v1', target: 'http://localhost:8080/api/v1'},
             ],
             fallback: 'index.html'
         }));

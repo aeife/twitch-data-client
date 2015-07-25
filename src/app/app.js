@@ -47,6 +47,6 @@ angular.module('twitchdata', [
         controllerAs: 'GameDetailCtrl'
       });
 
-    gameServiceProvider.config.setBaseUrl('http://localhost:8080/api/v1');
-    totalStatsServiceProvider.config.setBaseUrl('http://localhost:8080/api/v1');
+    gameServiceProvider.config.setBaseUrl('/api/v1');
+    totalStatsServiceProvider.config.setBaseUrl('/api/v1');
   });
