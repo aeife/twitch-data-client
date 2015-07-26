@@ -2,22 +2,22 @@
 
 angular.module('twitchdata.dashboard', [
   'twitchdata.components.api.games',
-  'twitchdata.components.api.totalStats',
+  'twitchdata.components.api.generalStats',
   'twitchdata.components.charts',
   'highcharts-ng'
   ])
-  .controller('DashboardCtrl', function ($http, $state, gameService, totalStatsService, chartService) {
+  .controller('DashboardCtrl', function ($http, $state, gameService, generalStatsService, chartService) {
     var DashboardCtrl = this;
 
-    var fetchTotalStats = function () {
-      totalStatsService.getTotalStats().then(function (res) {
-        DashboardCtrl.totalStats = res.data.stats;
+    var fetchGeneralStats = function () {
+      generalStatsService.getGeneralStats().then(function (res) {
+        DashboardCtrl.generalStats = res.data.stats;
         DashboardCtrl.currentStats = _.last(res.data.stats);
 
         DashboardCtrl.totalViewersChartConfig = chartService.getBaseConfig();
         DashboardCtrl.totalViewersChartConfig.series.push({
           name: 'viewers',
-          data: DashboardCtrl.totalStats.map(function (stat) {
+          data: DashboardCtrl.generalStats.map(function (stat) {
             return [new Date(stat.date).getTime(), stat.viewers];
           })
         });
@@ -25,7 +25,7 @@ angular.module('twitchdata.dashboard', [
         DashboardCtrl.totalChannelsChartConfig = chartService.getBaseConfig();
         DashboardCtrl.totalChannelsChartConfig.series.push({
           name: 'channels',
-          data: DashboardCtrl.totalStats.map(function (stat) {
+          data: DashboardCtrl.generalStats.map(function (stat) {
             return [new Date(stat.date).getTime(), stat.channels];
           })
         });
@@ -33,7 +33,7 @@ angular.module('twitchdata.dashboard', [
     };
 
     var init = function () {
-      fetchTotalStats();
+      fetchGeneralStats();
     };
 
     init();

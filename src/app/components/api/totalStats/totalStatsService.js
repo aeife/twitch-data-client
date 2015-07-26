@@ -1,7 +1,7 @@
 'use strict';
 
-angular.module('twitchdata.components.api.totalStats', [])
-  .provider('totalStatsService', function () {
+angular.module('twitchdata.components.api.generalStats', [])
+  .provider('generalStatsService', function () {
     var _baseUrl;
     this.config = {
       setBaseUrl: function (baseUrl) {
@@ -10,8 +10,8 @@ angular.module('twitchdata.components.api.totalStats', [])
     };
 
     this.$get = function ($http) {
-      var totalStatsService = {
-        getTotalStats: function () {
+      var generalStatsService = {
+        getGeneralStats: function () {
           return $http({
             url: _baseUrl + '/stats',
             method: 'GET'
@@ -41,6 +41,6 @@ angular.module('twitchdata.components.api.totalStats', [])
         }
       };
 
-      return totalStatsService;
+      return generalStatsService;
     };
   });

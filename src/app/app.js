@@ -8,11 +8,11 @@ angular.module('twitchdata', [
   'twitchdata.games.detail',
   'twitchdata.games.compare',
   'twitchdata.components.api.games',
-  'twitchdata.components.api.totalStats',
+  'twitchdata.components.api.generalStats',
   'ui.router',
   'ui.bootstrap'
   ])
-  .config(function ($locationProvider, $stateProvider, gameServiceProvider, totalStatsServiceProvider) {
+  .config(function ($locationProvider, $stateProvider, gameServiceProvider, generalStatsServiceProvider) {
     $locationProvider.html5Mode(true);
 
     $stateProvider
@@ -60,7 +60,7 @@ angular.module('twitchdata', [
       });
 
     gameServiceProvider.config.setBaseUrl('/api/v1');
-    totalStatsServiceProvider.config.setBaseUrl('/api/v1');
+    generalStatsServiceProvider.config.setBaseUrl('/api/v1');
 
     Highcharts.setOptions({
         global: {
