@@ -45,6 +45,18 @@ angular.module('twitchdata', [
         templateUrl: 'app/games/detail/gameDetail.tpl.html',
         controller: 'GameDetailCtrl',
         controllerAs: 'GameDetailCtrl'
+      })
+      .state('beta', {
+        url: '/beta',
+        templateUrl: 'app/beta/beta.tpl.html',
+      })
+      .state('about', {
+        url: '/about',
+        templateUrl: 'app/about/about.tpl.html',
+      })
+      .state('privacy', {
+        url: '/privacy',
+        templateUrl: 'app/privacy/privacy.tpl.html',
       });
 
     gameServiceProvider.config.setBaseUrl('/api/v1');
