@@ -32,15 +32,15 @@
       <i class="fa" ng-class="{'fa-sort-amount-desc': !GamesListCtrl.sorting.reverse, 'fa-sort-amount-asc': GamesListCtrl.sorting.reverse}"></i>
     </button>
 
-    <ul class="no-padding game-cards">
+    <ul class="no-padding data-cards">
       <li class="col-xs-6 col-sm-4 col-md-4 col-lg-3" ng-repeat="game in GamesListCtrl.games track by game._id" ng-click="GamesListCtrl.goToGameDetailView(game)">
         <div>
-          <img ng-src="http://static-cdn.jtvnw.net/ttv-boxart/{{game.name}}-100x140.jpg" class="game-img" alt=""/>
+          <img ng-src="http://static-cdn.jtvnw.net/ttv-boxart/{{game.name}}-100x140.jpg" class="data-img" alt=""/>
           <div class="overlay">
             <i class="fa fa-eye"></i>
           </div>
-          <div class="game-description">
-            <h4 class="game-name">{{::game.name}}</h4>
+          <div class="data-description">
+            <h4 class="data-name">{{::game.name}}</h4>
             <table class="table table-borderless table-condensed">
               <tr>
                 <td><i class="fa fa-users"></i></td>
@@ -62,7 +62,7 @@
   </div>
 
   <div ng-if="GamesListCtrl.tableView" class="row">
-    <table class="table table-hover sortable-table clickable-rows-table game-table">
+    <table class="table table-hover sortable-table clickable-rows-table data-table">
       <thead>
         <tr>
           <th ng-click="GamesListCtrl.sortBy('name')">
@@ -96,7 +96,7 @@
       </thead>
       <tbody>
         <tr ng-repeat="game in GamesListCtrl.games track by game._id" ng-click="GamesListCtrl.goToGameDetailView(game)">
-          <td class="wrap-text"> <img ng-src="http://static-cdn.jtvnw.net/ttv-boxart/{{game.name}}-100x140.jpg" class="game-img" alt="" height="50"/>{{::game.name}}</td>
+          <td class="wrap-text"> <img ng-src="http://static-cdn.jtvnw.net/ttv-boxart/{{game.name}}-100x140.jpg" class="data-img" alt="" height="50"/>{{::game.name}}</td>
           <td>{{::game.viewers}}</td>
           <td>{{::game.channels}}</td>
           <td>{{::(game.channels > 0) ? game.viewers / game.channels : 0 | number:0}}</td>

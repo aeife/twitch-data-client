@@ -1,0 +1,61 @@
+<div class="head-bar">
+  <div class="container">
+    <h1 class="pull-left">Top Channels</h1>
+    <div class="list-actions pull-right clearfix col-xs-6 col-md-4 no-padding">
+      <div class="col-xs-9 pull-right">
+        <input type="text" name="search" ng-model="ChannelsListCtrl.searchText" ng-change="ChannelsListCtrl.search()" placeholder="Search Channel" class="form-control">
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="page-content">
+  <div ng-if="!ChannelsListCtrl.tableView">
+    <label for="sort-attribute">Sort</label>
+    <div class="btn-group" dropdown is-open="isopen">
+      <button type="button" name="sort-attribute" class="btn btn-default dropdown-toggle" dropdown-toggle ng-disabled="disabled">
+        <i class="fa" ng-class="{'fa-users': ChannelsListCtrl.sorting.attr == 'viewers',
+          'fa-video-camera': ChannelsListCtrl.sorting.attr == 'channels',
+          'fa-tachometer': ChannelsListCtrl.sorting.attr == 'ratio'}"></i>
+        {{ChannelsListCtrl.sorting.attr}} <span class="caret"></span>
+      </button>
+      <ul class="dropdown-menu" role="menu">
+        <li><a href ng-click="ChannelsListCtrl.sortBy('viewers')"><i class="fa fa-users"></i> viewers</a></li>
+        <li><a href ng-click="ChannelsListCtrl.sortBy('channels')"><i class="fa fa-video-camera"></i> channels</a></li>
+        <li><a href ng-click="ChannelsListCtrl.sortBy('ratio')"><i class="fa fa-tachometer"></i> ratio</a></li>
+      </ul>
+    </div>
+    <button type="button" ng-click="ChannelsListCtrl.sortBy(ChannelsListCtrl.sorting.attr)" class="btn btn-default">
+      <i class="fa" ng-class="{'fa-sort-amount-desc': !ChannelsListCtrl.sorting.reverse, 'fa-sort-amount-asc': ChannelsListCtrl.sorting.reverse}"></i>
+    </button>
+
+    <ul class="no-padding data-cards channel-cards">
+      <li class="col-xs-6 col-sm-4 col-md-4 col-lg-3" ng-repeat="channel in ChannelsListCtrl.channels track by channel._id" ng-click="ChannelsListCtrl.goToChannelDetailView(channel)">
+        <div>
+          <img ng-src="{{channel.logo}}" class="data-img" alt=""/>
+          <div class="overlay">
+            <i class="fa fa-eye"></i>
+          </div>
+          <div class="data-description">
+            <h4 class="data-name">{{::channel.name}}</h4>
+            <table class="table table-borderless table-condensed">
+              <tr>
+                <td><i class="fa fa-users"></i></td>
+                <td>{{::channel.viewers}}</td>
+              </tr>
+              <tr>
+                <td><i class="fa fa-video-camera"></i></td>
+                <td>{{::channel.followers}}</td>
+              </tr>
+            </table>
+          </div>
+        </div>
+      </li>
+    </ul>
+  </div>
+
+  <div class="col-xs-12 text-center">
+    <pagination total-items="ChannelsListCtrl.totalChannel" ng-model="ChannelsListCtrl.pagination.currentPage"
+      ng-change="ChannelsListCtrl.pagination.update()" max-size="10" items-per-page="ChannelsListCtrl.pagination.pageSize" class="pagination-sm"></pagination>
+  </div>
+</div>

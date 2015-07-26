@@ -7,12 +7,13 @@ angular.module('twitchdata', [
   'twitchdata.games.list',
   'twitchdata.games.detail',
   'twitchdata.games.compare',
+  'twitchdata.channels.list',
   'twitchdata.components.api.games',
   'twitchdata.components.api.generalStats',
   'ui.router',
   'ui.bootstrap'
   ])
-  .config(function ($locationProvider, $stateProvider, gameServiceProvider, generalStatsServiceProvider) {
+  .config(function ($locationProvider, $stateProvider, gameServiceProvider, generalStatsServiceProvider, channelServiceProvider) {
     $locationProvider.html5Mode(true);
 
     $stateProvider
@@ -46,6 +47,12 @@ angular.module('twitchdata', [
         controller: 'GameDetailCtrl',
         controllerAs: 'GameDetailCtrl'
       })
+      .state('channels', {
+        url: '/channels',
+        templateUrl: 'app/channels/list/channelsList.tpl.html',
+        controller: 'ChannelsListCtrl',
+        controllerAs: 'ChannelsListCtrl'
+      })
       .state('beta', {
         url: '/beta',
         templateUrl: 'app/beta/beta.tpl.html',
@@ -60,6 +67,7 @@ angular.module('twitchdata', [
       });
 
     gameServiceProvider.config.setBaseUrl('/api/v1');
+    channelServiceProvider.config.setBaseUrl('/api/v1');
     generalStatsServiceProvider.config.setBaseUrl('/api/v1');
 
     Highcharts.setOptions({

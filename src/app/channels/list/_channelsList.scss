@@ -1,0 +1,17 @@
+.channel-cards {
+  li {
+    &>div {
+      background: #fff;
+    }
+  }
+
+  .overlay {
+    height: 140px;
+    width: 140px;
+  }
+
+  .data-img {
+    height: 140px;
+    min-width: 140px;
+  }
+};
