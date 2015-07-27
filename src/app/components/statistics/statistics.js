@@ -2,55 +2,94 @@
 
 angular.module('twitchdata.components.statistics', [])
   .provider('statisticsService', function () {
-    var addMissing = function (attr, stats) {
-      var missing;
-      do {
-        missing = false;
 
-        // find missing run
-        for (var i = 1, len = stats.length; i < len; i++) {
-          if (stats[i][attr] && stats[i-1][attr] && (stats[i][attr] - stats[i-1][attr] > 1)) {
-            missing = i;
-            break;
-          }
+    var monthDiff = function (d1, d2) {
+      return d2.getMonth() - d1.getMonth() + (12 * (d2.getFullYear() - d1.getFullYear()));
+    };
+
+    var addMissing = function (stats) {
+      var tmpStats = stats.slice();
+      // floor hours
+      tmpStats.map(function (stat) {
+        stat.date.setMinutes(0);
+        return stat;
+      });
+
+      // precition frame dates
+      var lastDate = new Date(_.last(stats).date);
+      var lastMonth = new Date(lastDate.getTime());
+      lastMonth = new Date(lastMonth.setMonth(lastMonth.getMonth() - 1));
+      var lastQuarter = new Date(lastDate.getTime());
+      lastQuarter = new Date(lastQuarter.setMonth(lastQuarter.getMonth() -3));
+      var firstDate = new Date(_.first(stats).date);
+
+      // generate all expected stats entries
+      var expectedStats = {};
+      var d;
+
+      var hourCount = Math.floor((lastDate - lastMonth) / 36e5);
+      for (var i = 0; i < hourCount; i++) {
+        d = new Date(lastDate);
+        d.setHours(d.getHours() - i);
+        expectedStats[d.getFullYear() + '-' + d.getMonth() + '-' + d.getDate() + '-' + d.getHours()] = {
+          viewers: 0,
+          channels: 0,
+          ratio: 0,
+          date: d,
+          hour: d.getUTCHours(),
+          day: d.getUTCDate(),
+          month: d.getUTCMonth()+1,
+          year: d.getFullYear()
+        };
+      }
+
+      var dayCount = Math.floor((lastMonth - lastQuarter) / 864e5);
+      for (var j = 0; j < dayCount; j++) {
+        d = new Date(lastMonth);
+        d.setDate(d.getDate() - j);
+        expectedStats[d.getFullYear() + '-' + d.getMonth() + '-' + d.getDate()] = {
+          viewers: 0,
+          channels: 0,
+          ratio: 0,
+          date: d,
+          day: d.getUTCDate(),
+          month: d.getUTCMonth()+1,
+          year: d.getFullYear()
+        };
+      }
+
+      var monthCount = monthDiff(firstDate, lastQuarter) + 1;
+      for (var k = 0; k < monthCount; k++) {
+        d = new Date(lastQuarter);
+        d.setMonth(d.getMonth()- k);
+        expectedStats[d.getFullYear() + '-' + d.getMonth()] = {
+          viewers: 0,
+          channels: 0,
+          ratio: 0,
+          date: d,
+          month: d.getUTCMonth()+1,
+          year: d.getFullYear()
+        };
+      }
+
+      // overwrite expected with real stats where entries are available
+      tmpStats.forEach(function (stat) {
+        var key;
+        if (stat.hour) {
+          key = stat.date.getFullYear() + '-' + stat.date.getMonth() + '-' + stat.date.getDate() + '-' + stat.date.getHours();
+        } else if (stat.day) {
+          key = stat.date.getFullYear() + '-' + stat.date.getMonth() + '-' + stat.date.getDate();
+        } else {
+          key = stat.date.getFullYear() + '-' + stat.date.getMonth();
         }
+        expectedStats[key] = stat;
+      });
 
-        // add missing runs
-        if (missing) {
-          var missingCount = stats[missing][attr] - stats[missing-1][attr];
-          var lastCollectionDate = new Date(stats[missing-1].date);
-          var arr = stats.splice(missing, stats.length);
-          for (var j = 1; j < missingCount; j++) {
-            var date = new Date(lastCollectionDate.getTime());
-            switch (attr) {
-              case 'year':
-                date = date.setYear(date.getYear() + 1);
-                break;
-              case 'month':
-                date = date.setMonth(date.getMonth() + 1);
-                break;
-              case 'day':
-                date = date.setDate(date.getDate() + 1);
-                break;
-              default:
-                date = date.setHours(date.getHours() + 1);
-            }
-            stats.push({
-              channels: 0,
-              viewers: 0,
-              date: date,
-              hour: new Date(date).getHours(),
-              day: new Date(date).getDate(),
-              month: new Date(date).getMonth()+1,
-              year: new Date(date).getFullYear()
-            });
-          }
-          stats = stats.concat(arr);
-        }
-
-      } while (missing);
-
-      return stats;
+      var result = [];
+      for (var stat in expectedStats) {
+        result.push(expectedStats[stat]);
+      }
+      return result.reverse();
     };
 
     var getAvgForTimeFrame = function (stats, attr, limit, offset) {
@@ -117,12 +156,7 @@ angular.module('twitchdata.components.statistics', [])
             });
           }
 
-          stats = addMissing('hours', stats);
-          stats = addMissing('day', stats);
-          stats = addMissing('month', stats);
-          stats = addMissing('year', stats);
-
-          return stats;
+          return addMissing(stats);
         },
         getGrowthTrendOfLast: function (attr, stats) {
           var last;
