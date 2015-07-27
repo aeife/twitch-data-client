@@ -32,7 +32,7 @@ angular.module('twitchdata.components.statistics', [])
       var expectedStats = {};
       var d;
 
-      var hourCount = Math.floor((lastDate - lastMonth) / 36e5);
+      var hourCount = Math.floor((lastDate - lastMonth) / 36e5) + 1;
       for (var i = 0; i < hourCount; i++) {
         d = new Date(lastDate);
         d.setHours(d.getHours() - i);
@@ -48,7 +48,7 @@ angular.module('twitchdata.components.statistics', [])
         }, attrsObject);
       }
 
-      var dayCount = Math.floor((lastMonth - lastQuarter) / 864e5);
+      var dayCount = Math.floor((lastMonth - lastQuarter) / 864e5) + 1;
       for (var j = 0; j < dayCount; j++) {
         d = new Date(lastMonth);
         d.setDate(d.getDate() - j);
