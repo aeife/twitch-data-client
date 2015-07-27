@@ -50,16 +50,16 @@ angular.module('twitchdata.components.api.games', [])
                 channels: stat.c,
                 viewers: stat.v
               };
-              if (stat.h) {
+              if (typeof stat.h !== 'undefined') {
                 statObj.hour = stat.h;
               }
-              if (stat.d) {
+              if (typeof stat.d !== 'undefined') {
                 statObj.day = stat.d;
               }
-              if (stat.m) {
+              if (typeof stat.m !== 'undefined') {
                 statObj.month = stat.m;
               }
-              if (stat.y) {
+              if (typeof stat.y !== 'undefined') {
                 statObj.year = stat.y;
               }
               return statObj;

@@ -31,6 +31,9 @@ angular.module('twitchdata.components.statistics', [])
       for (var i = 0; i < hourCount; i++) {
         d = new Date(lastDate);
         d.setHours(d.getHours() - i);
+        if (d.getTime() < firstDate.getTime()) {
+          break;
+        }
         expectedStats[d.getFullYear() + '-' + d.getMonth() + '-' + d.getDate() + '-' + d.getHours()] = {
           viewers: 0,
           channels: 0,
@@ -47,6 +50,9 @@ angular.module('twitchdata.components.statistics', [])
       for (var j = 0; j < dayCount; j++) {
         d = new Date(lastMonth);
         d.setDate(d.getDate() - j);
+        if (d.getTime() < firstDate.getTime()) {
+          break;
+        }
         expectedStats[d.getFullYear() + '-' + d.getMonth() + '-' + d.getDate()] = {
           viewers: 0,
           channels: 0,
@@ -62,6 +68,9 @@ angular.module('twitchdata.components.statistics', [])
       for (var k = 0; k < monthCount; k++) {
         d = new Date(lastQuarter);
         d.setMonth(d.getMonth()- k);
+        if (d.getTime() < firstDate.getTime()) {
+          break;
+        }
         expectedStats[d.getFullYear() + '-' + d.getMonth()] = {
           viewers: 0,
           channels: 0,
@@ -75,9 +84,9 @@ angular.module('twitchdata.components.statistics', [])
       // overwrite expected with real stats where entries are available
       tmpStats.forEach(function (stat) {
         var key;
-        if (stat.hour) {
+        if (typeof stat.hour !== 'undefined') {
           key = stat.date.getFullYear() + '-' + stat.date.getMonth() + '-' + stat.date.getDate() + '-' + stat.date.getHours();
-        } else if (stat.day) {
+        } else if (typeof stat.day !== 'undefined') {
           key = stat.date.getFullYear() + '-' + stat.date.getMonth() + '-' + stat.date.getDate();
         } else {
           key = stat.date.getFullYear() + '-' + stat.date.getMonth();

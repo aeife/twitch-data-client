@@ -49,16 +49,16 @@ angular.module('twitchdata.components.api.channels', [])
                 channels: stat.c,
                 followers: stat.f
               };
-              if (stat.h) {
+              if (typeof stat.h !== 'undefined') {
                 statObj.hour = stat.h;
               }
-              if (stat.d) {
+              if (typeof stat.d !== 'undefined') {
                 statObj.day = stat.d;
               }
-              if (stat.m) {
+              if (typeof stat.m !== 'undefined') {
                 statObj.month = stat.m;
               }
-              if (stat.y) {
+              if (typeof stat.y !== 'undefined') {
                 statObj.year = stat.y;
               }
               return statObj;
