@@ -24,10 +24,10 @@ angular.module('twitchdata.components.statistics', [])
             var date = new Date(lastCollectionDate.getTime());
             switch (attr) {
               case 'year':
-                date = date.setYear(date.getYear() + 1)
+                date = date.setYear(date.getYear() + 1);
                 break;
               case 'month':
-                date = date.setMonth(date.getMonth() + 1)
+                date = date.setMonth(date.getMonth() + 1);
                 break;
               case 'day':
                 date = date.setDate(date.getDate() + 1);
@@ -173,48 +173,46 @@ angular.module('twitchdata.components.statistics', [])
           }
           return result;
         },
-        getAvg: function (stats) {
+        getAvg: function (stats, attrs) {
           if (!stats || !stats.length) {
             return null;
           }
 
-          var avg = {
-            viewers: 0,
-            channels: 0
-          };
-
-          stats.forEach(function (stat) {
-            avg.viewers += stat.viewers;
-            avg.channels += stat.channels;
+          var avg = {};
+          attrs.forEach(function (attr) {
+            avg[attr] = 0;
           });
 
-          return {
-            viewers: avg.viewers / stats.length,
-            channels: avg.channels / stats.length
-          };
+          stats.forEach(function (stat) {
+            attrs.forEach(function (attr) {
+              avg[attr] += stat[attr];
+            });
+          });
+
+          var result = {};
+          attrs.forEach(function (attr) {
+            result[attr] = avg[attr] / stats.length;
+          });
+
+          return result;
         },
-        getPeak: function (stats) {
-          var peak = {
-            viewers: {
-              count: 0,
-              date: null,
-            },
-            channels: {
+        getPeak: function (stats, attrs) {
+          var peak = {};
+
+          attrs.forEach(function (attr) {
+            peak[attr] = {
               count: 0,
               date: null
-            }
-          };
+            };
+          });
 
           stats.forEach(function (stat) {
-            if (stat.viewers > peak.viewers.count) {
-              peak.viewers.count = stat.viewers;
-              peak.viewers.date = new Date(stat.date);
-            }
-
-            if (stat.channels > peak.channels.count) {
-              peak.channels.count = stat.channels;
-              peak.channels.date = new Date(stat.date);
-            }
+            attrs.forEach(function (attr) {
+              if (stat[attr] > peak[attr].count) {
+                peak[attr].count = stat[attr];
+                peak[attr].date = new Date(stat.date);
+              }
+            });
           });
 
           return peak;

@@ -40,8 +40,8 @@ angular.module('twitchdata.games.detail', [
         month: statisticsService.getGrowthTrendOfLast('month', this.stats)
       };
       this.monthlyTrends = statisticsService.getMonthlyTrends(this.stats);
-      this.peak = statisticsService.getPeak(this.stats);
-      this.avg = statisticsService.getAvg(this.stats);
+      this.peak = statisticsService.getPeak(this.stats, ['viewers', 'channels']);
+      this.avg = statisticsService.getAvg(this.stats, ['viewers', 'channels']);
       return res;
     }.bind(this)));
 
