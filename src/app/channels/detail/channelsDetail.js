@@ -31,7 +31,7 @@ angular.module('twitchdata.channels.detail', [
         week: statisticsService.getGrowthTrendOfLast('week', this.stats, ['viewers', 'followers']),
         month: statisticsService.getGrowthTrendOfLast('month', this.stats, ['viewers', 'followers'])
       };
-      // this.monthlyTrends = statisticsService.getMonthlyTrends(this.stats);
+      this.monthlyTrends = statisticsService.getMonthlyTrends(this.stats, ['viewers', 'followers']);
       this.peak = statisticsService.getPeak(this.stats, ['viewers', 'followers']);
       this.avg = statisticsService.getAvg(this.stats, ['viewers', 'followers']);
       return res;
