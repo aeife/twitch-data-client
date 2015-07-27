@@ -33,13 +33,13 @@ angular.module('twitchdata.games.detail', [
     }.bind(this)));
 
     requests.push(gameService.getStatsForGame($stateParams.gameName).then(function (res) {
-      this.stats = statisticsService.addMissingCollectionRunsToGame(res.data.stats, res.data.lastCollectionRun);
+      this.stats = statisticsService.addMissingCollectionRunsToGame(res.data.stats, res.data.lastCollectionRun, ['viewers', 'channels', 'ratio']);
       this.trend = {
-        day: statisticsService.getGrowthTrendOfLast('day', this.stats),
-        week: statisticsService.getGrowthTrendOfLast('week', this.stats),
-        month: statisticsService.getGrowthTrendOfLast('month', this.stats)
+        day: statisticsService.getGrowthTrendOfLast('day', this.stats, ['viewers', 'channels']),
+        week: statisticsService.getGrowthTrendOfLast('week', this.stats, ['viewers', 'channels']),
+        month: statisticsService.getGrowthTrendOfLast('month', this.stats, ['viewers', 'channels'])
       };
-      this.monthlyTrends = statisticsService.getMonthlyTrends(this.stats);
+      this.monthlyTrends = statisticsService.getMonthlyTrends(this.stats, ['viewers', 'channels']);
       this.peak = statisticsService.getPeak(this.stats, ['viewers', 'channels']);
       this.avg = statisticsService.getAvg(this.stats, ['viewers', 'channels']);
       return res;

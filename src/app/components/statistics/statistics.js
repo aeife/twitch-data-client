@@ -7,7 +7,12 @@ angular.module('twitchdata.components.statistics', [])
       return d2.getMonth() - d1.getMonth() + (12 * (d2.getFullYear() - d1.getFullYear()));
     };
 
-    var addMissing = function (stats) {
+    var addMissing = function (stats, attrs) {
+      var attrsObject = {};
+      attrs.forEach(function (attr) {
+        attrsObject[attr] = 0;
+      });
+
       var tmpStats = stats.slice();
       // floor hours
       tmpStats.map(function (stat) {
@@ -34,16 +39,13 @@ angular.module('twitchdata.components.statistics', [])
         if (d.getTime() < firstDate.getTime()) {
           break;
         }
-        expectedStats[d.getFullYear() + '-' + d.getMonth() + '-' + d.getDate() + '-' + d.getHours()] = {
-          viewers: 0,
-          channels: 0,
-          ratio: 0,
+        expectedStats[d.getFullYear() + '-' + d.getMonth() + '-' + d.getDate() + '-' + d.getHours()] = _.extend({
           date: d,
           hour: d.getUTCHours(),
           day: d.getUTCDate(),
           month: d.getUTCMonth()+1,
           year: d.getFullYear()
-        };
+        }, attrsObject);
       }
 
       var dayCount = Math.floor((lastMonth - lastQuarter) / 864e5);
@@ -53,15 +55,12 @@ angular.module('twitchdata.components.statistics', [])
         if (d.getTime() < firstDate.getTime()) {
           break;
         }
-        expectedStats[d.getFullYear() + '-' + d.getMonth() + '-' + d.getDate()] = {
-          viewers: 0,
-          channels: 0,
-          ratio: 0,
+        expectedStats[d.getFullYear() + '-' + d.getMonth() + '-' + d.getDate()] = _.extend({
           date: d,
           day: d.getUTCDate(),
           month: d.getUTCMonth()+1,
           year: d.getFullYear()
-        };
+        }, attrsObject);
       }
 
       var monthCount = monthDiff(firstDate, lastQuarter) + 1;
@@ -71,14 +70,11 @@ angular.module('twitchdata.components.statistics', [])
         if (d.getTime() < firstDate.getTime()) {
           break;
         }
-        expectedStats[d.getFullYear() + '-' + d.getMonth()] = {
-          viewers: 0,
-          channels: 0,
-          ratio: 0,
+        expectedStats[d.getFullYear() + '-' + d.getMonth()] =  _.extend({
           date: d,
           month: d.getUTCMonth()+1,
           year: d.getFullYear()
-        };
+        }, attrsObject);
       }
 
       // overwrite expected with real stats where entries are available
@@ -101,15 +97,15 @@ angular.module('twitchdata.components.statistics', [])
       return result.reverse();
     };
 
-    var getAvgForTimeFrame = function (stats, attr, limit, offset) {
+    var getAvgForTimeFrame = function (stats, attrs, timeframe, limit, offset) {
       var tmpStats = stats.slice();
       tmpStats.reverse();
 
       var timeFrames =  _.groupBy(tmpStats, function (stat) {
         var group = stat.year;
-        if (attr === 'month') {
+        if (timeframe === 'month') {
           group += '-' + stat.month;
-        } else if (attr === 'day') {
+        } else if (timeframe === 'day') {
           group += '-' + stat.month + '-' + stat.day;
         }
         return group;
@@ -118,80 +114,87 @@ angular.module('twitchdata.components.statistics', [])
       timeFrameKeys.reverse();
 
       var count = 0;
-      var result = {
-        viewers: 0,
-        channels: 0
-      };
+      var result = {};
+      attrs.forEach(function (attr) {
+        result[attr] = 0;
+      });
 
       for (var i = 0; i < limit; i++) {
         if (timeFrames[timeFrameKeys[i + offset]]) {
           timeFrames[timeFrameKeys[i+offset]].forEach(function (stat) {
-            result.viewers += stat.viewers;
-            result.channels += stat.channels;
+            attrs.forEach(function (attr) {
+              result[attr] += stat[attr];
+            });
             count++;
           });
         }
       }
 
       if (count > 0) {
-        result.viewers = result.viewers / count;
-        result.channels = result.channels / count;
+        attrs.forEach(function (attr) {
+          result[attr] = result[attr] / count;
+        });
       }
 
       return result;
     };
 
-    var calculateGrowth = function (first, second) {
-      return {
-        viewers: second.viewers ? (first.viewers / second.viewers) * 100 - 100 : null,
-        channels: second.channels ? (first.channels / second.channels) * 100 - 100 : null
-      };
+    var calculateGrowth = function (first, second, attrs) {
+      var result = {};
+
+      attrs.forEach(function (attr) {
+        result[attr] = second[attr] ? (first[attr] / second[attr]) * 100 - 100 : null;
+      });
+
+      return result;
     };
 
     this.$get = function () {
       var statisticsService = {
         // adds missing collection run entries to stats array
-        addMissingCollectionRunsToGame: function (stats, lastCollectionRun) {
+        addMissingCollectionRunsToGame: function (stats, lastCollectionRun, attrs) {
           if (_.last(stats).hour !== lastCollectionRun.date.getUTCHours()) {
-            stats.push({
-              viewers: 0,
-              channels: 0,
-              ratio: 0,
+            var stat = {
               date: lastCollectionRun.date,
               hour: new Date(lastCollectionRun.date).getUTCHours(),
               day: new Date(lastCollectionRun.date).getUTCDate(),
               month: new Date(lastCollectionRun.date).getUTCMonth()+1,
               year: new Date(lastCollectionRun.date).getFullYear()
+            };
+            attrs.forEach(function (attr) {
+              stat[attr] = 0;
             });
+            stats.push(stat);
           }
 
-          return addMissing(stats);
+          return addMissing(stats, attrs);
         },
-        getGrowthTrendOfLast: function (attr, stats) {
+        getGrowthTrendOfLast: function (timeframe, stats, attrs) {
           var last;
           var secondLast;
 
-          if (attr === 'week') {
-            last = getAvgForTimeFrame(stats, 'day', 7, 0);
-            secondLast = getAvgForTimeFrame(stats, 'day', 7, 7);
+          if (timeframe === 'week') {
+            last = getAvgForTimeFrame(stats, attrs, 'day', 7, 0);
+            secondLast = getAvgForTimeFrame(stats, attrs, 'day', 7, 7);
           } else {
-            last = getAvgForTimeFrame(stats, attr, 1, 0);
-            secondLast = getAvgForTimeFrame(stats, attr, 1, 1);
+            last = getAvgForTimeFrame(stats, attrs, timeframe, 1, 0);
+            secondLast = getAvgForTimeFrame(stats, attrs, timeframe, 1, 1);
           }
 
-          return {
-            growth: calculateGrowth(last, secondLast),
-            last: {
-              viewers: last.viewers,
-              channels: last.channels
-            },
-            secondLast: {
-              viewers: secondLast.viewers,
-              channels: secondLast.channels
-            }
+          var result = {
+            growth: calculateGrowth(last, secondLast, attrs),
+            last: {},
+            secondLast: {}
           };
+
+          attrs.forEach(function (attr) {
+            result.last[attr] = last[attr];
+            result.secondLast[attr] = secondLast[attr];
+          });
+
+          return result;
         },
-        getMonthlyTrends: function (stats) {
+        getMonthlyTrends: function (stats, attrs) {
           var result = [];
           var months = _.groupBy(stats, function (stat) {
             return stat.year + '-' + stat.month;
@@ -201,7 +204,7 @@ angular.module('twitchdata.components.statistics', [])
 
           var monthAvgs = {};
           for (var j = 0, length = Object.keys(months).length; j < length; j++) {
-            monthAvgs[monthsKeys[j]] = getAvgForTimeFrame(stats, 'month', 1, j);
+            monthAvgs[monthsKeys[j]] = getAvgForTimeFrame(stats, attrs, 'month', 1, j);
           }
 
           for (var i = 1, len = Object.keys(months).length; i < len; i++) {
@@ -210,7 +213,7 @@ angular.module('twitchdata.components.statistics', [])
             result.push({
               year: months[monthsKeys[i-1]][0].year,
               month: months[monthsKeys[i-1]][0].month,
-              growth: calculateGrowth(last, secondLast),
+              growth: calculateGrowth(last, secondLast, attrs),
               avg: monthAvgs[monthsKeys[i-1]]
             });
           }
