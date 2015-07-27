@@ -14,12 +14,12 @@
       <div class="col-xs-6 col-sm-12">
         <h3 class="text-center">Peaks</h3>
         <p class="peak"><i class="fa fa-users"></i> {{ChannelDetailCtrl.peak.viewers.count | number:0}} <span class="pull-right">{{ChannelDetailCtrl.peak.viewers.date | date:'short'}}</span></p>
-        <p class="peak"><i class="fa fa-video-camera"></i> {{ChannelDetailCtrl.peak.followers.count | number:0}} <span class="pull-right">{{ChannelDetailCtrl.peak.followers.date | date:'short'}}</span></p>
+        <p class="peak"><i class="fa fa-heart"></i> {{ChannelDetailCtrl.peak.followers.count | number:0}} <span class="pull-right">{{ChannelDetailCtrl.peak.followers.date | date:'short'}}</span></p>
 
         <hr>
         <h3 class="text-center">Average</h3>
         <p class="avg"><i class="fa fa-users"></i> {{ChannelDetailCtrl.avg.viewers | number:0}}</p>
-        <p class="avg"><i class="fa fa-video-camera"></i> {{ChannelDetailCtrl.avg.followers | number:0}}</p>
+        <p class="avg"><i class="fa fa-heart"></i> {{ChannelDetailCtrl.avg.followers | number:0}}</p>
         <hr>
       </div>
     </div>
@@ -49,7 +49,7 @@
           <h3><i class="fa fa-users"></i> Viewers</h3>
         </a>
         <a href class="pull-left" ng-click="ChannelDetailCtrl.currentChart = 'followers'" ng-class="{'active':ChannelDetailCtrl.currentChart == 'followers' }">
-          <h3><i class="fa fa-video-camera"></i> Follower</h3>
+          <h3><i class="fa fa-heart"></i> Follower</h3>
         </a>
       </div>
       <highchart ng-if="ChannelDetailCtrl.currentChart == 'viewers'" config="ChannelDetailCtrl.viewersChartConfig" class="col-xs-12 no-padding"></highchart>
@@ -61,7 +61,7 @@
         <tr>
           <th>Month</th>
           <th colspan="2"><i class="fa fa-users"></i> Viewers Avg</th>
-          <th colspan="2"><i class="fa fa-video-camera"></i> Followers Avg</th>
+          <th colspan="2"><i class="fa fa-heart"></i> Followers Avg</th>
         </tr>
         <tr ng-repeat="trend in ChannelDetailCtrl.monthlyTrends">
           <td>{{trend.month | month}}, {{trend.year}}</td>
