@@ -8,6 +8,7 @@ angular.module('twitchdata', [
   'twitchdata.games.detail',
   'twitchdata.games.compare',
   'twitchdata.channels.list',
+  'twitchdata.channels.detail',
   'twitchdata.components.api.games',
   'twitchdata.components.api.generalStats',
   'ui.router',
@@ -52,6 +53,12 @@ angular.module('twitchdata', [
         templateUrl: 'app/channels/list/channelsList.tpl.html',
         controller: 'ChannelsListCtrl',
         controllerAs: 'ChannelsListCtrl'
+      })
+      .state('channelDetail', {
+        url: '/channels/:channelName',
+        templateUrl: 'app/channels/detail/channelsDetail.tpl.html',
+        controller: 'ChannelDetailCtrl',
+        controllerAs: 'ChannelDetailCtrl'
       })
       .state('beta', {
         url: '/beta',

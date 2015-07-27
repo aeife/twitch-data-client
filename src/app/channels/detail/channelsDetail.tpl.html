@@ -1,0 +1,76 @@
+<div class="head-bar game-detail-head">
+  <div class="container">
+    <h1 class="col-xs-12 no-padding wrap-text">
+      {{ChannelDetailCtrl.channel.name}}
+      <a ng-href="http://www.twitch.tv/directory/game/{{ChannelDetailCtrl.game.name}}" target="_blank"><i class="fa fa-twitch"></i></a>
+    </h1>
+  </div>
+</div>
+
+<div class="page-content">
+  <div class="col-sm-12 col-md-4 col-md-push-8 game-info">
+    <div class="col-xs-12 col-sm-4 col-md-12 game-image">
+      <img ng-src="{{ChannelDetailCtrl.channel.logo}}" alt="" class="col-xs-6 col-sm-12 no-padding" />
+      <div class="col-xs-6 col-sm-12">
+        <h3 class="text-center">Peaks</h3>
+        <p class="peak"><i class="fa fa-users"></i> {{ChannelDetailCtrl.peak.viewers.count | number:0}} <span class="pull-right">{{ChannelDetailCtrl.peak.viewers.date | date:'short'}}</span></p>
+        <p class="peak"><i class="fa fa-video-camera"></i> {{ChannelDetailCtrl.peak.followers.count | number:0}} <span class="pull-right">{{ChannelDetailCtrl.peak.followers.date | date:'short'}}</span></p>
+
+        <hr>
+        <h3 class="text-center">Average</h3>
+        <p class="avg"><i class="fa fa-users"></i> {{ChannelDetailCtrl.avg.viewers | number:0}}</p>
+        <p class="avg"><i class="fa fa-video-camera"></i> {{ChannelDetailCtrl.avg.followers | number:0}}</p>
+        <hr>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-sm-12 col-md-8 col-md-pull-4 game-statistics">
+    <hr>
+    <div class="trend clearfix">
+      <div class="col-xs-4">
+        <h3>last day</h3>
+        <td-trend-text value="ChannelDetailCtrl.trend.day.growth.viewers"></td-trend-text>
+      </div>
+      <div class="col-xs-4">
+        <h3>last week</h3>
+        <td-trend-text value="ChannelDetailCtrl.trend.week.growth.viewers"></td-trend-text>
+      </div>
+      <div class="col-xs-4">
+        <h3>last month</h3>
+        <td-trend-text value="ChannelDetailCtrl.trend.month.growth.viewers"></td-trend-text>
+      </div>
+    </div>
+    <hr>
+
+    <div class="charts tabs clearfix">
+      <div class="headings clearfix">
+        <a href class="pull-left" ng-click="ChannelDetailCtrl.currentChart = 'viewers'" ng-class="{'active':ChannelDetailCtrl.currentChart == 'viewers' }">
+          <h3><i class="fa fa-users"></i> Viewers</h3>
+        </a>
+        <a href class="pull-left" ng-click="ChannelDetailCtrl.currentChart = 'followers'" ng-class="{'active':ChannelDetailCtrl.currentChart == 'followers' }">
+          <h3><i class="fa fa-video-camera"></i> Follower</h3>
+        </a>
+      </div>
+      <highchart ng-if="ChannelDetailCtrl.currentChart == 'viewers'" config="ChannelDetailCtrl.viewersChartConfig" class="col-xs-12 no-padding"></highchart>
+      <highchart ng-if="ChannelDetailCtrl.currentChart == 'followers'" config="ChannelDetailCtrl.followersChartConfig" class="col-xs-12 no-padding"></highchart>
+    </div>
+
+    <div class="monthly-trends">
+      <table class="table">
+        <tr>
+          <th>Month</th>
+          <th colspan="2"><i class="fa fa-users"></i> Viewers Avg</th>
+          <th colspan="2"><i class="fa fa-video-camera"></i> Followers Avg</th>
+        </tr>
+        <tr ng-repeat="trend in ChannelDetailCtrl.monthlyTrends">
+          <td>{{trend.month | month}}, {{trend.year}}</td>
+          <td><td-trend-text value="trend.growth.viewers"></td-trend-text></td>
+          <td>{{trend.avg.viewers | number: 0}}</td>
+          <td><td-trend-text value="trend.growth.followers"></td-trend-text></td>
+          <td>{{trend.avg.followers | number: 0}}</td>
+        </tr>
+      </table>
+    </div>
+  </div>
+</div>

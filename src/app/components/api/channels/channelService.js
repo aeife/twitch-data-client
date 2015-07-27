@@ -46,7 +46,7 @@ angular.module('twitchdata.components.api.channels', [])
             res.data.stats = res.data.stats.map(function (stat) {
               var statObj = {
                 date: new Date(stat.dt),
-                channels: stat.c,
+                viewers: stat.v,
                 followers: stat.f
               };
               if (typeof stat.h !== 'undefined') {
