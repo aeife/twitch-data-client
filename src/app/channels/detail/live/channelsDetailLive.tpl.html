@@ -1,0 +1,11 @@
+<div class="channel-live-info" ng-if="ChannelDetailLiveCtrl.stream">
+  <h2>Live</h2>
+  <ul>
+    <li>{{ChannelDetailLiveCtrl.stream.channel.status}}</li>
+    <li>playing {{ChannelDetailLiveCtrl.stream.game}}</li>
+    <li>{{ChannelDetailLiveCtrl.stream.viewers}} viewers</li>
+    <li>streaming since {{ChannelDetailLiveCtrl.stream.created_at | date:'short'}}</li>
+  </ul>
+  <img ng-src="{{ChannelDetailLiveCtrl.stream.preview.medium}}" alt="" />
+  <a ng-href="{{ChannelDetailLiveCtrl.stream.channel.url}}" target="_blank" class="btn btn-default btn-block">watch</a>
+</div>

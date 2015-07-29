@@ -1,6 +1,7 @@
 'use strict';
 
 angular.module('twitchdata.channels.detail', [
+  'twitchdata.channels.detail.live',
   'twitchdata.components.api.channels',
   'twitchdata.components.charts',
   'twitchdata.components.twitchApi',

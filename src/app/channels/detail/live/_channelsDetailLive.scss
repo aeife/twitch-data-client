@@ -1,0 +1,23 @@
+.channel-live-info {
+  background-color: rgba($twitch-color, 0.9);
+  color: #fff;
+  padding: 15px;
+
+  h2 {
+    text-align: center;
+    margin-top: 0;
+  }
+
+  ul {
+    padding: 0;
+    list-style: none;
+
+    li {
+      padding: 10px 0;
+    }
+  }
+
+  img {
+    width: 100%;
+  }
+}

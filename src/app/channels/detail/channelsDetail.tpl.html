@@ -11,6 +11,10 @@
   <div class="col-sm-12 col-md-4 col-md-push-8 data-info">
     <div class="col-xs-12 col-sm-4 col-md-12 data-image">
       <img ng-src="{{ChannelDetailCtrl.channel.logo}}" alt="" class="col-xs-6 col-sm-12 no-padding" />
+      <div class="col-xs-6 col-sm-12"  ng-if="ChannelDetailCtrl.channel.name">
+        <td-channel-live-info channel="ChannelDetailCtrl.channel.name" ></td-channel-live-info>
+      </div>
+
       <div class="col-xs-6 col-sm-12">
         <h3 class="text-center">Peaks</h3>
         <p class="peak"><i class="fa fa-users"></i> {{ChannelDetailCtrl.peak.viewers.count | number:0}} <span class="pull-right">{{ChannelDetailCtrl.peak.viewers.date | date:'short'}}</span></p>

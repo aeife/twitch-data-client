@@ -20,6 +20,17 @@ angular.module('twitchdata.components.twitchApi', [])
             method: 'JSONP',
             params: options
           });
+        },
+        getLiveStreamData: function (channelName) {
+          var options = {
+            callback: 'JSON_CALLBACK'
+          };
+
+          return $http({
+            url: _baseUrl + '/streams/' + channelName,
+            method: 'JSONP',
+            params: options
+          });
         }
       };
 
