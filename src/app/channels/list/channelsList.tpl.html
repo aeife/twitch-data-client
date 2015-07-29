@@ -28,7 +28,7 @@
     </button>
 
     <ul class="no-padding data-cards channel-cards">
-      <li class="col-xs-6 col-sm-4 col-md-4 col-lg-3" ng-repeat="channel in ChannelsListCtrl.channels track by channel._id" ng-click="ChannelsListCtrl.goToChannelDetailView(channel)">
+      <li class="col-xs-6 col-md-4 col-lg-3" ng-repeat="channel in ChannelsListCtrl.channels track by channel._id" ng-click="ChannelsListCtrl.goToChannelDetailView(channel)">
         <div>
           <img ng-src="{{channel.logo}}" class="data-img" alt=""/>
           <div class="overlay">
@@ -44,6 +44,10 @@
               <tr>
                 <td><i class="fa fa-heart"></i></td>
                 <td>{{::channel.followers}}</td>
+              </tr>
+              <tr>
+                <td><i class="fa fa-gamepad"></i></td>
+                <td class="wrap-text">{{::channel.game}}</td>
               </tr>
             </table>
           </div>
