@@ -2,7 +2,7 @@
   <h2>Live</h2>
   <ul>
     <li>{{ChannelDetailLiveCtrl.stream.channel.status}}</li>
-    <li>playing {{ChannelDetailLiveCtrl.stream.game}}</li>
+    <li>playing <a ui-sref="gameDetail({gameName: ChannelDetailLiveCtrl.stream.game})">{{ChannelDetailLiveCtrl.stream.game}}</a></li>
     <li>{{ChannelDetailLiveCtrl.stream.viewers}} viewers</li>
     <li>streaming since {{ChannelDetailLiveCtrl.stream.created_at | date:'short'}}</li>
   </ul>
