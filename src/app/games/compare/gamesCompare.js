@@ -25,7 +25,7 @@ angular.module('twitchdata.games.compare', [
       }));
 
       requests.push(gameService.getStatsForGame(gameName).then(function (res) {
-        stats = statisticsService.addMissingCollectionRunsToGame(res.data.stats, res.data.lastCollectionRun);
+        stats = statisticsService.addMissingCollectionRunsToGame(res.data.stats, res.data.lastCollectionRun, ['viewers', 'channels', 'ratio']);
         return res;
       }));
 
