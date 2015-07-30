@@ -49,6 +49,7 @@ angular.module('twitchdata.components.statistics', [])
         for (var j = 0; j < dayCount; j++) {
           d = new Date(precisionBorders.hourly);
           d.setDate(d.getDate() - j);
+          d.setHours(0);
           if (d.getTime() < firstDate.getTime()) {
             break;
           }
@@ -64,6 +65,8 @@ angular.module('twitchdata.components.statistics', [])
         for (var k = 0; k < monthCount; k++) {
           d = new Date(precisionBorders.daily);
           d.setMonth(d.getMonth()- k);
+          d.setDate(1);
+          d.setHours(0);
           if (d.getTime() < firstDate.getTime()) {
             break;
           }
@@ -81,10 +84,11 @@ angular.module('twitchdata.components.statistics', [])
             key = stat.date.getFullYear() + '-' + stat.date.getMonth() + '-' + stat.date.getDate() + '-' + stat.date.getHours();
           } else if (typeof stat.day !== 'undefined') {
             key = stat.date.getFullYear() + '-' + stat.date.getMonth() + '-' + stat.date.getDate();
-            stat.date.setHours(1);
+            stat.date.setHours(0);
           } else {
             key = stat.date.getFullYear() + '-' + stat.date.getMonth();
             stat.date.setDate(1);
+            stat.date.setHours(0);
           }
           expectedStats[key] = stat;
         });
