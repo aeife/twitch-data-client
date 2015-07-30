@@ -47,7 +47,8 @@ angular.module('twitchdata.components.api.channels', [])
               var statObj = {
                 date: new Date(stat.dt),
                 viewers: stat.v,
-                followers: stat.f
+                followers: stat.f,
+                game: stat.g
               };
               if (typeof stat.h !== 'undefined') {
                 statObj.hour = stat.h;
