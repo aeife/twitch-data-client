@@ -46,8 +46,8 @@ angular.module('twitchdata.channels.detail', [
         followersGrowth: statisticsService.getPeak(this.followerStats, ['followersGrowth']).followersGrowth
       };
       this.avg = {
-        viewers: statisticsService.getAvg(this.stats, ['viewers']).viewers,
-        followersGrowth: statisticsService.getAvg(this.followerStats, ['followersGrowth']).followersGrowth,
+        viewers: statisticsService.getAvgForTimeFrame(this.stats, ['viewers'], 'day', 7, 0).viewers,
+        followersGrowth: statisticsService.getAvgForTimeFrame(this.followerStats, ['followersGrowth'], 'day', 7, 0).followersGrowth
       }
       return res;
     }.bind(this)));
