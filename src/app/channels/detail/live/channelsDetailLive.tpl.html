@@ -8,13 +8,17 @@
   </ul>
   <a ng-href="{{ChannelDetailLiveCtrl.channel.url}}" target="_blank">
     <img ng-src="{{ChannelDetailLiveCtrl.stream.preview.medium}}" alt="" />
+    <div class="overlay">
+      <i class="fa fa-play-circle-o"></i>
+    </div>
   </a>
-  <a ng-href="{{ChannelDetailLiveCtrl.channel.url}}" target="_blank" class="btn btn-default btn-block">watch</a>
 </div>
 <div class="channel-live-info offline" ng-if="!ChannelDetailLiveCtrl.stream && ChannelDetailLiveCtrl.loaded">
   <h2>Offline</h2>
   <a ng-href="{{ChannelDetailLiveCtrl.channel.url}}" target="_blank">
     <img ng-src="{{ChannelDetailLiveCtrl.channel.video_banner}}" alt="" />
+    <div class="overlay">
+      <i class="fa fa-play-circle-o"></i>
+    </div>
   </a>
-  <a ng-href="{{ChannelDetailLiveCtrl.channel.url}}" target="_blank" class="btn btn-default btn-block">go to channel</a>
 </div>
