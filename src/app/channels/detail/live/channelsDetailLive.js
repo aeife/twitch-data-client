@@ -14,7 +14,9 @@ angular.module('twitchdata.channels.detail.live', ['twitchdata.components.twitch
     };
   })
   .controller('ChannelDetailLiveCtrl', function (twitchApiClient) {
-    twitchApiClient.getLiveStreamData(this.channel).then(function (res) {
+    twitchApiClient.getLiveStreamData(this.channel.name).then(function (res) {
       this.stream = res.data.stream;
+    }.bind(this)).finally(function () {
+      this.loaded = true;
     }.bind(this));
   });

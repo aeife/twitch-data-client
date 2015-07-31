@@ -1,11 +1,20 @@
 <div class="channel-live-info" ng-if="ChannelDetailLiveCtrl.stream">
-  <h2>Live</h2>
+  <h2>Online</h2>
   <ul>
     <li>{{ChannelDetailLiveCtrl.stream.channel.status}}</li>
     <li>playing <a ui-sref="gameDetail({gameName: ChannelDetailLiveCtrl.stream.game})">{{ChannelDetailLiveCtrl.stream.game}}</a></li>
     <li>{{ChannelDetailLiveCtrl.stream.viewers}} viewers</li>
     <li>streaming since {{ChannelDetailLiveCtrl.stream.created_at | date:'short'}}</li>
   </ul>
-  <img ng-src="{{ChannelDetailLiveCtrl.stream.preview.medium}}" alt="" />
-  <a ng-href="{{ChannelDetailLiveCtrl.stream.channel.url}}" target="_blank" class="btn btn-default btn-block">watch</a>
+  <a ng-href="{{ChannelDetailLiveCtrl.channel.url}}" target="_blank">
+    <img ng-src="{{ChannelDetailLiveCtrl.stream.preview.medium}}" alt="" />
+  </a>
+  <a ng-href="{{ChannelDetailLiveCtrl.channel.url}}" target="_blank" class="btn btn-default btn-block">watch</a>
+</div>
+<div class="channel-live-info offline" ng-if="!ChannelDetailLiveCtrl.stream && ChannelDetailLiveCtrl.loaded">
+  <h2>Offline</h2>
+  <a ng-href="{{ChannelDetailLiveCtrl.channel.url}}" target="_blank">
+    <img ng-src="{{ChannelDetailLiveCtrl.channel.video_banner}}" alt="" />
+  </a>
+  <a ng-href="{{ChannelDetailLiveCtrl.channel.url}}" target="_blank" class="btn btn-default btn-block">go to channel</a>
 </div>

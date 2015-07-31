@@ -24,4 +24,9 @@
   img {
     width: 100%;
   }
+
+  &.offline {
+    background-color: lighten($twitch-color, 50%);
+    color: inherit;
+  }
 }
