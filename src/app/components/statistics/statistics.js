@@ -100,48 +100,6 @@ angular.module('twitchdata.components.statistics', [])
         return result.reverse();
       };
 
-      var getAvgForTimeFrame = function (stats, attrs, timeframe, limit, offset) {
-        var tmpStats = stats.slice();
-        tmpStats.reverse();
-
-        var timeFrames =  _.groupBy(tmpStats, function (stat) {
-          var group = stat.year;
-          if (timeframe === 'month') {
-            group += '-' + stat.month;
-          } else if (timeframe === 'day') {
-            group += '-' + stat.month + '-' + stat.day;
-          }
-          return group;
-        });
-        var timeFrameKeys = Object.keys(timeFrames).sort();
-        timeFrameKeys.reverse();
-
-        var count = 0;
-        var result = {};
-        attrs.forEach(function (attr) {
-          result[attr] = 0;
-        });
-
-        for (var i = 0; i < limit; i++) {
-          if (timeFrames[timeFrameKeys[i + offset]]) {
-            timeFrames[timeFrameKeys[i+offset]].forEach(function (stat) {
-              attrs.forEach(function (attr) {
-                result[attr] += stat[attr];
-              });
-              count++;
-            });
-          }
-        }
-
-        if (count > 0) {
-          attrs.forEach(function (attr) {
-            result[attr] = result[attr] / count;
-          });
-        }
-
-        return result;
-      };
-
       var calculateGrowth = function (first, second, attrs) {
         var result = {};
 
@@ -176,11 +134,11 @@ angular.module('twitchdata.components.statistics', [])
           var secondLast;
 
           if (timeframe === 'week') {
-            last = getAvgForTimeFrame(stats, attrs, 'day', 7, 0);
-            secondLast = getAvgForTimeFrame(stats, attrs, 'day', 7, 7);
+            last = this.getAvgForTimeFrame(stats, attrs, 'day', 7, 0);
+            secondLast = this.getAvgForTimeFrame(stats, attrs, 'day', 7, 7);
           } else {
-            last = getAvgForTimeFrame(stats, attrs, timeframe, 1, 0);
-            secondLast = getAvgForTimeFrame(stats, attrs, timeframe, 1, 1);
+            last = this.getAvgForTimeFrame(stats, attrs, timeframe, 1, 0);
+            secondLast = this.getAvgForTimeFrame(stats, attrs, timeframe, 1, 1);
           }
 
           var result = {
@@ -206,7 +164,7 @@ angular.module('twitchdata.components.statistics', [])
 
           var monthAvgs = {};
           for (var j = 0, length = Object.keys(months).length; j < length; j++) {
-            monthAvgs[monthsKeys[j]] = getAvgForTimeFrame(stats, attrs, 'month', 1, j);
+            monthAvgs[monthsKeys[j]] = this.getAvgForTimeFrame(stats, attrs, 'month', 1, j);
           }
 
           for (var i = 1, len = Object.keys(months).length; i < len; i++) {
@@ -219,6 +177,47 @@ angular.module('twitchdata.components.statistics', [])
               avg: monthAvgs[monthsKeys[i-1]]
             });
           }
+          return result;
+        },
+        getAvgForTimeFrame: function (stats, attrs, timeframe, limit, offset) {
+          var tmpStats = stats.slice();
+          tmpStats.reverse();
+
+          var timeFrames =  _.groupBy(tmpStats, function (stat) {
+            var group = stat.year;
+            if (timeframe === 'month') {
+              group += '-' + stat.month;
+            } else if (timeframe === 'day') {
+              group += '-' + stat.month + '-' + stat.day;
+            }
+            return group;
+          });
+          var timeFrameKeys = Object.keys(timeFrames).sort();
+          timeFrameKeys.reverse();
+
+          var count = 0;
+          var result = {};
+          attrs.forEach(function (attr) {
+            result[attr] = 0;
+          });
+
+          for (var i = 0; i < limit; i++) {
+            if (timeFrames[timeFrameKeys[i + offset]]) {
+              timeFrames[timeFrameKeys[i+offset]].forEach(function (stat) {
+                attrs.forEach(function (attr) {
+                  result[attr] += stat[attr];
+                });
+                count++;
+              });
+            }
+          }
+
+          if (count > 0) {
+            attrs.forEach(function (attr) {
+              result[attr] = result[attr] / count;
+            });
+          }
+
           return result;
         },
         getAvg: function (stats, attrs) {
