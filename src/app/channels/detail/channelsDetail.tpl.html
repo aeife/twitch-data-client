@@ -11,16 +11,16 @@
   <div class="col-sm-12 col-md-4 col-md-push-8 data-info">
     <div class="col-xs-12 col-sm-4 col-md-12 data-image">
       <img ng-src="{{ChannelDetailCtrl.channel.logo}}" alt="" class="col-xs-6 col-sm-12 no-padding" />
-      
+
       <div class="col-xs-6 col-sm-12">
         <h3 class="text-center">Peaks</h3>
         <p class="peak"><i class="fa fa-users"></i> {{ChannelDetailCtrl.peak.viewers.count | number:0}} <span class="pull-right">{{ChannelDetailCtrl.peak.viewers.date | date:'short'}}</span></p>
-        <p class="peak"><i class="fa fa-heart"></i> {{ChannelDetailCtrl.peak.followers.count | number:0}} <span class="pull-right">{{ChannelDetailCtrl.peak.followers.date | date:'short'}}</span></p>
+        <p class="peak"><i class="fa fa-heart"></i> {{ChannelDetailCtrl.peak.followersGrowth.count | number:0}} <span class="pull-right">{{ChannelDetailCtrl.peak.followersGrowth.date | date:'short'}}</span></p>
 
         <hr>
         <h3 class="text-center">Average</h3>
         <p class="avg"><i class="fa fa-users"></i> {{ChannelDetailCtrl.avg.viewers | number:0}}</p>
-        <p class="avg"><i class="fa fa-heart"></i> {{ChannelDetailCtrl.avg.followers | number:0}}</p>
+        <p class="avg"><i class="fa fa-heart"></i> {{ChannelDetailCtrl.avg.followersGrowth | number:0}}</p>
         <hr>
       </div>
     </div>
@@ -71,8 +71,8 @@
           <td>{{trend.month | month}}, {{trend.year}}</td>
           <td><td-trend-text value="trend.growth.viewers"></td-trend-text></td>
           <td>{{trend.avg.viewers | number: 0}}</td>
-          <td><td-trend-text value="trend.growth.followers"></td-trend-text></td>
-          <td>{{trend.avg.followers | number: 0}}</td>
+          <td><td-trend-text value="trend.growth.followersGrowth"></td-trend-text></td>
+          <td>{{trend.avg.followersGrowth | number: 0}}</td>
         </tr>
       </table>
     </div>

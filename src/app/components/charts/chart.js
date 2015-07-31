@@ -43,9 +43,9 @@ angular.module('twitchdata.components.charts', [])
                 	text: 'All'
                 }]
               },
-              yAxis: {
-                min: 0
-              },
+              // yAxis: {
+              //   min: 0
+              // },
               xAxis: {
                 ordinal: false
               },
