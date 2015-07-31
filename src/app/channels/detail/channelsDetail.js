@@ -26,6 +26,9 @@ angular.module('twitchdata.channels.detail', [
     }.bind(this)));
 
     requests.push(channelService.getStatsForChannel($stateParams.channelName).then(function (res) {
+      // save follower stats separate as missing values should not be translated to zero values
+      this.followerStats = res.data.stats;
+
       this.stats = statisticsService.addMissingCollectionRunsToGame(res.data.stats, res.data.lastCollectionRun, ['viewers', 'followers']);
       this.trend = {
         day: statisticsService.getGrowthTrendOfLast('day', this.stats, ['viewers', 'followers']),
@@ -50,7 +53,7 @@ angular.module('twitchdata.channels.detail', [
       this.followersChartConfig = chartService.getBaseConfig();
       this.followersChartConfig.series.push({
         name: this.channel.name,
-        data: this.stats.map(function (stat) {
+        data: this.followerStats.map(function (stat) {
           return [new Date(stat.date).getTime(), stat.followers];
         })
       });
