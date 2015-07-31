@@ -31,6 +31,17 @@ angular.module('twitchdata.components.twitchApi', [])
             method: 'JSONP',
             params: options
           });
+        },
+        getChannelData: function (channelName) {
+          var options = {
+            callback: 'JSON_CALLBACK'
+          };
+
+          return $http({
+            url: _baseUrl + '/channels/' + channelName,
+            method: 'JSONP',
+            params: options
+          });
         }
       };
 

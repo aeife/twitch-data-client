@@ -1,7 +1,7 @@
 <div class="head-bar data-detail-head">
   <div class="container">
     <h1 class="col-xs-12 no-padding wrap-text">
-      {{ChannelDetailCtrl.channel.name}}
+      {{ChannelDetailCtrl.channel.display_name}}
       <a ng-href="http://www.twitch.tv/directory/game/{{ChannelDetailCtrl.game.name}}" target="_blank"><i class="fa fa-twitch"></i></a>
     </h1>
   </div>
@@ -11,7 +11,7 @@
   <div class="col-sm-12 col-md-4 col-md-push-8 data-info">
     <div class="col-xs-12 col-sm-4 col-md-12 data-image">
       <img ng-src="{{ChannelDetailCtrl.channel.logo}}" alt="" class="col-xs-6 col-sm-12 no-padding" />
-      <div class="col-xs-6 col-sm-12"  ng-if="ChannelDetailCtrl.channel.name">
+      <div class="col-xs-6 col-sm-12"  ng-if="ChannelDetailCtrl.channel">
         <td-channel-live-info channel="ChannelDetailCtrl.channel.name" ></td-channel-live-info>
       </div>
 

@@ -21,7 +21,7 @@ angular.module('twitchdata.channels.detail', [
 
     var requests = [];
 
-    requests.push(channelService.getChannelByName($stateParams.channelName).then(function (res) {
+    requests.push(twitchApiClient.getChannelData($stateParams.channelName).then(function (res) {
       this.channel = res.data;
     }.bind(this)));
 
@@ -44,7 +44,7 @@ angular.module('twitchdata.channels.detail', [
     $q.all(requests).then(function () {
       this.viewersChartConfig = chartService.getBaseConfig();
       this.viewersChartConfig.series.push({
-        name: this.channel.name,
+        name: this.channel.display_name,
         data: this.stats.map(function (stat) {
           return [new Date(stat.date).getTime(), stat.viewers];
         })
@@ -52,7 +52,7 @@ angular.module('twitchdata.channels.detail', [
 
       this.followersChartConfig = chartService.getBaseConfig();
       this.followersChartConfig.series.push({
-        name: this.channel.name,
+        name: this.channel.display_name,
         data: this.followerStats.map(function (stat) {
           return [new Date(stat.date).getTime(), stat.followers];
         })
