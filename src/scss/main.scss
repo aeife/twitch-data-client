@@ -8,6 +8,7 @@
 @import "tabs";
 @import "listpage";
 @import "detailpage";
+@import "comparepage";
 @import "../app/dashboard/_dashboard";
 @import "../app/games/list/_gamesList";
 @import "../app/games/detail/_gameDetail";
@@ -17,3 +18,4 @@
 @import "../app/channels/list/channelsList";
 @import "../app/channels/detail/channelsDetail";
 @import "../app/channels/detail/live/channelsDetailLive";
+@import "../app/channels/compare/channelsCompare";

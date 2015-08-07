@@ -1,0 +1,34 @@
+<div class="data-compare">
+  <h1>Channels Compare</h1>
+
+  <div class="new-data clearfix">
+    <div class="col-xs-10 col-sm-8 col-md-5 pull-right no-padding">
+      <input type="text" ng-model="ChannelsCompareCtrl.newChannel" placeholder="Add Channel" typeahead-editable="false"
+      typeahead="channel for channel in ChannelsCompareCtrl.getChannels($viewValue)" typeahead-loading="loadingLocations" class="form-control">
+    </div>
+  </div>
+
+  <ul class="data-list">
+    <li ng-repeat="channel in ChannelsCompareCtrl.channels" class="">
+      <img ng-src="{{channel.logo}}" alt="" width="70" height="70"/>
+      <a class="data-name wrap-text" ui-sref="channelDetail({channelName: channel.name})">{{channel.name}}</a>
+      <a href class="close" ng-click="ChannelsCompareCtrl.removeChannel(channel.name)"><i class="fa fa-times"></i></a>
+    </li>
+  </ul>
+
+  <div class="charts tabs" ng-if="ChannelsCompareCtrl.channels && ChannelsCompareCtrl.channels.length > 0">
+    <div class="headings clearfix">
+      <a href class="pull-left" ng-click="ChannelsCompareCtrl.currentChart = 'viewers'" ng-class="{'active':ChannelsCompareCtrl.currentChart == 'viewers' }">
+        <h3><i class="fa fa-users"></i> Viewers</h3>
+      </a>
+      <a href class="pull-left" ng-click="ChannelsCompareCtrl.currentChart = 'channels'" ng-class="{'active':ChannelsCompareCtrl.currentChart == 'followers' }">
+        <h3><i class="fa fa-heart"></i> Follower Growth</h3>
+      </a>
+    </div>
+    <highchart ng-if="ChannelsCompareCtrl.currentChart == 'viewers'" config="ChannelsCompareCtrl.viewersChartConfig" class="col-xs-12 no-padding"></highchart>
+    <highchart ng-if="ChannelsCompareCtrl.currentChart == 'channels'" config="ChannelsCompareCtrl.followersChartConfig" class="col-xs-12 no-padding"></highchart>
+  </div>
+  <div class="" ng-if="!ChannelsCompareCtrl.channels || ChannelsCompareCtrl.channels.length == 0">
+    <h2 class="text-center">Add channels to compare them! <i class="fa fa-level-up"></i></h2>
+  </div>
+</div>
