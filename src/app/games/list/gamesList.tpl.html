@@ -1,14 +1,7 @@
 <div class="head-bar">
   <div class="container">
     <h1 class="pull-left">Top Games</h1>
-    <div class="list-actions pull-right clearfix col-xs-6 col-md-4 no-padding">
-      <div class="col-xs-9 pull-right">
-        <input type="text" name="search" ng-model="GamesListCtrl.searchText" ng-change="GamesListCtrl.search()" placeholder="Search Game" class="form-control">
-      </div>
-      <button type="button" class="btn btn-default pull-right" ng-click="GamesListCtrl.tableView = !GamesListCtrl.tableView">
-        <i class="fa" ng-class="{'fa-th-list': GamesListCtrl.tableView, 'fa-th': !GameListCtrl.tableView}"></i>
-      </button>
-    </div>
+    <h3><a ui-sref="gamesCompare" class="pull-right"><i class="fa fa-exchange"></i> Compare Games</a></h3>
   </div>
 </div>
 
@@ -31,6 +24,9 @@
     <button type="button" ng-click="GamesListCtrl.sortBy(GamesListCtrl.sorting.attr)" class="btn btn-default">
       <i class="fa" ng-class="{'fa-sort-amount-desc': !GamesListCtrl.sorting.reverse, 'fa-sort-amount-asc': GamesListCtrl.sorting.reverse}"></i>
     </button>
+    <div class="pull-right">
+      <input type="text" name="search" ng-model="GamesListCtrl.searchText" ng-change="GamesListCtrl.search()" placeholder="Search Game" class="form-control">
+    </div>
 
     <ul class="no-padding data-cards">
       <li class="col-xs-6 col-sm-4 col-md-4 col-lg-3" ng-repeat="game in GamesListCtrl.games track by game._id" ng-click="GamesListCtrl.goToGameDetailView(game)">

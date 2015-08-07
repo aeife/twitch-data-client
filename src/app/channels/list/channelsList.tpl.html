@@ -1,11 +1,7 @@
 <div class="head-bar">
   <div class="container">
     <h1 class="pull-left">Top Channels</h1>
-    <div class="list-actions pull-right clearfix col-xs-6 col-md-4 no-padding">
-      <div class="col-xs-9 pull-right">
-        <input type="text" name="search" ng-model="ChannelsListCtrl.searchText" ng-change="ChannelsListCtrl.search()" placeholder="Search Channel" class="form-control">
-      </div>
-    </div>
+    <h3><a ui-sref="channelsCompare" class="pull-right"><i class="fa fa-exchange"></i> Compare Channels</a></h3>
   </div>
 </div>
 
@@ -26,7 +22,9 @@
     <button type="button" ng-click="ChannelsListCtrl.sortBy(ChannelsListCtrl.sorting.attr)" class="btn btn-default">
       <i class="fa" ng-class="{'fa-sort-amount-desc': !ChannelsListCtrl.sorting.reverse, 'fa-sort-amount-asc': ChannelsListCtrl.sorting.reverse}"></i>
     </button>
-
+    <div class="pull-right">
+      <input type="text" name="search" ng-model="ChannelsListCtrl.searchText" ng-change="ChannelsListCtrl.search()" placeholder="Search Channel" class="form-control">
+    </div>
     <ul class="no-padding data-cards channel-cards">
       <li class="col-xs-6 col-md-4 col-lg-3" ng-repeat="channel in ChannelsListCtrl.channels track by channel._id" ng-click="ChannelsListCtrl.goToChannelDetailView(channel)">
         <div>

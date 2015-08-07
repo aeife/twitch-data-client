@@ -1,17 +1,17 @@
-<div class="games-compare">
+<div class="data-compare">
   <h1>Games Compare</h1>
 
-  <div class="new-game clearfix">
+  <div class="new-data clearfix">
     <div class="col-xs-10 col-sm-8 col-md-5 pull-right no-padding">
       <input type="text" ng-model="GamesCompareCtrl.newGame" placeholder="Add Game" typeahead-editable="false"
       typeahead="game for game in GamesCompareCtrl.getGames($viewValue)" typeahead-loading="loadingLocations" class="form-control">
     </div>
   </div>
 
-  <ul class="games-list">
+  <ul class="data-list">
     <li ng-repeat="game in GamesCompareCtrl.games" class="">
       <img ng-src="http://static-cdn.jtvnw.net/ttv-boxart/{{game.name}}-100x140.jpg" alt="" width="50" height="70"/>
-      <a class="game-name wrap-text" ui-sref="gameDetail({gameName: game.name})">{{game.name}}</a>
+      <a class="data-name wrap-text" ui-sref="gameDetail({gameName: game.name})">{{game.name}}</a>
       <a href class="close" ng-click="GamesCompareCtrl.removeGame(game.name)"><i class="fa fa-times"></i></a>
     </li>
   </ul>
