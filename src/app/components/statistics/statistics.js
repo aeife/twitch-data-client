@@ -275,6 +275,15 @@ angular.module('twitchdata.components.statistics', [])
             daily: lastQuarter
           };
         },
+        convertFollowersToFollowersGrowth: function (stats) {
+          // transform absolute follower stats to growth stats
+          for (var i = 1, len = stats.length; i < len; i++) {
+            stats[i].followersGrowth = stats[i].followers - stats[i-1].followers;
+          }
+          stats[0].followersGrowth = 0;
+
+          return stats;
+        },
         monthNames: ["January", "February", "March", "April", "May", "June",
           "July", "August", "September", "October", "November", "December"
         ]

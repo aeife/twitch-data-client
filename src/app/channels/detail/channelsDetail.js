@@ -26,12 +26,9 @@ angular.module('twitchdata.channels.detail', [
     }.bind(this)));
 
     requests.push(channelService.getStatsForChannel($stateParams.channelName).then(function (res) {
-      // transform absolute follower stats to growth stats
-      for (var i = 1, len = res.data.stats.length; i < len; i++) {
-        res.data.stats[i].followersGrowth = res.data.stats[i].followers - res.data.stats[i-1].followers;
-      }
-      res.data.stats[0].followersGrowth = 0;
-        // save follower stats separate as missing values should not be translated to zero values
+      res.data.stats = statisticsService.convertFollowersToFollowersGrowth(res.data.stats);
+
+      // save follower stats separate as missing values should not be translated to zero values
       this.followerStats = res.data.stats;
 
       this.stats = statisticsService.addMissingCollectionRunsToGame(res.data.stats, res.data.lastCollectionRun, ['viewers', 'followersGrowth']);
