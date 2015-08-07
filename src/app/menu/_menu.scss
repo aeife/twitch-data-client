@@ -19,4 +19,17 @@
     border-bottom: 5px solid $menu-active-border-color;
     height: 50px;
   }
+
+  .navbar-nav>li.slogan {
+    a {
+      @media (min-width: $screen-sm-min) and (max-width: $screen-md-min) {
+        font-size: 11px;
+      }
+    }
+
+    a:hover {
+      color: $navbar-inverse-link-color;
+      text-decoration: none;
+    }
+  }
 }
