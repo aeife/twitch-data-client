@@ -10,8 +10,11 @@ angular.module('twitchdata.games.compare', [
     var GamesCompareCtrl = this;
 
     this.viewersChartConfig = chartService.getBaseConfig();
+    this.viewersChartConfig.options.navigator = {enabled : false};
     this.channelsChartConfig = chartService.getBaseConfig();
+    this.channelsChartConfig.options.navigator = {enabled : false};
     this.ratioChartConfig = chartService.getBaseConfig();
+    this.ratioChartConfig.options.navigator = {enabled : false};
     this.games = [];
 
     var fetchGameData = function (gameName) {
