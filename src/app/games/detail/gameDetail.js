@@ -12,6 +12,8 @@ angular.module('twitchdata.games.detail', [
   ])
   .controller('GameDetailCtrl', function ($http, $stateParams, $q, gameService, twitchApiClient, giantbombApiClient, chartService, statisticsService) {
     var GameDetailCtrl = this;
+    this.gameName = $stateParams.gameName;
+
     this.getFormattedName = function () {
       if (this.game) {
         var test = this.game.name.replace(/\s/g, '-').toLowercase;
@@ -23,6 +25,8 @@ angular.module('twitchdata.games.detail', [
 
     requests.push(gameService.getGameByName($stateParams.gameName).then(function (res) {
       this.game = res.data;
+
+
       giantbombApiClient.getDataForGame(this.game.giantbombId).then(function (data) {
         GameDetailCtrl.giantbomb = data;
       });
@@ -30,6 +34,8 @@ angular.module('twitchdata.games.detail', [
         GameDetailCtrl.currentTopStreams = res.data.streams;
       });
       return res;
+    }.bind(this)).finally(function () {
+      this.loaded = true;
     }.bind(this)));
 
     requests.push(gameService.getStatsForGame($stateParams.gameName).then(function (res) {

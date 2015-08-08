@@ -12,6 +12,8 @@ angular.module('twitchdata.channels.detail', [
   ])
   .controller('ChannelDetailCtrl', function ($http, $stateParams, $q, channelService, twitchApiClient, chartService, statisticsService) {
     var ChannelDetailCtrl = this;
+    this.channelName = $stateParams.channelName;
+
     this.getFormattedName = function () {
       if (this.game) {
         var test = this.game.name.replace(/\s/g, '-').toLowercase;
@@ -23,6 +25,7 @@ angular.module('twitchdata.channels.detail', [
 
     requests.push(twitchApiClient.getChannelData($stateParams.channelName).then(function (res) {
       this.channel = res.data;
+      this.loaded = true;
     }.bind(this)));
 
     requests.push(channelService.getStatsForChannel($stateParams.channelName).then(function (res) {

@@ -1,128 +1,136 @@
-<div class="head-bar data-detail-head">
-  <div class="container">
-    <h1 class="col-xs-12 no-padding wrap-text">
-      {{GameDetailCtrl.game.name}}
-      <a ng-href="http://www.twitch.tv/directory/game/{{GameDetailCtrl.game.name}}" target="_blank"><i class="fa fa-twitch"></i></a>
-    </h1>
-  </div>
+<div ng-if="!GameDetailCtrl.loaded">
+  <h1 class="text-center text-huge"><i class="fa fa-spinner fa-pulse"></i></h1>
 </div>
+<div ng-if="GameDetailCtrl.loaded && GameDetailCtrl.stats" style="overflow: auto;">
+  <div class="head-bar data-detail-head">
+    <div class="container">
+      <h1 class="col-xs-12 no-padding wrap-text">
+        {{GameDetailCtrl.game.name}}
+        <a ng-href="http://www.twitch.tv/directory/game/{{GameDetailCtrl.game.name}}" target="_blank"><i class="fa fa-twitch"></i></a>
+      </h1>
+    </div>
+  </div>
 
-<div class="page-content">
-  <div class="col-sm-12 col-md-4 col-md-push-8 data-info">
-    <div class="col-xs-12 col-sm-4 col-md-12 data-image">
-      <img ng-src="http://static-cdn.jtvnw.net/ttv-boxart/{{GameDetailCtrl.game.name}}-300x420.jpg" alt="" class="col-xs-6 col-sm-12 no-padding" />
-      <div class="col-xs-6 col-sm-12">
-        <p>{{GameDetailCtrl.giantbomb.description}}</p>
-        <h3 class="text-center">Peaks</h3>
-        <p class="peak"><i class="fa fa-users"></i> {{GameDetailCtrl.peak.viewers.count | number:0}} <span class="pull-right">{{GameDetailCtrl.peak.viewers.date | date:'short'}}</span></p>
-        <p class="peak"><i class="fa fa-video-camera"></i> {{GameDetailCtrl.peak.channels.count | number:0}} <span class="pull-right">{{GameDetailCtrl.peak.channels.date | date:'short'}}</span></p>
+  <div class="page-content">
+    <div class="col-sm-12 col-md-4 col-md-push-8 data-info">
+      <div class="col-xs-12 col-sm-4 col-md-12 data-image">
+        <img ng-src="http://static-cdn.jtvnw.net/ttv-boxart/{{GameDetailCtrl.game.name}}-300x420.jpg" alt="" class="col-xs-6 col-sm-12 no-padding" />
+        <div class="col-xs-6 col-sm-12">
+          <p>{{GameDetailCtrl.giantbomb.description}}</p>
+          <h3 class="text-center">Peaks</h3>
+          <p class="peak"><i class="fa fa-users"></i> {{GameDetailCtrl.peak.viewers.count | number:0}} <span class="pull-right">{{GameDetailCtrl.peak.viewers.date | date:'short'}}</span></p>
+          <p class="peak"><i class="fa fa-video-camera"></i> {{GameDetailCtrl.peak.channels.count | number:0}} <span class="pull-right">{{GameDetailCtrl.peak.channels.date | date:'short'}}</span></p>
 
-        <hr>
-        <h3 class="text-center">Last Month Average</h3>
-        <p class="avg"><i class="fa fa-users"></i> {{GameDetailCtrl.avg.viewers | number:0}}</p>
-        <p class="avg"><i class="fa fa-video-camera"></i> {{GameDetailCtrl.avg.channels | number:0}}</p>
-        <hr>
+          <hr>
+          <h3 class="text-center">Last Month Average</h3>
+          <p class="avg"><i class="fa fa-users"></i> {{GameDetailCtrl.avg.viewers | number:0}}</p>
+          <p class="avg"><i class="fa fa-video-camera"></i> {{GameDetailCtrl.avg.channels | number:0}}</p>
+          <hr>
+        </div>
+      </div>
+      <div class="col-xs-12 col-sm-8 col-md-12 data-data game-data">
+        <div class="clearfix giantbomb">
+          <h3 class="text-center">Game Data</h3>
+          <table class="table">
+            <tr>
+              <th>Genre</th>
+              <td>{{GameDetailCtrl.giantbomb.genres || 'N/A'}}</td>
+            </tr>
+            <tr>
+              <th>Ratings</th>
+              <td>{{GameDetailCtrl.giantbomb.ratings || 'N/A'}}</td>
+            </tr>
+            <tr>
+              <th>Platforms</th>
+              <td>{{GameDetailCtrl.giantbomb.platforms || 'N/A'}}</td>
+            </tr>
+            <tr>
+              <th>Release</th>
+              <td>{{GameDetailCtrl.giantbomb.release || 'N/A' | date:'longDate'}}</td>
+            </tr>
+            <tr>
+              <th>Developers</th>
+              <td>{{GameDetailCtrl.giantbomb.developers || 'N/A'}}</td>
+            </tr>
+            <tr>
+              <th>Publishers</th>
+              <td>{{GameDetailCtrl.giantbomb.publishers || 'N/A'}}</td>
+            </tr>
+            <tr>
+              <th>Similar</th>
+              <td>{{GameDetailCtrl.giantbomb.similar || 'N/A'}}</td>
+            </tr>
+          </table>
+          <small class="pull-right">powered by <a ng-href="{{GameDetailCtrl.giantbomb.url}}">giantbomb</a></small>
+        </div>
+
+        <div class="">
+          <h3 class="text-center">Current Top Streams</h3>
+          <ul>
+            <li ng-repeat="stream in GameDetailCtrl.currentTopStreams">
+              <a ng-href="{{stream.channel.url}}" target="_blank"><i class="fa fa-video-camera"></i> {{stream.channel.name}}</a>
+              <span class="pull-right">{{stream.viewers}} <i class="fa fa-users"></i></span>
+            </li>
+          </ul>
+        </div>
       </div>
     </div>
-    <div class="col-xs-12 col-sm-8 col-md-12 data-data game-data">
-      <div class="clearfix giantbomb">
-        <h3 class="text-center">Game Data</h3>
+
+    <div class="col-sm-12 col-md-8 col-md-pull-4 data-statistics">
+      <hr>
+      <div class="trend clearfix">
+        <div class="col-xs-4">
+          <h3>last day</h3>
+          <td-trend-text value="GameDetailCtrl.trend.day.growth.viewers"></td-trend-text>
+        </div>
+        <div class="col-xs-4">
+          <h3>last week</h3>
+          <td-trend-text value="GameDetailCtrl.trend.week.growth.viewers"></td-trend-text>
+        </div>
+        <div class="col-xs-4">
+          <h3>last month</h3>
+          <td-trend-text value="GameDetailCtrl.trend.month.growth.viewers"></td-trend-text>
+        </div>
+      </div>
+      <hr>
+
+      <div class="charts tabs clearfix">
+        <div class="headings clearfix">
+          <a href class="pull-left" ng-click="GameDetailCtrl.currentChart = 'viewers'" ng-class="{'active':GameDetailCtrl.currentChart == 'viewers' }">
+            <h3><i class="fa fa-users"></i> Viewers</h3>
+          </a>
+          <a href class="pull-left" ng-click="GameDetailCtrl.currentChart = 'channels'" ng-class="{'active':GameDetailCtrl.currentChart == 'channels' }">
+            <h3><i class="fa fa-video-camera"></i> Channels</h3>
+          </a>
+          <a href class="pull-left" ng-click="GameDetailCtrl.currentChart = 'ratio'" ng-class="{'active':GameDetailCtrl.currentChart == 'ratio' }">
+            <h3><i class="fa fa-tachometer"></i> Ratio</h3>
+          </a>
+        </div>
+        <highchart ng-if="GameDetailCtrl.currentChart == 'viewers'" config="GameDetailCtrl.viewersChartConfig" class="col-xs-12 no-padding"></highchart>
+        <highchart ng-if="GameDetailCtrl.currentChart == 'channels'" config="GameDetailCtrl.channelsChartConfig" class="col-xs-12 no-padding"></highchart>
+        <highchart ng-if="GameDetailCtrl.currentChart == 'ratio'" config="GameDetailCtrl.ratioChartConfig" class="col-xs-12 no-padding"></highchart>
+      </div>
+      <a ui-sref="gamesCompare({gameNames: GameDetailCtrl.game.name})"><h4><i class="fa fa-exchange"></i> compare with other games</h4></a>
+
+      <div class="monthly-trends">
         <table class="table">
           <tr>
-            <th>Genre</th>
-            <td>{{GameDetailCtrl.giantbomb.genres || 'N/A'}}</td>
+            <th>Month</th>
+            <th colspan="2"><i class="fa fa-users"></i> Viewers Avg</th>
+            <th colspan="2"><i class="fa fa-video-camera"></i> Channels Avg</th>
           </tr>
-          <tr>
-            <th>Ratings</th>
-            <td>{{GameDetailCtrl.giantbomb.ratings || 'N/A'}}</td>
-          </tr>
-          <tr>
-            <th>Platforms</th>
-            <td>{{GameDetailCtrl.giantbomb.platforms || 'N/A'}}</td>
-          </tr>
-          <tr>
-            <th>Release</th>
-            <td>{{GameDetailCtrl.giantbomb.release || 'N/A' | date:'longDate'}}</td>
-          </tr>
-          <tr>
-            <th>Developers</th>
-            <td>{{GameDetailCtrl.giantbomb.developers || 'N/A'}}</td>
-          </tr>
-          <tr>
-            <th>Publishers</th>
-            <td>{{GameDetailCtrl.giantbomb.publishers || 'N/A'}}</td>
-          </tr>
-          <tr>
-            <th>Similar</th>
-            <td>{{GameDetailCtrl.giantbomb.similar || 'N/A'}}</td>
+          <tr ng-repeat="trend in GameDetailCtrl.monthlyTrends">
+            <td>{{trend.month | month}}, {{trend.year}}</td>
+            <td><td-trend-text value="trend.growth.viewers"></td-trend-text></td>
+            <td>{{trend.avg.viewers | number: 0}}</td>
+            <td><td-trend-text value="trend.growth.channels"></td-trend-text></td>
+            <td>{{trend.avg.channels | number: 0}}</td>
           </tr>
         </table>
-        <small class="pull-right">powered by <a ng-href="{{GameDetailCtrl.giantbomb.url}}">giantbomb</a></small>
-      </div>
-
-      <div class="">
-        <h3 class="text-center">Current Top Streams</h3>
-        <ul>
-          <li ng-repeat="stream in GameDetailCtrl.currentTopStreams">
-            <a ng-href="{{stream.channel.url}}" target="_blank"><i class="fa fa-video-camera"></i> {{stream.channel.name}}</a>
-            <span class="pull-right">{{stream.viewers}} <i class="fa fa-users"></i></span>
-          </li>
-        </ul>
       </div>
     </div>
   </div>
-
-  <div class="col-sm-12 col-md-8 col-md-pull-4 data-statistics">
-    <hr>
-    <div class="trend clearfix">
-      <div class="col-xs-4">
-        <h3>last day</h3>
-        <td-trend-text value="GameDetailCtrl.trend.day.growth.viewers"></td-trend-text>
-      </div>
-      <div class="col-xs-4">
-        <h3>last week</h3>
-        <td-trend-text value="GameDetailCtrl.trend.week.growth.viewers"></td-trend-text>
-      </div>
-      <div class="col-xs-4">
-        <h3>last month</h3>
-        <td-trend-text value="GameDetailCtrl.trend.month.growth.viewers"></td-trend-text>
-      </div>
-    </div>
-    <hr>
-
-    <div class="charts tabs clearfix">
-      <div class="headings clearfix">
-        <a href class="pull-left" ng-click="GameDetailCtrl.currentChart = 'viewers'" ng-class="{'active':GameDetailCtrl.currentChart == 'viewers' }">
-          <h3><i class="fa fa-users"></i> Viewers</h3>
-        </a>
-        <a href class="pull-left" ng-click="GameDetailCtrl.currentChart = 'channels'" ng-class="{'active':GameDetailCtrl.currentChart == 'channels' }">
-          <h3><i class="fa fa-video-camera"></i> Channels</h3>
-        </a>
-        <a href class="pull-left" ng-click="GameDetailCtrl.currentChart = 'ratio'" ng-class="{'active':GameDetailCtrl.currentChart == 'ratio' }">
-          <h3><i class="fa fa-tachometer"></i> Ratio</h3>
-        </a>
-      </div>
-      <highchart ng-if="GameDetailCtrl.currentChart == 'viewers'" config="GameDetailCtrl.viewersChartConfig" class="col-xs-12 no-padding"></highchart>
-      <highchart ng-if="GameDetailCtrl.currentChart == 'channels'" config="GameDetailCtrl.channelsChartConfig" class="col-xs-12 no-padding"></highchart>
-      <highchart ng-if="GameDetailCtrl.currentChart == 'ratio'" config="GameDetailCtrl.ratioChartConfig" class="col-xs-12 no-padding"></highchart>
-    </div>
-    <a ui-sref="gamesCompare({gameNames: GameDetailCtrl.game.name})"><h4><i class="fa fa-exchange"></i> compare with other games</h4></a>
-
-    <div class="monthly-trends">
-      <table class="table">
-        <tr>
-          <th>Month</th>
-          <th colspan="2"><i class="fa fa-users"></i> Viewers Avg</th>
-          <th colspan="2"><i class="fa fa-video-camera"></i> Channels Avg</th>
-        </tr>
-        <tr ng-repeat="trend in GameDetailCtrl.monthlyTrends">
-          <td>{{trend.month | month}}, {{trend.year}}</td>
-          <td><td-trend-text value="trend.growth.viewers"></td-trend-text></td>
-          <td>{{trend.avg.viewers | number: 0}}</td>
-          <td><td-trend-text value="trend.growth.channels"></td-trend-text></td>
-          <td>{{trend.avg.channels | number: 0}}</td>
-        </tr>
-      </table>
-    </div>
-  </div>
+</div>
+<div ng-if="GameDetailCtrl.loaded && !GameDetailCtrl.stats">
+  <h2 class="text-center">Uh oh, {{GameDetailCtrl.gameName}} is not available.</h2>
 </div>
