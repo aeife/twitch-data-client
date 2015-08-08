@@ -38,14 +38,14 @@ angular.module('twitchdata.channels.compare', [
 
       $q.all(requests).then(function () {
         ChannelsCompareCtrl.viewersChartConfig.series.push({
-          name: channel.display_name,
+          name: channel.name,
           data: stats.map(function (stat) {
             return [new Date(stat.date).getTime(), stat.viewers];
           })
         });
 
         ChannelsCompareCtrl.followersChartConfig.series.push({
-          name: channel.display_name,
+          name: channel.name,
           data: followerStats.map(function (stat) {
             return [new Date(stat.date).getTime(), stat.followersGrowth];
           })
