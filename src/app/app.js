@@ -84,6 +84,10 @@ angular.module('twitchdata', [
       .state('privacy', {
         url: '/privacy',
         templateUrl: 'app/privacy/privacy.tpl.html',
+      })
+      .state('otherwise', {
+          url: '*path',
+          templateUrl: 'app/404/404.tpl.html'
       });
 
     gameServiceProvider.config.setBaseUrl('/api/v1');
