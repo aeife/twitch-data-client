@@ -17,6 +17,8 @@ angular.module('twitchdata.components.statistics', [])
         // floor hours
         tmpStats.map(function (stat) {
           stat.date.setMinutes(0);
+          stat.date.setSeconds(0);
+          stat.date.setMilliseconds(0);
           return stat;
         });
 
