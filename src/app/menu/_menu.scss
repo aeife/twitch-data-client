@@ -8,6 +8,11 @@
     padding: 10px 15px;
   }
 
+  .navbar-nav>li {
+    font-size: 20px;
+    font-weight: 300;
+  }
+
   .navbar-nav>li>a.beta-label {
     color: red;
     font-size: 26px;
@@ -20,8 +25,11 @@
 
   .navbar-nav>li.slogan {
     a {
+      font-weight: 300;
+      font-size: 18px;
+
       @media (min-width: $screen-sm-min) and (max-width: $screen-md-min) {
-        font-size: 11px;
+        font-size: 10px;
       }
     }
 
