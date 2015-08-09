@@ -44,7 +44,7 @@ angular.module('twitchdata', [
         controllerAs: 'GamesCompareCtrl'
       })
       .state('gameDetail', {
-        url: '/games/:gameName',
+        url: '/games/:gameName?chart',
         templateUrl: 'app/games/detail/gameDetail.tpl.html',
         controller: 'GameDetailCtrl',
         controllerAs: 'GameDetailCtrl'
@@ -68,7 +68,7 @@ angular.module('twitchdata', [
         controllerAs: 'ChannelsCompareCtrl'
       })
       .state('channelDetail', {
-        url: '/channels/:channelName',
+        url: '/channels/:channelName?chart',
         templateUrl: 'app/channels/detail/channelsDetail.tpl.html',
         controller: 'ChannelDetailCtrl',
         controllerAs: 'ChannelDetailCtrl'

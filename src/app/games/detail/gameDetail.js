@@ -10,7 +10,7 @@ angular.module('twitchdata.games.detail', [
   'twitchdata.components.monthFilter',
   'highcharts-ng'
   ])
-  .controller('GameDetailCtrl', function ($http, $stateParams, $q, gameService, twitchApiClient, giantbombApiClient, chartService, statisticsService) {
+  .controller('GameDetailCtrl', function ($http, $stateParams, $q, $state, gameService, twitchApiClient, giantbombApiClient, chartService, statisticsService) {
     var GameDetailCtrl = this;
     this.gameName = $stateParams.gameName;
 
@@ -25,7 +25,6 @@ angular.module('twitchdata.games.detail', [
 
     requests.push(gameService.getGameByName($stateParams.gameName).then(function (res) {
       this.game = res.data;
-
 
       giantbombApiClient.getDataForGame(this.game.giantbombId).then(function (data) {
         GameDetailCtrl.giantbomb = data;
@@ -77,5 +76,15 @@ angular.module('twitchdata.games.detail', [
       });
     }.bind(this));
 
-    this.currentChart = 'viewers';
+    var supportedCharts = ['viewers', 'channels', 'ratio'];
+    if (supportedCharts.indexOf($stateParams.chart) > -1) {
+      this.currentChart = $stateParams.chart;
+    } else {
+      this.currentChart = 'viewers';
+    }
+
+    this.setCurrentChart = function (chartType) {
+      this.currentChart = chartType;
+      $state.go('gameDetail', {gameName:  $stateParams.gameName, chart: chartType}, {notify: false});
+    }
   });

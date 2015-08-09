@@ -96,13 +96,13 @@
 
       <div class="charts tabs clearfix">
         <div class="headings clearfix">
-          <a href class="pull-left" ng-click="GameDetailCtrl.currentChart = 'viewers'" ng-class="{'active':GameDetailCtrl.currentChart == 'viewers' }">
+          <a href class="pull-left" ng-click="GameDetailCtrl.setCurrentChart('viewers')" ng-class="{'active':GameDetailCtrl.currentChart == 'viewers' }">
             <h3><i class="fa fa-users"></i> Viewers</h3>
           </a>
-          <a href class="pull-left" ng-click="GameDetailCtrl.currentChart = 'channels'" ng-class="{'active':GameDetailCtrl.currentChart == 'channels' }">
+          <a href class="pull-left" ng-click="GameDetailCtrl.setCurrentChart('channels')" ng-class="{'active':GameDetailCtrl.currentChart == 'channels' }">
             <h3><i class="fa fa-video-camera"></i> Channels</h3>
           </a>
-          <a href class="pull-left" ng-click="GameDetailCtrl.currentChart = 'ratio'" ng-class="{'active':GameDetailCtrl.currentChart == 'ratio' }">
+          <a href class="pull-left" ng-click="GameDetailCtrl.setCurrentChart('ratio')" ng-class="{'active':GameDetailCtrl.currentChart == 'ratio' }">
             <h3><i class="fa fa-tachometer"></i> Ratio</h3>
           </a>
         </div>

@@ -53,10 +53,10 @@
 
       <div class="charts tabs clearfix">
         <div class="headings clearfix">
-          <a href class="pull-left" ng-click="ChannelDetailCtrl.currentChart = 'viewers'" ng-class="{'active':ChannelDetailCtrl.currentChart == 'viewers' }">
+          <a href class="pull-left" ng-click="ChannelDetailCtrl.setCurrentChart('viewers')" ng-class="{'active':ChannelDetailCtrl.currentChart == 'viewers' }">
             <h3><i class="fa fa-users"></i> Viewers</h3>
           </a>
-          <a href class="pull-left" ng-click="ChannelDetailCtrl.currentChart = 'followers'" ng-class="{'active':ChannelDetailCtrl.currentChart == 'followers' }">
+          <a href class="pull-left" ng-click="ChannelDetailCtrl.setCurrentChart('followers')" ng-class="{'active':ChannelDetailCtrl.currentChart == 'followers' }">
             <h3><i class="fa fa-heart"></i> Follower Growth</h3>
           </a>
         </div>

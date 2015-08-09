@@ -10,7 +10,7 @@ angular.module('twitchdata.channels.detail', [
   'twitchdata.components.monthFilter',
   'highcharts-ng'
   ])
-  .controller('ChannelDetailCtrl', function ($http, $stateParams, $q, channelService, twitchApiClient, chartService, statisticsService) {
+  .controller('ChannelDetailCtrl', function ($http, $stateParams, $q, $state, channelService, twitchApiClient, chartService, statisticsService) {
     var ChannelDetailCtrl = this;
     this.channelName = $stateParams.channelName;
 
@@ -70,5 +70,15 @@ angular.module('twitchdata.channels.detail', [
       });
     }.bind(this));
 
-    this.currentChart = 'viewers';
+    var supportedCharts = ['viewers', 'followers'];
+    if (supportedCharts.indexOf($stateParams.chart) > -1) {
+      this.currentChart = $stateParams.chart;
+    } else {
+      this.currentChart = 'viewers';
+    }
+
+    this.setCurrentChart = function (chartType) {
+      this.currentChart = chartType;
+      $state.go('channelDetail', {channelName:  $stateParams.channelName, chart: chartType}, {notify: false});
+    }
   });
