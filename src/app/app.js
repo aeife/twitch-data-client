@@ -68,7 +68,7 @@ angular.module('twitchdata', [
         controllerAs: 'ChannelsCompareCtrl'
       })
       .state('channelDetail', {
-        url: '/channels/:channelName?chart',
+        url: '/channels/:channelName?chart&zoom',
         templateUrl: 'app/channels/detail/channelsDetail.tpl.html',
         controller: 'ChannelDetailCtrl',
         controllerAs: 'ChannelDetailCtrl'

@@ -13,14 +13,6 @@ angular.module('twitchdata.channels.detail', [
   .controller('ChannelDetailCtrl', function ($http, $stateParams, $q, $state, channelService, twitchApiClient, chartService, statisticsService) {
     var ChannelDetailCtrl = this;
     this.channelName = $stateParams.channelName;
-
-    this.getFormattedName = function () {
-      if (this.game) {
-        var test = this.game.name.replace(/\s/g, '-').toLowercase;
-        return test;
-      }
-    };
-
     var requests = [];
 
     requests.push(twitchApiClient.getChannelData($stateParams.channelName).then(function (res) {
@@ -54,6 +46,8 @@ angular.module('twitchdata.channels.detail', [
 
     $q.all(requests).then(function () {
       this.viewersChartConfig = chartService.getBaseConfig();
+      this.viewersChartConfig.options.xAxis.events.afterSetExtremes = handleZoomChange;
+      this.viewersChartConfig.options.chart.events.load = chartLoaded;
       this.viewersChartConfig.series.push({
         name: this.channel.display_name,
         data: this.stats.map(function (stat) {
@@ -62,6 +56,8 @@ angular.module('twitchdata.channels.detail', [
       });
 
       this.followersChartConfig = chartService.getBaseConfig();
+      this.followersChartConfig.options.xAxis.events.afterSetExtremes = handleZoomChange;
+      this.followersChartConfig.options.chart.events.load = chartLoaded;
       this.followersChartConfig.series.push({
         name: this.channel.display_name,
         data: this.followerStats.map(function (stat) {
@@ -79,6 +75,31 @@ angular.module('twitchdata.channels.detail', [
 
     this.setCurrentChart = function (chartType) {
       this.currentChart = chartType;
-      $state.go('channelDetail', {channelName:  $stateParams.channelName, chart: chartType}, {notify: false});
+      $state.go('channelDetail', {channelName:  $stateParams.channelName, chart: chartType, zoom: getChartZoom(chartType)}, {notify: false});
+    }
+
+    var getChartZoom = function (chartType) {
+      var zoom;
+      switch (chartType) {
+        case 'followers':
+          zoom = ChannelDetailCtrl.followersChartConfig.getHighcharts().xAxis[0].getExtremes();
+          break;
+        default:
+          zoom = ChannelDetailCtrl.viewersChartConfig.getHighcharts().xAxis[0].getExtremes();
+      }
+
+      return zoom.min + ',' + zoom.max;
+    };
+
+    var handleZoomChange = function (value) {
+      $state.go('channelDetail', {channelName:  $stateParams.channelName, zoom: value.min + ',' + value.max}, {notify: false});
+    };
+
+    var chartLoaded = function (chart) {
+      // set initial zoom according to url param
+      if ($stateParams.zoom && $stateParams.zoom.split(',').length === 2) {
+        var zoom = $stateParams.zoom.split(',');
+        chart.target.xAxis[0].setExtremes(zoom[0], zoom[1]);
+      }
     }
   });
