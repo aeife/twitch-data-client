@@ -1,6 +1,9 @@
 .dashboard {
+  padding-bottom: 10px;
+  
   .jumbotron {
     background-color: inherit;
+    margin-bottom: 0;
   }
 
   .charts {
@@ -13,6 +16,17 @@
         padding: 15px;
         border-bottom: 5px solid $twitch-color;
       }
+    }
+  }
+
+  .features {
+    ul {
+      margin: 0;
+      list-style-type: square;
+    }
+
+    ul li {
+      padding-bottom: 10px;
     }
   }
 }

@@ -1,11 +1,34 @@
-<div class="dashboard">
+<div class="dashboard clearfix">
   <div class="jumbotron text-center">
     <h1>Twitch Data</h1>
     <p>Delivering you numbers, statistics and interesting information all around twitch.</p>
     <p><a ui-sref="games">View Games Statistics</a></p>
+    <p><a ui-sref="channels">View Channels Statistics</a></p>
   </div>
-
+  <hr>
+  <div class="features clearfix">
+    <h2 class="text-center">Features</h2>
+    <div class="col-xs-12 col-sm-6">
+      <ul>
+        <li>detailed history of viewers and channels for every game on twitch</li>
+        <li>inspect the ratio between viewers and channels for every game</li>
+        <li>sort games by viewers, channels and ratio</li>
+        <li>monthly trends</li>
+        <li>additional information about every game provided by the giantbomb API</li>
+      </ul>
+    </div>
+    <div class="col-xs-12 col-sm-6">
+      <ul>
+        <li>detailed history of viewers for the largest channels on twitch</li>
+        <li>inspect the development of followers for a channel via the follower growth statistics</li>
+        <li>compare statistics for multiple games or channels</li>
+        <li>information about the current online status of a channel</li>
+      </ul>
+    </div>
+  </div>
+  <hr>
   <div class="charts">
+    <h2 class="text-center">General Twitch Statistics</h2>
     <div class="col-xs-12 col-sm-6">
       <div class="headings">
         <h3>Viewers: {{DashboardCtrl.currentStats.viewers}}</h3>
