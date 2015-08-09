@@ -107,17 +107,11 @@ angular.module('twitchdata.games.detail', [
           zoom = GameDetailCtrl.viewersChartConfig.getHighcharts().xAxis[0].getExtremes();
       }
 
-      if (zoom.min !== zoom.dataMin || zoom.max !== zoom.dataMax) {
-        return zoom.min + ',' + zoom.max;
-      } else {
-        return null;
-      }
+      return zoom.min + ',' + zoom.max;
     };
 
     var handleZoomChange = function (value) {
-      if (value.min !== value.dataMin || value.max !== value.dataMax) {
-        $state.go('gameDetail', {gameName:  $stateParams.gameName, zoom: value.min + ',' + value.max}, {notify: false});
-      }
+      $state.go('gameDetail', {gameName:  $stateParams.gameName, zoom: value.min + ',' + value.max}, {notify: false});
     };
 
     var chartLoaded = function (chart) {
