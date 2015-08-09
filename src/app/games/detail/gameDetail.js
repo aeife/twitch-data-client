@@ -25,8 +25,6 @@ angular.module('twitchdata.games.detail', [
         GameDetailCtrl.currentTopStreams = res.data.streams;
       });
       return res;
-    }.bind(this)).finally(function () {
-      this.loaded = true;
     }.bind(this)));
 
     requests.push(gameService.getStatsForGame($stateParams.gameName).then(function (res) {
@@ -43,6 +41,8 @@ angular.module('twitchdata.games.detail', [
     }.bind(this)));
 
     $q.all(requests).then(function () {
+      this.loaded = true;
+
       this.viewersChartConfig = chartService.getBaseConfig();
       this.viewersChartConfig.options.xAxis.events.afterSetExtremes = handleZoomChange;
       this.viewersChartConfig.options.chart.events.load = chartLoaded;
