@@ -13,14 +13,6 @@ angular.module('twitchdata.games.detail', [
   .controller('GameDetailCtrl', function ($http, $stateParams, $q, $state, $rootScope, $timeout, gameService, twitchApiClient, giantbombApiClient, chartService, statisticsService) {
     var GameDetailCtrl = this;
     this.gameName = $stateParams.gameName;
-
-    this.getFormattedName = function () {
-      if (this.game) {
-        var test = this.game.name.replace(/\s/g, '-').toLowercase;
-        return test;
-      }
-    };
-
     var requests = [];
 
     requests.push(gameService.getGameByName($stateParams.gameName).then(function (res) {
