@@ -106,9 +106,9 @@
             <h3><i class="fa fa-tachometer"></i> Ratio</h3>
           </a>
         </div>
-        <highchart ng-if="GameDetailCtrl.currentChart == 'viewers'" config="GameDetailCtrl.viewersChartConfig" class="col-xs-12 no-padding"></highchart>
-        <highchart ng-if="GameDetailCtrl.currentChart == 'channels'" config="GameDetailCtrl.channelsChartConfig" class="col-xs-12 no-padding"></highchart>
-        <highchart ng-if="GameDetailCtrl.currentChart == 'ratio'" config="GameDetailCtrl.ratioChartConfig" class="col-xs-12 no-padding"></highchart>
+        <highchart ng-show="GameDetailCtrl.currentChart == 'viewers'" config="GameDetailCtrl.viewersChartConfig" class="col-xs-12 no-padding"></highchart>
+        <highchart ng-show="GameDetailCtrl.currentChart == 'channels'" config="GameDetailCtrl.channelsChartConfig" class="col-xs-12 no-padding"></highchart>
+        <highchart ng-show="GameDetailCtrl.currentChart == 'ratio'" config="GameDetailCtrl.ratioChartConfig" class="col-xs-12 no-padding"></highchart>
       </div>
       <a ui-sref="gamesCompare({gameNames: GameDetailCtrl.game.name})"><h4><i class="fa fa-exchange"></i> compare with other games</h4></a>
 

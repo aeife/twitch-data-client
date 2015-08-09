@@ -10,7 +10,7 @@ angular.module('twitchdata.games.detail', [
   'twitchdata.components.monthFilter',
   'highcharts-ng'
   ])
-  .controller('GameDetailCtrl', function ($http, $stateParams, $q, $state, gameService, twitchApiClient, giantbombApiClient, chartService, statisticsService) {
+  .controller('GameDetailCtrl', function ($http, $stateParams, $q, $state, $rootScope, $timeout, gameService, twitchApiClient, giantbombApiClient, chartService, statisticsService) {
     var GameDetailCtrl = this;
     this.gameName = $stateParams.gameName;
 
@@ -52,6 +52,8 @@ angular.module('twitchdata.games.detail', [
 
     $q.all(requests).then(function () {
       this.viewersChartConfig = chartService.getBaseConfig();
+      this.viewersChartConfig.options.xAxis.events.afterSetExtremes = handleZoomChange;
+      this.viewersChartConfig.options.chart.events.load = chartLoaded;
       this.viewersChartConfig.series.push({
         name: this.game.name,
         data: this.stats.map(function (stat) {
@@ -60,6 +62,8 @@ angular.module('twitchdata.games.detail', [
       });
 
       this.channelsChartConfig = chartService.getBaseConfig();
+      this.channelsChartConfig.options.xAxis.events.afterSetExtremes = handleZoomChange;
+      this.channelsChartConfig.options.chart.events.load = chartLoaded;
       this.channelsChartConfig.series.push({
         name: this.game.name,
         data: this.stats.map(function (stat) {
@@ -68,6 +72,8 @@ angular.module('twitchdata.games.detail', [
       });
 
       this.ratioChartConfig = chartService.getBaseConfig();
+      this.ratioChartConfig.options.xAxis.events.afterSetExtremes = handleZoomChange;
+      this.ratioChartConfig.options.chart.events.load = chartLoaded;
       this.ratioChartConfig.series.push({
         name: this.game.name,
         data: this.stats.map(function (stat) {
@@ -85,6 +91,40 @@ angular.module('twitchdata.games.detail', [
 
     this.setCurrentChart = function (chartType) {
       this.currentChart = chartType;
-      $state.go('gameDetail', {gameName:  $stateParams.gameName, chart: chartType}, {notify: false});
+      $state.go('gameDetail', {gameName:  $stateParams.gameName, chart: chartType, zoom: getChartZoom(chartType)}, {notify: false});
+    }
+
+    var getChartZoom = function (chartType) {
+      var zoom;
+      switch (chartType) {
+        case 'channels':
+          zoom = GameDetailCtrl.channelsChartConfig.getHighcharts().xAxis[0].getExtremes();
+          break;
+        case 'ratio':
+          zoom = GameDetailCtrl.ratioChartConfig.getHighcharts().xAxis[0].getExtremes();
+          break;
+        default:
+          zoom = GameDetailCtrl.viewersChartConfig.getHighcharts().xAxis[0].getExtremes();
+      }
+
+      if (zoom.min !== zoom.dataMin || zoom.max !== zoom.dataMax) {
+        return zoom.min + ',' + zoom.max;
+      } else {
+        return null;
+      }
+    };
+
+    var handleZoomChange = function (value) {
+      if (value.min !== value.dataMin || value.max !== value.dataMax) {
+        $state.go('gameDetail', {gameName:  $stateParams.gameName, zoom: value.min + ',' + value.max}, {notify: false});
+      }
+    };
+
+    var chartLoaded = function (chart) {
+      // set initial zoom according to url param
+      if ($stateParams.zoom && $stateParams.zoom.split(',').length === 2) {
+        var zoom = $stateParams.zoom.split(',');
+        chart.target.xAxis[0].setExtremes(zoom[0], zoom[1]);
+      }
     }
   });

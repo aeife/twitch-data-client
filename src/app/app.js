@@ -44,7 +44,7 @@ angular.module('twitchdata', [
         controllerAs: 'GamesCompareCtrl'
       })
       .state('gameDetail', {
-        url: '/games/:gameName?chart',
+        url: '/games/:gameName?chart&zoom',
         templateUrl: 'app/games/detail/gameDetail.tpl.html',
         controller: 'GameDetailCtrl',
         controllerAs: 'GameDetailCtrl'

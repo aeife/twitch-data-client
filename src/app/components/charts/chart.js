@@ -9,7 +9,8 @@ angular.module('twitchdata.components.charts', [])
             options: {
               chart: {
                 zoomType: 'x',
-                type: 'spline'
+                type: 'spline',
+                events: {}
               },
               colors: [
                 '#815fc0', '#434348', '#90ed7d', '#f7a35c', '#8085e9',
@@ -47,7 +48,8 @@ angular.module('twitchdata.components.charts', [])
                 min: 0
               },
               xAxis: {
-                ordinal: false
+                ordinal: false,
+                events: {}
               },
               navigator: {
                 enabled: true
