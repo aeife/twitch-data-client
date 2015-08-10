@@ -1,9 +1,26 @@
 .dashboard {
   padding-bottom: 10px;
-  
+
   .jumbotron {
     background-color: inherit;
     margin-bottom: 0;
+    padding: 0;
+
+    h1 {
+      background-image: url("/images/line.png");
+      background-repeat: no-repeat;
+      background-size: 500px;
+      background-position: top center;
+      padding-top: 110px;
+    }
+  }
+
+  .logo-ttv {
+    font-size: 120px;
+  }
+
+  .logo-stats {
+    font-size: 100px;
   }
 
   .charts {

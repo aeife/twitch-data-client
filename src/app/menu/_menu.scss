@@ -5,7 +5,16 @@
 
   .navbar-brand {
     font-size: 26px;
-    padding: 10px 15px;
+    padding: 13px 15px 10px 15px;
+
+    .logo-ttv {
+      font-size: 40px;
+    }
+
+    .logo-stats {
+      color: #ffffff;
+      font-size: 32px;
+    }
   }
 
   .navbar-nav>li {
