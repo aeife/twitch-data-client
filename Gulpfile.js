@@ -26,7 +26,8 @@ var vendorFiles = [
   'src/bower_components/lodash/lodash.min.js',
   'src/bower_components/highstock-release/adapters/standalone-framework.src.js',
   'src/bower_components/highstock-release/highstock.js',
-  'src/bower_components/highcharts-ng/dist/highcharts-ng.min.js',
+  'src/bower_components/highstock-release/modules/exporting.js',
+  'src/bower_components/highcharts-ng/dist/highcharts-ng.min.js'
 ];
 
 // dist files
