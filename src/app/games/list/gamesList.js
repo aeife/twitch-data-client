@@ -44,10 +44,6 @@ angular.module('twitchdata.games.list', ['twitchdata.components.api.games'])
       GamesListCtrl.pagination.update();
     };
 
-    GamesListCtrl.goToGameDetailView = function (game) {
-      $state.go('gameDetail', {gameName: game.name});
-    };
-
     GamesListCtrl.search = function () {
       fetchData();
     };

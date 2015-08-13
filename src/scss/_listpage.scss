@@ -23,17 +23,22 @@
         display: flex;
       }
 
-      &>div {
+      &>a {
         box-shadow: 5px 5px 10px 0px rgba(216, 215, 215, 0.95);
       }
     }
 
-    &>div {
+    &>a {
       display: flex;
       position: relative;
       box-shadow: 2px 2px 5px 0px rgba(216, 215, 215, 0.6);
       cursor: pointer;
       background: #fff url('/images/placeholder.jpg') no-repeat;
+      color: inherit;
+
+      &:hover, &:focus {
+        text-decoration: none;
+      }
     }
   }
 

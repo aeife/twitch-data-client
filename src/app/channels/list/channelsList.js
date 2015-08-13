@@ -44,10 +44,6 @@ angular.module('twitchdata.channels.list', ['twitchdata.components.api.channels'
       ChannelsListCtrl.pagination.update();
     };
 
-    ChannelsListCtrl.goToChannelDetailView = function (channel) {
-      $state.go('channelDetail', {channelName: channel.name});
-    };
-
     ChannelsListCtrl.search = function () {
       fetchData();
     };
