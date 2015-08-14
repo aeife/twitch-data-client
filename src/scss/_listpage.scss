@@ -32,8 +32,8 @@
       display: flex;
       position: relative;
       box-shadow: 2px 2px 5px 0px rgba(216, 215, 215, 0.6);
+      background-color: #fff;
       cursor: pointer;
-      background: #fff url('/images/placeholder.jpg') no-repeat;
       color: inherit;
 
       &:hover, &:focus {
