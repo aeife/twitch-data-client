@@ -21,3 +21,7 @@ h1, h2 {
   vertical-align: bottom;
   display: inline-block;
 }
+
+hr {
+  border-color: $twitch-color;
+}
