@@ -1,4 +1,5 @@
 var applicationName = 'twitchdata';
+var publicName = 'ttvstats';
 
 // load modules
 var gulp = require('gulp');
@@ -31,10 +32,10 @@ var vendorFiles = [
 ];
 
 // dist files
-var jsDistFile = applicationName + '.js';
+var jsDistFile = publicName + '.js';
 var vendorDistFile = 'vendor.js';
-var templateDistFile = applicationName + '-templates.js';
-var combinedJsDistFile = applicationName + '.min.js';
+var templateDistFile = publicName + '-templates.js';
+var combinedJsDistFile = publicName + '.min.js';
 var cssDistFile = 'main.css';
 var jsDistFiles = [jsDistPath + vendorDistFile, jsDistPath + jsDistFile, jsDistPath + templateDistFile];
 
