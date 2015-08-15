@@ -23,8 +23,8 @@ angular.module('twitchdata.channels.detail', [
     requests.push(channelService.getStatsForChannel($stateParams.channelName).then(function (res) {
       res.data.stats = statisticsService.convertFollowersToFollowersGrowth(res.data.stats);
 
-      // save follower stats separate as missing values should not be translated to zero values
-      this.followerStats = res.data.stats;
+      // save plain stats separate as missing values should not be translated to zero values for some operations
+      this.plainStats = res.data.stats;
 
       this.stats = statisticsService.addMissingCollectionRunsToGame(res.data.stats, res.data.lastCollectionRun, ['viewers', 'followersGrowth']);
       this.trend = {
@@ -35,11 +35,11 @@ angular.module('twitchdata.channels.detail', [
       this.monthlyTrends = statisticsService.getMonthlyTrends(this.stats, ['viewers', 'followersGrowth']);
       this.peak = {
         viewers: statisticsService.getPeak(this.stats, ['viewers']).viewers,
-        followersGrowth: statisticsService.getPeak(this.followerStats, ['followersGrowth']).followersGrowth
+        followersGrowth: statisticsService.getPeak(this.plainStats, ['followersGrowth']).followersGrowth
       };
       this.avg = {
-        viewers: statisticsService.getAvgForTimeFrame(this.stats, ['viewers'], 'day', 7, 0).viewers,
-        followersGrowth: statisticsService.getAvgForTimeFrame(this.followerStats, ['followersGrowth'], 'day', 7, 0).followersGrowth
+        viewers: statisticsService.getAvgForTimeFrame(this.plainStats, ['viewers'], 'day', 7, 0).viewers,
+        followersGrowth: statisticsService.getAvgForTimeFrame(this.plainStats, ['followersGrowth'], 'day', 7, 0).followersGrowth
       }
       return res;
     }.bind(this)));
@@ -60,7 +60,7 @@ angular.module('twitchdata.channels.detail', [
       this.followersChartConfig.options.chart.events.load = chartLoaded;
       this.followersChartConfig.series.push({
         name: this.channel.display_name,
-        data: this.followerStats.map(function (stat) {
+        data: this.plainStats.map(function (stat) {
           return [new Date(stat.date).getTime(), stat.followersGrowth];
         })
       });
