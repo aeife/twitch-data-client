@@ -75,7 +75,7 @@ angular.module('twitchdata.channels.detail', [
 
     this.setCurrentChart = function (chartType) {
       this.currentChart = chartType;
-      $state.go('channelDetail', {channelName:  $stateParams.channelName, chart: chartType, zoom: getChartZoom(chartType)}, {notify: false});
+      $state.go('channelDetail', {channelName:  $stateParams.channelName, chart: chartType, zoom: getChartZoom(chartType)}, {notify: false, location: 'replace'});
     }
 
     var getChartZoom = function (chartType) {
@@ -92,7 +92,7 @@ angular.module('twitchdata.channels.detail', [
     };
 
     var handleZoomChange = function (value) {
-      $state.go('channelDetail', {channelName:  $stateParams.channelName, zoom: value.min + ',' + value.max}, {notify: false});
+      $state.go('channelDetail', {channelName:  $stateParams.channelName, zoom: value.min + ',' + value.max}, {notify: false, location: 'replace'});
     };
 
     var chartLoaded = function (chart) {

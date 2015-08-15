@@ -83,7 +83,7 @@ angular.module('twitchdata.games.detail', [
 
     this.setCurrentChart = function (chartType) {
       this.currentChart = chartType;
-      $state.go('gameDetail', {gameName:  $stateParams.gameName, chart: chartType, zoom: getChartZoom(chartType)}, {notify: false});
+      $state.go('gameDetail', {gameName:  $stateParams.gameName, chart: chartType, zoom: getChartZoom(chartType)}, {notify: false, location: 'replace'});
     }
 
     var getChartZoom = function (chartType) {
@@ -103,7 +103,7 @@ angular.module('twitchdata.games.detail', [
     };
 
     var handleZoomChange = function (value) {
-      $state.go('gameDetail', {gameName:  $stateParams.gameName, zoom: value.min + ',' + value.max}, {notify: false});
+      $state.go('gameDetail', {gameName:  $stateParams.gameName, zoom: value.min + ',' + value.max}, {notify: false, location: 'replace'});
     };
 
     var chartLoaded = function (chart) {
