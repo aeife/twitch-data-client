@@ -58,6 +58,7 @@ angular.module('twitchdata.channels.detail', [
       this.followersChartConfig = chartService.getBaseConfig();
       this.followersChartConfig.options.xAxis.events.afterSetExtremes = handleZoomChange;
       this.followersChartConfig.options.chart.events.load = chartLoaded;
+      this.followersChartConfig.options.chart.type = 'column';
       this.followersChartConfig.series.push({
         name: this.channel.display_name,
         data: this.plainStats.map(function (stat) {

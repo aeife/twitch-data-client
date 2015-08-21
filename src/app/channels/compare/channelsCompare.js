@@ -14,6 +14,7 @@ angular.module('twitchdata.channels.compare', [
     this.viewersChartConfig.options.navigator = {enabled : false};
     this.followersChartConfig = chartService.getBaseConfig();
     this.followersChartConfig.options.navigator = {enabled : false};
+    this.followersChartConfig.options.chart.type = 'column';
     this.channels = [];
 
     var fetchChannelData = function (channelName) {
