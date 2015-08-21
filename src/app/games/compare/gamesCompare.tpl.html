@@ -12,6 +12,7 @@
     <li ng-repeat="game in GamesCompareCtrl.games" class="">
       <img ng-src="http://static-cdn.jtvnw.net/ttv-boxart/{{game.name}}-100x140.jpg" alt="" width="50" height="70"/>
       <a class="data-name wrap-text" ui-sref="gameDetail({gameName: game.name})">{{game.name}}</a>
+      <div class="color-indicator" ng-style="{'background-color': GamesCompareCtrl.viewersChartConfig.options.colors[$index]}"></div>
       <a href class="close" ng-click="GamesCompareCtrl.removeGame(game.name)"><i class="fa fa-times"></i></a>
     </li>
   </ul>
