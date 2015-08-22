@@ -1,5 +1,5 @@
 html {
-  min-width: $min-width;
+
   box-sizing: border-box;
   height:100%;
   overflow-y: scroll;
@@ -10,7 +10,8 @@ html {
 }
 
 body {
-  padding-bottom: 100px;
+  // min-width: $min-width;
+  padding-bottom: $footer-height;
   position: relative;
   min-height: 100%;
 }
@@ -36,7 +37,6 @@ html, body {
   z-index: 2;
   background-color: rgba($body-bg, 0.95);
   height: 70px;
-  min-width: $min-width;
 }
 
 .page-content {

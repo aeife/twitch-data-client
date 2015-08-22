@@ -1,13 +1,12 @@
 <div class="head-bar">
   <div class="container">
     <h1 class="pull-left">Top Channels</h1>
-    <h4 class="pull-right"><a ui-sref="channelsCompare" class="pull-right"><i class="fa fa-exchange"></i> Compare Channels</a></h4>
+    <h4 class="pull-right"><a ui-sref="channelsCompare" class="pull-right"><i class="fa fa-exchange"></i></a></h4>
   </div>
 </div>
 
 <div class="page-content">
   <div ng-if="!ChannelsListCtrl.tableView">
-    <label for="sort-attribute">Sort</label>
     <div class="btn-group" dropdown is-open="isopen">
       <button type="button" name="sort-attribute" class="btn btn-default dropdown-toggle" dropdown-toggle ng-disabled="disabled">
         <i class="fa" ng-class="{'fa-users': ChannelsListCtrl.sorting.attr == 'viewers',
@@ -26,7 +25,7 @@
       <input type="text" name="search" ng-model="ChannelsListCtrl.searchText" ng-change="ChannelsListCtrl.search()" placeholder="Search Channel" class="form-control">
     </div>
     <ul class="no-padding data-cards channel-cards">
-      <li class="col-xs-6 col-md-4 col-lg-3" ng-repeat="channel in ChannelsListCtrl.channels track by channel._id">
+      <li class="col-xs-12 col-sm-6 col-md-4 col-lg-3" ng-repeat="channel in ChannelsListCtrl.channels track by channel._id">
         <a ui-sref="channelDetail({channelName: channel.name})">
           <img ng-src="{{channel.logo}}" class="data-img" alt=""/>
           <div class="overlay">

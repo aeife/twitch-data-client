@@ -4,9 +4,9 @@
 <div ng-if="ChannelDetailCtrl.loaded && ChannelDetailCtrl.stats" style="overflow: auto;">
   <div class="head-bar data-detail-head">
     <div class="container">
-      <h1 class="col-xs-12 no-padding wrap-text">
+      <h1 class="wrap-text">
         {{ChannelDetailCtrl.channel.display_name}}
-        <a ng-href="{{ChannelDetailCtrl.channel.url}}" target="_blank"><i class="fa fa-twitch"></i></a>
+        <a class="twitch-header-logo" ng-href="{{ChannelDetailCtrl.channel.url}}" target="_blank"><i class="fa fa-twitch"></i></a>
       </h1>
     </div>
   </div>
@@ -16,11 +16,12 @@
       <div class="col-xs-12 col-sm-4 col-md-12 data-image">
         <img ng-src="{{ChannelDetailCtrl.channel.logo}}" alt="" class="col-xs-6 col-sm-12 no-padding" />
 
-        <div class="col-xs-6 col-sm-12">
+        <div class="col-xs-12 col-sm-12">
           <h3 class="text-center">Peaks</h3>
           <p class="peak"><i class="fa fa-users"></i> {{ChannelDetailCtrl.peak.viewers.count | number:0}} <span class="pull-right">{{ChannelDetailCtrl.peak.viewers.date | date:'short'}}</span></p>
           <p class="peak"><i class="fa fa-heart"></i> {{ChannelDetailCtrl.peak.followersGrowth.count | number:0}} <span class="pull-right">{{ChannelDetailCtrl.peak.followersGrowth.date | date:'short'}}</span></p>
-
+        </div>
+        <div class="col-xs-12 col-sm-12">
           <hr>
           <h3 class="text-center">Last Month Average</h3>
           <p class="avg"><i class="fa fa-users"></i> {{ChannelDetailCtrl.avg.viewers | number:0}}</p>

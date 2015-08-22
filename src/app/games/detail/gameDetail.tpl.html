@@ -17,10 +17,13 @@
         <img ng-src="http://static-cdn.jtvnw.net/ttv-boxart/{{GameDetailCtrl.game.name}}-300x420.jpg" alt="" class="col-xs-6 col-sm-12 no-padding" />
         <div class="col-xs-6 col-sm-12">
           <p>{{GameDetailCtrl.giantbomb.description}}</p>
+        </div>
+        <div class="col-xs-12 col-sm-12">
           <h3 class="text-center">Peaks</h3>
           <p class="peak"><i class="fa fa-users"></i> {{GameDetailCtrl.peak.viewers.count | number:0}} <span class="pull-right">{{GameDetailCtrl.peak.viewers.date | date:'short'}}</span></p>
           <p class="peak"><i class="fa fa-video-camera"></i> {{GameDetailCtrl.peak.channels.count | number:0}} <span class="pull-right">{{GameDetailCtrl.peak.channels.date | date:'short'}}</span></p>
-
+        </div>
+        <div class="col-xs-12 col-sm-12">
           <hr>
           <h3 class="text-center">Last Month Average</h3>
           <p class="avg"><i class="fa fa-users"></i> {{GameDetailCtrl.avg.viewers | number:0}}</p>
