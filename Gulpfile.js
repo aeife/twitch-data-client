@@ -127,6 +127,10 @@ gulp.task('sass:dev', function () {
             noAdvanced: true
         }))
         .pipe(plugins.rename(cssDistFile))
+        .pipe(plugins.autoprefixer({
+            browsers: ['last 2 versions'],
+            cascade: false
+        }))
         .pipe(gulp.dest(cssDistPath));
 });
 
