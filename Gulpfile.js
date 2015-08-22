@@ -186,6 +186,13 @@ gulp.task('webserver', function() {
         }));
 });
 
+var browserSync = require('browser-sync').create();
+gulp.task('browser-sync', function() {
+    browserSync.init({
+        proxy: "localhost:8000"
+    });
+});
+
 // combines all dist script files to single file
 gulp.task('combineDistJsFiles', function () {
     return gulp.src(jsDistFiles)
