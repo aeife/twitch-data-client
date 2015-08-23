@@ -28,13 +28,13 @@ angular.module('twitchdata.channels.detail', [
 
       this.stats = statisticsService.addMissingCollectionRunsToGame(res.data.stats, res.data.lastCollectionRun, ['viewers', 'followersGrowth']);
       this.trend = {
-        day: statisticsService.getGrowthTrendOfLast('day', this.stats, ['viewers', 'followersGrowth']),
-        week: statisticsService.getGrowthTrendOfLast('week', this.stats, ['viewers', 'followersGrowth']),
-        month: statisticsService.getGrowthTrendOfLast('month', this.stats, ['viewers', 'followersGrowth'])
+        day: statisticsService.getGrowthTrendOfLast('day', this.plainStats, ['viewers', 'followersGrowth']),
+        week: statisticsService.getGrowthTrendOfLast('week', this.plainStats, ['viewers', 'followersGrowth']),
+        month: statisticsService.getGrowthTrendOfLast('month', this.plainStats, ['viewers', 'followersGrowth'])
       };
-      this.monthlyTrends = statisticsService.getMonthlyTrends(this.stats, ['viewers', 'followersGrowth']);
+      this.monthlyTrends = statisticsService.getMonthlyTrends(this.plainStats, ['viewers', 'followersGrowth']);
       this.peak = {
-        viewers: statisticsService.getPeak(this.stats, ['viewers']).viewers,
+        viewers: statisticsService.getPeak(this.plainStats, ['viewers']).viewers,
         followersGrowth: statisticsService.getPeak(this.plainStats, ['followersGrowth']).followersGrowth
       };
       this.avg = {
