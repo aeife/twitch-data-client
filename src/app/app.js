@@ -73,9 +73,9 @@ angular.module('twitchdata', [
         controller: 'ChannelDetailCtrl',
         controllerAs: 'ChannelDetailCtrl'
       })
-      .state('beta', {
-        url: '/beta',
-        templateUrl: 'app/beta/beta.tpl.html',
+      .state('version', {
+        url: '/version',
+        templateUrl: 'app/version/version.tpl.html',
       })
       .state('about', {
         url: '/about',
