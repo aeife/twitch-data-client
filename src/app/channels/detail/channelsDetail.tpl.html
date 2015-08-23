@@ -64,7 +64,7 @@
         <highchart ng-show="ChannelDetailCtrl.currentChart == 'viewers'" config="ChannelDetailCtrl.viewersChartConfig" class="col-xs-12 no-padding"></highchart>
         <highchart ng-show="ChannelDetailCtrl.currentChart == 'followers'" config="ChannelDetailCtrl.followersChartConfig" class="col-xs-12 no-padding"></highchart>
       </div>
-      <a ui-sref="channelsCompare({channelNames: ChannelDetailCtrl.channel.name})"><h4><i class="fa fa-exchange"></i> compare with other channels</h4></a>
+      <a ui-sref="channelsCompare({channelNames: ChannelDetailCtrl.channel.display_name})"><h4><i class="fa fa-exchange"></i> compare with other channels</h4></a>
 
       <div class="monthly-trends">
         <table class="table">
