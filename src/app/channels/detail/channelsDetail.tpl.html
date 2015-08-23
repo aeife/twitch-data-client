@@ -1,11 +1,8 @@
-<div ng-if="!ChannelDetailCtrl.loaded">
-  <h1 class="text-center text-huge"><i class="fa fa-spinner fa-pulse"></i></h1>
-</div>
-<div ng-if="ChannelDetailCtrl.loaded && ChannelDetailCtrl.stats" style="overflow: auto;">
+<div ng-if="!ChannelDetailCtrl.error" style="overflow: auto;">
   <div class="head-bar data-detail-head">
     <div class="container">
       <h1 class="wrap-text">
-        {{ChannelDetailCtrl.channel.display_name}}
+        {{ChannelDetailCtrl.channelName}}
         <a class="twitch-header-logo" ng-href="{{ChannelDetailCtrl.channel.url}}" target="_blank"><i class="fa fa-twitch"></i></a>
       </h1>
     </div>
@@ -85,6 +82,6 @@
     </div>
   </div>
 </div>
-<div ng-if="ChannelDetailCtrl.loaded && !ChannelDetailCtrl.stats">
+<div ng-if="ChannelDetailCtrl.error">
   <h2 class="text-center">Uh oh, {{ChannelDetailCtrl.channelName}} is not available.</h2>
 </div>

@@ -1,11 +1,8 @@
-<div ng-if="!GameDetailCtrl.loaded">
-  <h1 class="text-center text-huge"><i class="fa fa-spinner fa-pulse"></i></h1>
-</div>
-<div ng-if="GameDetailCtrl.loaded && GameDetailCtrl.stats" style="overflow: auto;">
+<div ng-if="!GameDetailCtrl.error" style="overflow: auto;">
   <div class="head-bar data-detail-head">
     <div class="container">
       <h1 class="col-xs-12 no-padding wrap-text">
-        {{GameDetailCtrl.game.name}}
+        {{GameDetailCtrl.gameName}}
         <a ng-href="http://www.twitch.tv/directory/game/{{GameDetailCtrl.game.name}}" target="_blank"><i class="fa fa-twitch"></i></a>
       </h1>
     </div>
@@ -134,6 +131,6 @@
     </div>
   </div>
 </div>
-<div ng-if="GameDetailCtrl.loaded && !GameDetailCtrl.stats">
+<div ng-if="GameDetailCtrl.error">
   <h2 class="text-center">Uh oh, {{GameDetailCtrl.gameName}} is not available.</h2>
 </div>

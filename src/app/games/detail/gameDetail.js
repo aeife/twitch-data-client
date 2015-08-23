@@ -38,11 +38,11 @@ angular.module('twitchdata.games.detail', [
       this.peak = statisticsService.getPeak(this.stats, ['viewers', 'channels']);
       this.avg = statisticsService.getAvgForTimeFrame(this.stats, ['viewers', 'channels'], 'day', 7, 0);
       return res;
+    }.bind(this), function () {
+      this.error = true;
     }.bind(this)));
 
     $q.all(requests).then(function () {
-      this.loaded = true;
-
       this.viewersChartConfig = chartService.getBaseConfig();
       this.viewersChartConfig.options.xAxis.events.afterSetExtremes = handleZoomChange;
       this.viewersChartConfig.options.chart.events.load = chartLoaded;

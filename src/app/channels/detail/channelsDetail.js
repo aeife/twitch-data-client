@@ -17,7 +17,6 @@ angular.module('twitchdata.channels.detail', [
 
     requests.push(twitchApiClient.getChannelData($stateParams.channelName).then(function (res) {
       this.channel = res.data;
-      this.loaded = true;
     }.bind(this)));
 
     requests.push(channelService.getStatsForChannel($stateParams.channelName).then(function (res) {
@@ -42,6 +41,8 @@ angular.module('twitchdata.channels.detail', [
         followersGrowth: statisticsService.getAvgForTimeFrame(this.plainStats, ['followersGrowth'], 'day', 7, 0).followersGrowth
       }
       return res;
+    }.bind(this), function () {
+      this.error = true;
     }.bind(this)));
 
     $q.all(requests).then(function () {
