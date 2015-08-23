@@ -11,6 +11,14 @@ angular.module('twitchdata.dashboard', [
 
     var fetchGeneralStats = function () {
       generalStatsService.getGeneralStats().then(function (res) {
+        res.data.stats = res.data.stats.map(function (stat) {
+          stat.date = new Date(stat.date);
+          stat.date.setMinutes(0);
+          stat.date.setSeconds(0);
+          stat.date.setMilliseconds(0);
+          return stat;
+        });
+
         DashboardCtrl.generalStats = res.data.stats;
         DashboardCtrl.currentStats = _.last(res.data.stats);
 
