@@ -1,6 +1,6 @@
 {
   "name": "twitch-data-client",
-  "version": "0.0.0",
+  "version": "0.5.0",
   "homepage": "https://github.com/aeife/twitch-data-client",
   "authors": [
     "aeife <andre.eife@gmail.com>"

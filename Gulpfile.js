@@ -5,6 +5,10 @@ var publicName = 'ttvstats';
 var gulp = require('gulp');
 var plugins = require('gulp-load-plugins')({pattern: '*', scope: ['dependencies', 'devDependencies', 'peerDependencies']});
 
+var fs = require('fs');
+var bowerFile = JSON.parse(fs.readFileSync('bower.json'));
+var version = bowerFile.version;
+
 // paths
 var srcBaseDir = 'src/';
 var destinationPath = 'dist/';
@@ -35,8 +39,8 @@ var vendorFiles = [
 var jsDistFile = publicName + '.js';
 var vendorDistFile = 'vendor.js';
 var templateDistFile = publicName + '-templates.js';
-var combinedJsDistFile = publicName + '.min.js';
-var cssDistFile = 'main.css';
+var combinedJsDistFile = publicName + '-' + version + '.min.js';
+var cssDistFile = 'main-' + version + '.css';
 var jsDistFiles = [jsDistPath + vendorDistFile, jsDistPath + jsDistFile, jsDistPath + templateDistFile];
 
 // lint
