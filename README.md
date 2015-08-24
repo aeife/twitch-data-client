@@ -7,7 +7,7 @@ This is the client side application for [TTV Stats](ttvstats.com). It is based o
 * [twitch-data-api](https://github.com/aeife/twitch-data-api)
 
 ### Browser compatibility
-Support is targeted for all common, modern browsers and screen sizes. Browser compatibility is tested via [Browserstack](http://example.net/).
+Support is planned for all common, modern browsers and screen sizes. Browser compatibility is tested via [Browserstack](http://example.net/).
 
 <img src="./src/images/browserstack.png" width="250">
 
