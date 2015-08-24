@@ -77,6 +77,10 @@ angular.module('twitchdata', [
         url: '/version',
         templateUrl: 'app/version/version.tpl.html',
       })
+      .state('faq', {
+        url: '/faq',
+        templateUrl: 'app/faq/faq.tpl.html',
+      })
       .state('about', {
         url: '/about',
         templateUrl: 'app/about/about.tpl.html',
