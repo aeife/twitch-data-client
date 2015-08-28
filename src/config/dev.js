@@ -1,0 +1,3 @@
+window.TD = {
+  ENVIRONMENT: 'DEV'
+};

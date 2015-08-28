@@ -157,6 +157,12 @@ gulp.task('copy:fonts', function () {
 gulp.task('index', function () {
     return gulp.src(srcBaseDir + 'index.html')
         .pipe(plugins.inject(gulp.src([jsDistPath + combinedJsDistFile, cssDistPath + cssDistFile], {read: false}), {ignorePath: '/dist/', addRootSlash: true}))
+        .pipe(plugins.inject(gulp.src(srcBaseDir + 'config/production.js'), {
+          starttag: '<!-- inject:config -->',
+          transform: function (filePath, file) {
+            return file.contents.toString('utf8')
+          }
+        }))
         .pipe(gulp.dest(destinationPath));
 });
 
@@ -164,6 +170,12 @@ gulp.task('index', function () {
 gulp.task('index:dev', function () {
     return gulp.src(srcBaseDir + 'index.html')
         .pipe(plugins.inject(gulp.src(jsDistFiles.concat([cssDistPath + cssDistFile]), {read: false}), {ignorePath: '/dist/', addRootSlash: true}))
+        .pipe(plugins.inject(gulp.src(srcBaseDir + 'config/dev.js'), {
+          starttag: '<!-- inject:config -->',
+          transform: function (filePath, file) {
+            return file.contents.toString('utf8')
+          }
+        }))
         .pipe(gulp.dest(destinationPath));
 });
 

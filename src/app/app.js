@@ -15,7 +15,11 @@ angular.module('twitchdata', [
   'ui.router',
   'ui.bootstrap'
   ])
-  .config(function ($locationProvider, $stateProvider, gameServiceProvider, generalStatsServiceProvider, channelServiceProvider) {
+  .config(function ($locationProvider, $stateProvider, $compileProvider, gameServiceProvider, generalStatsServiceProvider, channelServiceProvider) {
+    if (TD.ENVIRONMENT === 'PRODUCTION') {
+      $compileProvider.debugInfoEnabled(false);
+    }
+
     $locationProvider.html5Mode(true);
 
     $stateProvider
