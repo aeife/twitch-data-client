@@ -28,4 +28,4 @@ Steps to run this project in a local dev environment
 
 4. ```gulp dev```
 
-  runs tests, builds the project and start a webserver to serve the current build
+  runs tests, builds the project and start a webserver to serve the current build with livereload
