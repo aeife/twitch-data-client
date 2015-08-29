@@ -8,7 +8,7 @@ before_script:
 script:
 - gulp deploy
 - cd dist
-- zip twitch-data-client-$TRAVIS_TAG
+- zip -r twitch-data-client-$TRAVIS_TAG .
 deploy:
   provider: releases
   api_key:
@@ -16,5 +16,4 @@ deploy:
   file: "./dist/twitch-data-client-$TRAVIS_TAG.zip"
   skip_cleanup: true
   on:
-    repo: aeife/twitch-data-client
     tags: true
