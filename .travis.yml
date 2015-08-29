@@ -9,16 +9,16 @@ script:
 - gulp deploy
 branches:
   only:
-    - master
-    - /^.*$/
+  - master
+  - "/^.*$/"
 before_deploy:
-  - cd dist
-  - zip -r twitch-data-client .
+- cd dist
+- zip -r twitch-data-client-$TRAVIS_TAG.zip .
 deploy:
   provider: releases
   api_key:
     secure: hWYewW95wq0hmYVj8SNQiJSXpsCyxjNnlY6RDqM8bfpBjUnWL3mSi5IZmcx50tlmv1nLtszc2XY6pKyTr23wTOix1K2laDO/WgIUcfs/Mwc4UC8ipQPKgtocA+KuXmRbutJq1nKTOdrGbYpd3YISIlFh99WBSAPqiSbXWHpqjqDMxzegsdbDR64b9ufEmP5XEp5idP8xEsO3m1I/ETX3ka2VFX7/DHefkPyTrR62dXuAqfyWfJUJbj7ZznxkDIyB2migG6AMftjRztFX9yhWp/y9qTkGrU21Ybr6aCJMAUD4j12ujgBOqZDDPGanSrqMGzqXHdipIW4qoHUZC2ZV3hmMoeW/rMoxh7BUqJ7gG12j6F2QaKlKIY7RyV+nSztsq/rwcAOfyFKdDRxy0r51SvrYjRd0n5roEvmn1Xp9DXPRBuaxIlLMqcS1QLgDsYH2lGzVEncIEKSBjubpsHHEsS1TXa0GoZ4PxxUZ+Ve43y0MImt6kQsCoB1PkvfMYJqzs8W0g5/gEyXezGM+doXtAxwKFcwjcU0SGcGgTQI94bBmArLvvlbWAF2NqoS7SNiXxpi6QLit7B/FZTJ1xm1vEYIdz+avE+6dqP9qoMGSLlbezHsD1As9u+/aiD2n/x5+8+GQn73FNIRgZ0I6sQdifiRT4MUUkJiymUOQ0imCiXI=
-  file: "./dist/twitch-data-client.zip"
+  file: twitch-data-client-$TRAVIS_TAG.zip
   skip_cleanup: true
   on:
     tags: true
