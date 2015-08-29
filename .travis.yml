@@ -7,9 +7,13 @@ before_script:
 - bower install
 script:
 - gulp deploy
+branches:
+  only:
+    - master
+    - /^.*$/
 before_deploy:
   - cd dist
-  - zip -r "twitch-data-client-$TRAVIS_TAG" .
+  - zip -r twitch-data-client-$TRAVIS_TAG .
 deploy:
   provider: releases
   api_key:
