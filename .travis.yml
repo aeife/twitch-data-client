@@ -7,7 +7,7 @@ before_script:
 - bower install
 script:
 - gulp deploy
-before-deploy:
+before_deploy:
   - cd dist
   - zip -r twitch-data-client-$TRAVIS_TAG .
 deploy:
