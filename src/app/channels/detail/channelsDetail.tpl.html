@@ -49,7 +49,7 @@
       </div>
       <hr>
 
-      <div class="charts tabs clearfix">
+      <div class="charts tabs clearfix" ng-if="ChannelDetailCtrl.viewersChartConfig">
         <div class="headings clearfix">
           <a href class="pull-left" ng-click="ChannelDetailCtrl.setCurrentChart('viewers')" ng-class="{'active':ChannelDetailCtrl.currentChart == 'viewers' }">
             <h3><i class="fa fa-users"></i> Viewers</h3>

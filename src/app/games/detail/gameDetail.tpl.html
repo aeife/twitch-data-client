@@ -94,7 +94,7 @@
       </div>
       <hr>
 
-      <div class="charts tabs clearfix">
+      <div class="charts tabs clearfix" ng-if="GameDetailCtrl.viewersChartConfig">
         <div class="headings clearfix">
           <a href class="pull-left" ng-click="GameDetailCtrl.setCurrentChart('viewers')" ng-class="{'active':GameDetailCtrl.currentChart == 'viewers' }">
             <h3><i class="fa fa-users"></i> Viewers</h3>
