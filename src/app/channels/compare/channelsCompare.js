@@ -7,8 +7,8 @@ angular.module('twitchdata.channels.compare', [
   'highcharts-ng'
 ])
   .controller('ChannelsCompareCtrl', function ($http, $stateParams, $state, $q, $scope, channelService, statisticsService, chartService) {
-    console.log("ctrl");
     var ChannelsCompareCtrl = this;
+    var channelNameByDisplayName = {};
 
     this.viewersChartConfig = chartService.getBaseConfig();
     this.viewersChartConfig.options.navigator = {enabled : false};
@@ -94,7 +94,8 @@ angular.module('twitchdata.channels.compare', [
         search: name
       }).then(function (res) {
         return res.data.channels.map(function (channel) {
-          return channel.name;
+          channelNameByDisplayName[channel.displayName] = channel.name;
+          return channel.displayName;
         });
       });
     };
@@ -102,9 +103,8 @@ angular.module('twitchdata.channels.compare', [
     $scope.$watch(function () {
       return ChannelsCompareCtrl.newChannel;
     }, function (newChannel) {
-      console.log(newChannel);
       if (newChannel && newChannel.length) {
-        ChannelsCompareCtrl.addChannel(newChannel);
+        ChannelsCompareCtrl.addChannel(channelNameByDisplayName[newChannel]);
       }
     });
 

@@ -11,7 +11,7 @@
   <ul class="data-list">
     <li ng-repeat="channel in ChannelsCompareCtrl.channels" class="">
       <img ng-src="{{channel.logo}}" alt="" width="70" height="70"/>
-      <a class="data-name wrap-text" ui-sref="channelDetail({channelName: channel.name})">{{channel.name}}</a>
+      <a class="data-name wrap-text" ui-sref="channelDetail({channelName: channel.name})">{{channel.displayName}}</a>
       <div class="color-indicator" ng-style="{'background-color': ChannelsCompareCtrl.viewersChartConfig.options.colors[$index]}"></div>
       <a href class="close" ng-click="ChannelsCompareCtrl.removeChannel(channel.name)"><i class="fa fa-times"></i></a>
     </li>
