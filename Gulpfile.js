@@ -54,6 +54,7 @@ var t = new Date();
 var banner = ['/**',
     ' * Build Time - <%= time %>',
     ' */',
+    'TD.VERSION = "<%= version %>";',
     ''].join('\n');
 
 // concat js files (excluding spec files)
@@ -61,7 +62,7 @@ gulp.task('package:js', function () {
     return gulp.src(javaScriptFiles)
         .pipe(plugins.concat(jsDistFile))
         .pipe(plugins.removeUseStrict())
-        .pipe(plugins.header(banner, {time: t}))
+        .pipe(plugins.header(banner, {time: t, version: version}))
         .pipe(gulp.dest(jsDistPath));
 });
 
@@ -77,7 +78,8 @@ gulp.task('uglify:js', ['package:js'], function () {
 gulp.task('package:vendor', function () {
     return gulp.src(vendorFiles)
         .pipe(plugins.concat(vendorDistFile))
-        // .pipe(plugins.uglify())
+        .pipe(plugins.ngAnnotate())
+        .pipe(plugins.uglify())
         .pipe(gulp.dest(jsDistPath));
 });
 
@@ -218,6 +220,7 @@ gulp.task('combineDistJsFiles', function () {
     return gulp.src(jsDistFiles)
         .pipe(plugins.clean())
         .pipe(plugins.concat(combinedJsDistFile))
+        .pipe(plugins.header(banner, {time: t, version: version}))
         .pipe(gulp.dest(jsDistPath));
 });
 

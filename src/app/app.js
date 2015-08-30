@@ -4,6 +4,7 @@ angular.module('twitchdata', [
   'twitchdata.menu',
   'twitchdata.footer',
   'twitchdata.dashboard',
+  'twitchdata.version',
   'twitchdata.games.list',
   'twitchdata.games.detail',
   'twitchdata.games.compare',
@@ -80,18 +81,20 @@ angular.module('twitchdata', [
       .state('version', {
         url: '/version',
         templateUrl: 'app/version/version.tpl.html',
+        controller: 'VersionCtrl',
+        controllerAs: 'VersionCtrl'
       })
       .state('faq', {
         url: '/faq',
-        templateUrl: 'app/faq/faq.tpl.html',
+        templateUrl: 'app/faq/faq.tpl.html'
       })
       .state('about', {
         url: '/about',
-        templateUrl: 'app/about/about.tpl.html',
+        templateUrl: 'app/about/about.tpl.html'
       })
       .state('privacy', {
         url: '/privacy',
-        templateUrl: 'app/privacy/privacy.tpl.html',
+        templateUrl: 'app/privacy/privacy.tpl.html'
       })
       .state('otherwise', {
           url: '*path',
@@ -107,4 +110,5 @@ angular.module('twitchdata', [
             useUTC: false
         }
     });
-  });
+  })
+  .constant('TD_CONFIG', TD);
