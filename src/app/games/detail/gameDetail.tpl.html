@@ -1,4 +1,4 @@
-<div ng-if="!GameDetailCtrl.error" style="overflow: auto;">
+<div ng-if="!GameDetailCtrl.error" style="overflow: auto; display: inline;">
   <div class="head-bar data-detail-head">
     <div class="container">
       <h1 class="col-xs-12 no-padding wrap-text">
@@ -16,13 +16,13 @@
           <p>{{GameDetailCtrl.giantbomb.description}}</p>
         </div>
         <div class="col-xs-12 col-sm-12">
-          <h3 class="text-center">Peaks</h3>
+          <h3 class="text-center">Records</h3>
           <p class="peak"><i class="fa fa-users"></i> {{GameDetailCtrl.peak.viewers.count | number:0}} <span class="pull-right">{{GameDetailCtrl.peak.viewers.date | date:'short'}}</span></p>
           <p class="peak"><i class="fa fa-video-camera"></i> {{GameDetailCtrl.peak.channels.count | number:0}} <span class="pull-right">{{GameDetailCtrl.peak.channels.date | date:'short'}}</span></p>
         </div>
         <div class="col-xs-12 col-sm-12">
           <hr>
-          <h3 class="text-center">Last Month Average</h3>
+          <h3 class="text-center">Last 30 Days Average</h3>
           <p class="avg"><i class="fa fa-users"></i> {{GameDetailCtrl.avg.viewers | number:0}}</p>
           <p class="avg"><i class="fa fa-video-camera"></i> {{GameDetailCtrl.avg.channels | number:0}}</p>
           <hr>
@@ -80,15 +80,15 @@
       <hr>
       <div class="trend clearfix">
         <div class="col-xs-4">
-          <h3>last day</h3>
+          <h3>last 24h</h3>
           <td-trend-text value="GameDetailCtrl.trend.day.growth.viewers"></td-trend-text>
         </div>
         <div class="col-xs-4">
-          <h3>last week</h3>
+          <h3>last 7d</h3>
           <td-trend-text value="GameDetailCtrl.trend.week.growth.viewers"></td-trend-text>
         </div>
         <div class="col-xs-4">
-          <h3>last month</h3>
+          <h3>last 30d</h3>
           <td-trend-text value="GameDetailCtrl.trend.month.growth.viewers"></td-trend-text>
         </div>
       </div>
@@ -126,8 +126,8 @@
         <table class="table">
           <tr>
             <th>Month</th>
-            <th colspan="2"><i class="fa fa-users"></i> Viewers Avg</th>
-            <th colspan="2"><i class="fa fa-video-camera"></i> Channels Avg</th>
+            <th colspan="2"><i class="fa fa-users"></i> Avg Viewers</th>
+            <th colspan="2"><i class="fa fa-video-camera"></i> Avg Channels</th>
           </tr>
           <tr ng-repeat="trend in GameDetailCtrl.monthlyTrends">
             <td>{{trend.month | month}}, {{trend.year}}</td>

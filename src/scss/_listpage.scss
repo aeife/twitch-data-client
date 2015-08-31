@@ -1,6 +1,7 @@
 .head-bar .container h4 {
   margin-top: 20px;
   line-height: 36px;
+  font-size: 34px;
 }
 
 .list-actions {
@@ -11,8 +12,15 @@
   }
 }
 
-.data-cards {
+.data-toolbar {
+  .btn-group {
+    margin-right: 5px;
+  }
+}
 
+.data-cards {
+  margin: 0 -5px;
+  
   li {
     height: 150px;
     padding: 5px;
@@ -73,6 +81,7 @@
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
+    line-height: 1.2;
   }
 
   table {
