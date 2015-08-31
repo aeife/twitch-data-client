@@ -61,7 +61,17 @@
         <highchart ng-show="ChannelDetailCtrl.currentChart == 'viewers'" config="ChannelDetailCtrl.viewersChartConfig" class="col-xs-12 no-padding"></highchart>
         <highchart ng-show="ChannelDetailCtrl.currentChart == 'followers'" config="ChannelDetailCtrl.followersChartConfig" class="col-xs-12 no-padding"></highchart>
       </div>
-      <a ui-sref="channelsCompare({channelNames: ChannelDetailCtrl.channel.name})"><h4><i class="fa fa-exchange"></i> compare with other channels</h4></a>
+
+      <a ui-sref="channelsCompare({channelNames: ChannelDetailCtrl.channel.name})" class="clearfix data-compare-link">
+        <img class="" ng-src="{{ChannelDetailCtrl.channel.logo}}" alt="" />
+        <div class="text-center">
+          <h2><i class="fa fa-exchange"></i></h2>
+        </div>
+        <img class="" src="/images/channel_placeholder.jpg" alt="" />
+        <div class="overlay">
+          <h3>compare with other channels</h3>
+        </div>
+      </a>
 
       <div class="monthly-trends">
         <table class="table">

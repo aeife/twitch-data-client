@@ -110,7 +110,17 @@
         <highchart ng-show="GameDetailCtrl.currentChart == 'channels'" config="GameDetailCtrl.channelsChartConfig" class="col-xs-12 no-padding"></highchart>
         <highchart ng-show="GameDetailCtrl.currentChart == 'ratio'" config="GameDetailCtrl.ratioChartConfig" class="col-xs-12 no-padding"></highchart>
       </div>
-      <a ui-sref="gamesCompare({gameNames: GameDetailCtrl.game.name})"><h4><i class="fa fa-exchange"></i> compare with other games</h4></a>
+
+      <a ui-sref="gamesCompare({gameNames: GameDetailCtrl.game.name})" class="clearfix data-compare-link">
+        <img class="" ng-src="http://static-cdn.jtvnw.net/ttv-boxart/{{GameDetailCtrl.game.name}}-300x420.jpg" alt="" />
+        <div class="text-center">
+          <h2><i class="fa fa-exchange"></i></h2>
+        </div>
+        <img class="" src="/images/placeholder.jpg" alt="" />
+        <div class="overlay">
+          <h3>compare with other games</h3>
+        </div>
+      </a>
 
       <div class="monthly-trends">
         <table class="table">

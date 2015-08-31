@@ -3,6 +3,7 @@ $twitch-color:                          #6441a5;
 $twitch-color-light:                    #815fc0;
 $menu-active-border-color:              lighten($twitch-color-light, 20%);
 $footer-height: 150px;
+$overlay-color:                         rgba(255, 253, 253, 0.78);
 
 // bootstrap vars
 $brand-primary:                         $twitch-color;
