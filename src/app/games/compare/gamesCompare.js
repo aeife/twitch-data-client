@@ -11,10 +11,13 @@ angular.module('twitchdata.games.compare', [
 
     this.viewersChartConfig = chartService.getBaseConfig();
     this.viewersChartConfig.options.navigator = {enabled : false};
+    this.viewersChartConfig.options.exporting.chartOptions.title.text = 'viewer count on twitch';
     this.channelsChartConfig = chartService.getBaseConfig();
     this.channelsChartConfig.options.navigator = {enabled : false};
+    this.channelsChartConfig.options.exporting.chartOptions.title.text = 'channel count on twitch';
     this.ratioChartConfig = chartService.getBaseConfig();
     this.ratioChartConfig.options.navigator = {enabled : false};
+    this.ratioChartConfig.options.exporting.chartOptions.title.text = 'avg viewers per channel';
     this.games = [];
 
     var fetchGameData = function (gameName) {

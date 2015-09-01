@@ -47,6 +47,7 @@ angular.module('twitchdata.games.detail', [
       this.viewersChartConfig = chartService.getBaseConfig();
       this.viewersChartConfig.options.xAxis.events.afterSetExtremes = handleZoomChange;
       this.viewersChartConfig.options.chart.events.load = chartLoaded;
+      this.viewersChartConfig.options.exporting.chartOptions.title.text = 'viewer count on twitch';
       this.viewersChartConfig.series.push({
         name: this.game.name,
         data: this.stats.map(function (stat) {
@@ -57,6 +58,7 @@ angular.module('twitchdata.games.detail', [
       this.channelsChartConfig = chartService.getBaseConfig();
       this.channelsChartConfig.options.xAxis.events.afterSetExtremes = handleZoomChange;
       this.channelsChartConfig.options.chart.events.load = chartLoaded;
+      this.channelsChartConfig.options.exporting.chartOptions.title.text = 'channel count on twitch';
       this.channelsChartConfig.series.push({
         name: this.game.name,
         data: this.stats.map(function (stat) {
@@ -67,6 +69,7 @@ angular.module('twitchdata.games.detail', [
       this.ratioChartConfig = chartService.getBaseConfig();
       this.ratioChartConfig.options.xAxis.events.afterSetExtremes = handleZoomChange;
       this.ratioChartConfig.options.chart.events.load = chartLoaded;
+      this.ratioChartConfig.options.exporting.chartOptions.title.text = 'avg viewers per channel';
       this.ratioChartConfig.series.push({
         name: this.game.name,
         data: this.stats.map(function (stat) {

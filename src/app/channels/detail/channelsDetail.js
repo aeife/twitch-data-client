@@ -50,6 +50,7 @@ angular.module('twitchdata.channels.detail', [
       this.viewersChartConfig = chartService.getBaseConfig();
       this.viewersChartConfig.options.xAxis.events.afterSetExtremes = handleZoomChange;
       this.viewersChartConfig.options.chart.events.load = chartLoaded;
+      this.viewersChartConfig.options.exporting.chartOptions.title.text = 'viewer count for twitch channel';
       this.viewersChartConfig.series.push({
         name: this.channel.display_name,
         data: this.stats.map(function (stat) {
@@ -61,6 +62,7 @@ angular.module('twitchdata.channels.detail', [
       this.followersChartConfig.options.xAxis.events.afterSetExtremes = handleZoomChange;
       this.followersChartConfig.options.chart.events.load = chartLoaded;
       this.followersChartConfig.options.chart.type = 'column';
+      this.followersChartConfig.options.exporting.chartOptions.title.text = 'follower growth for twitch channel';
       this.followersChartConfig.series.push({
         name: this.channel.display_name,
         data: this.plainStats.map(function (stat) {

@@ -12,9 +12,11 @@ angular.module('twitchdata.channels.compare', [
 
     this.viewersChartConfig = chartService.getBaseConfig();
     this.viewersChartConfig.options.navigator = {enabled : false};
+    this.viewersChartConfig.options.exporting.chartOptions.title.text = 'viewer count for twitch channel';
     this.followersChartConfig = chartService.getBaseConfig();
     this.followersChartConfig.options.navigator = {enabled : false};
     this.followersChartConfig.options.chart.type = 'column';
+    this.followersChartConfig.options.exporting.chartOptions.title.text = 'follower growth for twitch channel';
     this.channels = [];
 
     var fetchChannelData = function (channelName) {

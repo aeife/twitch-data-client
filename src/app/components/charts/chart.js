@@ -64,7 +64,8 @@ angular.module('twitchdata.components.charts', [])
                 chartOptions:{
                   legend:{
                     enabled:true
-                  }
+                  },
+                  title: {}
                 }
               }
             },
