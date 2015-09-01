@@ -24,8 +24,9 @@
       <button type="button" ng-click="GamesListCtrl.sortBy(GamesListCtrl.sorting.attr)" class="btn btn-default">
         <i class="fa" ng-class="{'fa-sort-amount-desc': !GamesListCtrl.sorting.reverse, 'fa-sort-amount-asc': GamesListCtrl.sorting.reverse}"></i>
       </button>
-      <div class="pull-right">
+      <div class="pull-right data-search">
         <input type="text" name="search" ng-model="GamesListCtrl.searchText" ng-change="GamesListCtrl.search()" placeholder="Search Game" class="form-control">
+        <a class="clear-btn close" ng-if="GamesListCtrl.searchText" ng-click="GamesListCtrl.clearSearch()"><i class="fa fa-times-circle-o"></i></a>
       </div>
     </div>
 

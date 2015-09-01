@@ -48,5 +48,10 @@ angular.module('twitchdata.games.list', ['twitchdata.components.api.games'])
       fetchData();
     };
 
+    GamesListCtrl.clearSearch = function () {
+      this.searchText = '';
+      fetchData();
+    }
+
     init();
   });

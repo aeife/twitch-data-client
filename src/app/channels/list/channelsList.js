@@ -47,6 +47,11 @@ angular.module('twitchdata.channels.list', ['twitchdata.components.api.channels'
     ChannelsListCtrl.search = function () {
       fetchData();
     };
+    
+    ChannelsListCtrl.clearSearch = function () {
+      this.searchText = '';
+      fetchData();
+    }
 
     init();
   });

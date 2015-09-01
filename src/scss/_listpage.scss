@@ -124,3 +124,13 @@
     vertical-align: middle;
   }
 }
+
+.data-search {
+  position: relative;
+
+  .clear-btn {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+  }
+}
