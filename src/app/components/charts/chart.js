@@ -56,6 +56,16 @@ angular.module('twitchdata.components.charts', [])
               },
               credits: {
                 enabled: false
+              },
+              legend:{
+                enabled:false
+              },
+              exporting:{
+                chartOptions:{
+                  legend:{
+                    enabled:true
+                  }
+                }
               }
             },
             series: [],
