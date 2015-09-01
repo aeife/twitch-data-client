@@ -2,8 +2,8 @@
   <div class="jumbotron text-center">
     <img src="/images/logo.png" alt="" />
     <p>Delivering you statistics, numbers and data all around Twitch.</p>
-    <p><a ui-sref="games">View Games Statistics</a></p>
-    <p><a ui-sref="channels">View Channels Statistics</a></p>
+    <p><a ui-sref="games">View Game Statistics</a></p>
+    <p><a ui-sref="channels">View Channel Statistics</a></p>
   </div>
   <hr>
   <div class="features clearfix">
@@ -31,13 +31,13 @@
     <h2 class="text-center">General Twitch Statistics</h2>
     <div class="col-xs-12 col-sm-6">
       <div class="headings">
-        <h3>Viewers: {{DashboardCtrl.currentStats.viewers}}</h3>
+        <h3>Viewers: {{DashboardCtrl.currentStats.viewers | number}}</h3>
       </div>
       <highchart config="DashboardCtrl.totalViewersChartConfig"></highchart>
     </div>
     <div class="col-xs-12 col-sm-6">
       <div class="headings">
-        <h3>Channels: {{DashboardCtrl.currentStats.channels}}</h3>
+        <h3>Channels: {{DashboardCtrl.currentStats.channels | number }}</h3>
       </div>
       <highchart config="DashboardCtrl.totalChannelsChartConfig"></highchart>
     </div>

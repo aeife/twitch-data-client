@@ -40,11 +40,11 @@
             <table class="table table-borderless table-condensed">
               <tr>
                 <td><i class="fa fa-users"></i></td>
-                <td>{{::channel.viewers}}</td>
+                <td>{{::channel.viewers | number}}</td>
               </tr>
               <tr>
                 <td><i class="fa fa-heart"></i></td>
-                <td>{{::channel.followers}}</td>
+                <td>{{::channel.followers | number}}</td>
               </tr>
               <tr>
                 <td><i class="fa fa-gamepad"></i></td>
