@@ -161,6 +161,12 @@ angular.module('twitchdata.components.statistics', [])
           var months = _.groupBy(stats, function (stat) {
             return stat.year + '-' + stat.month;
           });
+
+          // remove month the collector started gathering data as is it not representive
+          // TODO: refactor this part
+          var collectorStartingMonth = '2015-7';
+          delete months[collectorStartingMonth];
+
           var monthsKeys = Object.keys(months);
           monthsKeys.reverse();
 
