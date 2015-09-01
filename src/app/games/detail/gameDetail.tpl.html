@@ -111,6 +111,31 @@
         <highchart ng-show="GameDetailCtrl.currentChart == 'ratio'" config="GameDetailCtrl.ratioChartConfig" class="col-xs-12 no-padding"></highchart>
       </div>
 
+      <div class="data-sharing">
+        <div class="share-buttons">
+          <a href="#" class="twitter"
+            socialshare
+            socialshare-provider="twitter"
+            socialshare-url="{{document.URL}}"
+            socialshare-hashtags="ttvstats">
+            <i class="fa fa-twitter-square"></i>
+          </a>
+          <a href="#" class="facebook"
+            socialshare
+            socialshare-provider="facebook"
+            socialshare-text="TTV Stats"
+            socialshare-url="{{document.URL}}">
+            <i class="fa fa-facebook-square"></i>
+          </a>
+          <a href="#" class="google-plus"
+            socialshare
+            socialshare-provider="google+"
+            socialshare-url="{{document.URL}}">
+            <i class="fa fa-google-plus-square"></i>
+          </a>
+        </div>
+      </div>
+
       <a ui-sref="gamesCompare({gameNames: GameDetailCtrl.game.name})" class="clearfix data-compare-link">
         <img class="" ng-src="http://static-cdn.jtvnw.net/ttv-boxart/{{GameDetailCtrl.game.name}}-300x420.jpg" alt="" />
         <div class="text-center">

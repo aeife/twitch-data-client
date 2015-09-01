@@ -8,7 +8,8 @@ angular.module('twitchdata.channels.detail', [
   'twitchdata.components.statistics',
   'twitchdata.components.trendText',
   'twitchdata.components.monthFilter',
-  'highcharts-ng'
+  'highcharts-ng',
+  '720kb.socialshare'
   ])
   .controller('ChannelDetailCtrl', function ($http, $stateParams, $q, $state, channelService, twitchApiClient, chartService, statisticsService) {
     var ChannelDetailCtrl = this;

@@ -62,6 +62,31 @@
         <highchart ng-show="ChannelDetailCtrl.currentChart == 'followers'" config="ChannelDetailCtrl.followersChartConfig" class="col-xs-12 no-padding"></highchart>
       </div>
 
+      <div class="data-sharing">
+        <div class="share-buttons">
+          <a href="#" class="twitter"
+            socialshare
+            socialshare-provider="twitter"
+            socialshare-url="{{document.URL}}"
+            socialshare-hashtags="ttvstats">
+            <i class="fa fa-twitter-square"></i>
+          </a>
+          <a href="#" class="facebook"
+            socialshare
+            socialshare-provider="facebook"
+            socialshare-text="TTV Stats"
+            socialshare-url="{{document.URL}}">
+            <i class="fa fa-facebook-square"></i>
+          </a>
+          <a href="#" class="google-plus"
+            socialshare
+            socialshare-provider="google+"
+            socialshare-url="{{document.URL}}">
+            <i class="fa fa-google-plus-square"></i>
+          </a>
+        </div>
+      </div>
+
       <a ui-sref="channelsCompare({channelNames: ChannelDetailCtrl.channel.name})" class="clearfix data-compare-link">
         <img class="" ng-src="{{ChannelDetailCtrl.channel.logo}}" alt="" />
         <div class="text-center">

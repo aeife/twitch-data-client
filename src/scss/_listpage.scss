@@ -134,3 +134,30 @@
     right: 5px;
   }
 }
+
+.data-sharing {
+  background-color: $item-bg-color;
+  margin-bottom: 25px;
+
+  .share-buttons {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+
+    a {
+      font-size: 30px;
+
+      &.twitter {
+        color: #55acee;
+      }
+
+      &.facebook {
+        color: #3b5998;
+      }
+
+      &.google-plus {
+        color: #dd4b39;
+      }
+    }
+  }
+}

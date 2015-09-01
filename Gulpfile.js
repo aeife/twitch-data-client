@@ -32,7 +32,8 @@ var vendorFiles = [
   'src/bower_components/highstock-release/adapters/standalone-framework.js',
   'src/bower_components/highstock-release/highstock.js',
   'src/bower_components/highstock-release/modules/exporting.js',
-  'src/bower_components/highcharts-ng/dist/highcharts-ng.min.js'
+  'src/bower_components/highcharts-ng/dist/highcharts-ng.min.js',
+  'src/bower_components/angularjs-socialshare/dist/angular-socialshare.min.js'
 ];
 
 // dist files

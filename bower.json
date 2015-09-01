@@ -22,7 +22,8 @@
     "angular-bootstrap": "~0.13.0",
     "highcharts-ng": "~0.0.8",
     "highstock-release": "~2.1.6",
-    "font-awesome": "~4.3.0"
+    "font-awesome": "~4.3.0",
+    "angularjs-socialshare": "~0.1.13"
   },
   "resolutions": {
     "angular": "~1.4.0"

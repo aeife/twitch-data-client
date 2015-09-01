@@ -8,7 +8,8 @@ angular.module('twitchdata.games.detail', [
   'twitchdata.components.statistics',
   'twitchdata.components.trendText',
   'twitchdata.components.monthFilter',
-  'highcharts-ng'
+  'highcharts-ng',
+  '720kb.socialshare'
   ])
   .controller('GameDetailCtrl', function ($http, $stateParams, $q, $state, $rootScope, $timeout, gameService, twitchApiClient, giantbombApiClient, chartService, statisticsService) {
     var GameDetailCtrl = this;
