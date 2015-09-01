@@ -131,6 +131,26 @@ angular.module('twitchdata.components.statistics', [])
 
           return addMissing(stats, attrs);
         },
+        getGrowthTrendOfLastNDays: function (dayCount, stats, attrs) {
+          var last;
+          var secondLast;
+
+          last = this.getAvgForTimeFrame(stats, attrs, 'day', dayCount, 0);
+          secondLast = this.getAvgForTimeFrame(stats, attrs, 'day', dayCount, dayCount);
+
+          var result = {
+            growth: calculateGrowth(last, secondLast, attrs),
+            last: {},
+            secondLast: {}
+          };
+
+          attrs.forEach(function (attr) {
+            result.last[attr] = last[attr];
+            result.secondLast[attr] = secondLast[attr];
+          });
+
+          return result;
+        },
         getGrowthTrendOfLast: function (timeframe, stats, attrs) {
           var last;
           var secondLast;
