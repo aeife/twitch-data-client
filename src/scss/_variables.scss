@@ -4,10 +4,11 @@ $twitch-color-light:                    #815fc0;
 $menu-active-border-color:              lighten($twitch-color-light, 20%);
 $footer-height: 150px;
 $overlay-color:                         rgba(255, 253, 253, 0.9);
+$item-bg-color:                         #fff;
 
 // bootstrap vars
 $brand-primary:                         $twitch-color;
-$body-bg:                               rgb(245, 247, 252);
+$body-bg:                               rgb(245, 247, 252);;
 $navbar-inverse-bg:                     $twitch-color;
 $navbar-inverse-link-color:             darken(#fff, 15%);
 $navbar-inverse-link-hover-color:       #fff;

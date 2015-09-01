@@ -12,7 +12,7 @@
 }
 
 .data-info {
-  background-color: white;
+  background-color: $item-bg-color;
   box-shadow: 5px 5px 10px 0px rgba(216, 215, 215, 0.95);
   padding: 15px;
   overflow: auto;
@@ -97,7 +97,7 @@
 
 .monthly-trends {
   table {
-    background-color: white;
+    background-color: $item-bg-color;
 
     td {
       text-align: right;
@@ -119,9 +119,9 @@
 
 .data-compare-link {
   padding: 10px;
-  background-color: #fff;
+  background-color: $item-bg-color;
   margin-bottom: 25px;
-  border: 1px solid #fff;
+  border: 1px solid $item-bg-color;
   display: flex;
   justify-content: space-between;
   align-items: center;

@@ -20,7 +20,7 @@
 
 .data-cards {
   margin: 0 -5px;
-  
+
   li {
     height: 150px;
     padding: 5px;
@@ -40,7 +40,7 @@
       display: flex;
       position: relative;
       box-shadow: 2px 2px 5px 0px rgba(216, 215, 215, 0.6);
-      background-color: #fff;
+      background-color: $item-bg-color;
       cursor: pointer;
       color: inherit;
 
