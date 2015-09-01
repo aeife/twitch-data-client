@@ -16,13 +16,13 @@
           <p>{{GameDetailCtrl.giantbomb.description}}</p>
         </div>
         <div class="col-xs-12 col-sm-12">
-          <h3 class="text-center">Records</h3>
+          <h4 class="text-center">Records</h4>
           <p class="peak"><i class="fa fa-users"></i> {{GameDetailCtrl.peak.viewers.count | number:0}} <span class="pull-right">{{GameDetailCtrl.peak.viewers.date | date:'short'}}</span></p>
           <p class="peak"><i class="fa fa-video-camera"></i> {{GameDetailCtrl.peak.channels.count | number:0}} <span class="pull-right">{{GameDetailCtrl.peak.channels.date | date:'short'}}</span></p>
         </div>
         <div class="col-xs-12 col-sm-12">
           <hr>
-          <h3 class="text-center">Last 30 Days Average</h3>
+          <h4 class="text-center">Last 7 Days Average</h4>
           <p class="avg"><i class="fa fa-users"></i> {{GameDetailCtrl.avg.viewers | number:0}}</p>
           <p class="avg"><i class="fa fa-video-camera"></i> {{GameDetailCtrl.avg.channels | number:0}}</p>
           <hr>
