@@ -22,7 +22,7 @@ angular.module('twitchdata.components.statistics', [])
           return stat;
         });
 
-        // precition frame dates
+        // precision frame dates
         var lastDate = new Date(_.last(stats).date);
         var precisionBorders = statisticsService.getPrecisionBorders(lastDate);
         var firstDate = new Date(_.first(stats).date);
@@ -31,7 +31,7 @@ angular.module('twitchdata.components.statistics', [])
         var expectedStats = {};
         var d;
 
-        var hourCount = Math.floor((lastDate - precisionBorders.hourly) / 36e5) + 1;
+        var hourCount = Math.floor((lastDate - precisionBorders.hourly) / 36e5);
         for (var i = 0; i < hourCount; i++) {
           d = new Date(lastDate);
           d.setHours(d.getHours() - i);
