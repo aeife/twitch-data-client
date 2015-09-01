@@ -14,7 +14,9 @@ angular.module('twitchdata', [
   'twitchdata.components.api.games',
   'twitchdata.components.api.generalStats',
   'ui.router',
-  'ui.bootstrap'
+  'ui.bootstrap',
+  'angulartics',
+  'angulartics.google.analytics'
   ])
   .config(function ($locationProvider, $stateProvider, $compileProvider, gameServiceProvider, generalStatsServiceProvider, channelServiceProvider) {
     if (TD.ENVIRONMENT === 'PRODUCTION') {

@@ -33,7 +33,9 @@ var vendorFiles = [
   'src/bower_components/highstock-release/highstock.js',
   'src/bower_components/highstock-release/modules/exporting.js',
   'src/bower_components/highcharts-ng/dist/highcharts-ng.min.js',
-  'src/bower_components/angularjs-socialshare/dist/angular-socialshare.min.js'
+  'src/bower_components/angularjs-socialshare/dist/angular-socialshare.min.js',
+  'src/bower_components/angulartics/dist/angulartics.min.js',
+  'src/bower_components/angulartics-google-analytics/dist/angulartics-google-analytics.min.js'
 ];
 
 // dist files
