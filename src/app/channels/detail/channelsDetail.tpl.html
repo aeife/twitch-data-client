@@ -35,16 +35,16 @@
       <hr>
       <div class="trend clearfix">
         <div class="col-xs-4">
-          <h3>last 24h</h3>
-          <td-trend-text value="ChannelDetailCtrl.trend.day.growth.viewers"></td-trend-text>
+          <h3>created</h3>
+          <p>{{ChannelDetailCtrl.channel.created_at | date:'mediumDate'}}</p>
         </div>
         <div class="col-xs-4">
-          <h3>last 7d</h3>
-          <td-trend-text value="ChannelDetailCtrl.trend.week.growth.viewers"></td-trend-text>
+          <h3>followers</h3>
+          <p>{{ChannelDetailCtrl.channel.followers | number}}</p>
         </div>
         <div class="col-xs-4">
-          <h3>last 30d</h3>
-          <td-trend-text value="ChannelDetailCtrl.trend.month.growth.viewers"></td-trend-text>
+          <h3>views</h3>
+          <p>{{ChannelDetailCtrl.channel.views | number}}</p>
         </div>
       </div>
       <hr>
