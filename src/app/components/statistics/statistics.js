@@ -179,6 +179,13 @@ angular.module('twitchdata.components.statistics', [])
               avg: monthAvgs[monthsKeys[i-1]]
             });
           }
+
+          result.push({
+            year: months[_.last(monthsKeys)][0].year,
+            month: months[_.last(monthsKeys)][0].month,
+            avg: monthAvgs[_.last(monthsKeys)]
+          });
+
           return result;
         },
         getAvgForTimeFrame: function (stats, attrs, timeframe, limit, offset) {
