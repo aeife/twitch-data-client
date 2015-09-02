@@ -8,7 +8,7 @@
     </div>
   </div>
 
-  <ul class="data-list">
+  <ul class="data-list game-list">
     <li ng-repeat="game in GamesCompareCtrl.games" class="">
       <img ng-src="http://static-cdn.jtvnw.net/ttv-boxart/{{game.name}}-100x140.jpg" alt="" width="50" height="70"/>
       <a class="data-name wrap-text" ui-sref="gameDetail({gameName: game.name})">{{game.name}}</a>

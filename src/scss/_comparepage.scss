@@ -13,8 +13,7 @@
     display: flex;
     align-items: center;
     margin-bottom: 10px;
-    background: #fff url('/images/placeholder.jpg') no-repeat;
-    background-size: 50px 70px;
+    background-color: $item-bg-color;
     box-shadow: 5px 5px 5px 0px rgba(216, 215, 215, 0.95);
 
     img {
